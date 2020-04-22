@@ -1,0 +1,337 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Software architecture &mdash; H29 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Superadmin profile" href="Superadmin profile.html" />
+    <link rel="prev" title="Environments" href="Environments.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> H29
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">H29</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Environments.html">Environments</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Software architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#general-schema">General schema</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#level-1-system-context">Level 1: System Context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#level-2-containers">Level 2: Containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#level-3-component">Level 3: Component</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#webapp">Webapp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#external-apis">External APIs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#azure-cognitive-services">Azure cognitive services</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#computer-vision">Computer Vision</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qna-maker">Qna maker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#translator">Translator</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#azure-healthbot">Azure healthbot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#azure-blobs">Azure blobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#databases">Databases</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#level-4-code">Level 4: Code</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Superadmin profile.html">Superadmin profile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Technical debt.html">Technical debt</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">H29</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Software architecture</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/documents/Software architecture.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <img align="right" width="100px" src="../_images/Foundation29.png"><div class="section" id="software-architecture">
+<h1>Software architecture<a class="headerlink" href="#software-architecture" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Health29’s architecture uses a client-server software design model.</p>
+<p><img alt="Alt" src="../_images/H29_architecture.jpg" /></p>
+<p>For the client we use the Angular 5 framework, and for the nodejs - express server, in which we have implemented an API to connect to the CosmoDb databases using mongoose for its management.</p>
+<p>For Android and iOS apps, we use the cordova framework. When compiling the Angular project, it generates the dist folder, which is the one to be added to the www folder of the Corova project.  We were evaluating ionic, nativescript and reactscript, they would be good options if we were more people, but at the moment we fit more cordova.</p>
+<p>Our idea is to migrate to FHIR, so we would have to modify our API to make calls to <a class="reference external" href="https://www.hl7.org/fhir/">FHIR’s API</a></p>
+<p>Health29 provides a web API to access the data. Anyone can develop an application to access and modify the data of a Health29 user. OAuth 2.0 is used as an authorization protocol to give an API client limited access to the user’s data.</p>
+</div>
+<div class="section" id="general-schema">
+<h2>General schema<a class="headerlink" href="#general-schema" title="Permalink to this headline">¶</a></h2>
+<p>We will use the C4 model to expose the software architecture. Thus, in the description of this section we will differentiate between:</p>
+<ul class="simple">
+<li><p>Level 1: A <strong>System Context</strong> diagram provides a starting point, showing how the software system in scope fits into the world around it.</p></li>
+<li><p>Level 2: A <strong>Container</strong> diagram zooms into the software system in scope, showing the high-level technical building blocks.</p></li>
+<li><p>Level 3: A <strong>Component</strong> diagram zooms into an individual container, showing the components inside it.</p></li>
+<li><p>Level 4: A <strong>code</strong> (e.g. UML class) diagram can be used to zoom into an individual component, showing how that component is implemented.</p></li>
+</ul>
+<p><img alt="Alt" src="../_images/H29_C4model.png" /></p>
+</div>
+<div class="section" id="level-1-system-context">
+<h2>Level 1: System Context<a class="headerlink" href="#level-1-system-context" title="Permalink to this headline">¶</a></h2>
+<p>TODO</p>
+</div>
+<div class="section" id="level-2-containers">
+<h2>Level 2: Containers<a class="headerlink" href="#level-2-containers" title="Permalink to this headline">¶</a></h2>
+<p>Health29 consists of several connected containers.
+We have divided them according to their functionality and use within the platform.Thus, we will have:</p>
+<ul class="simple">
+<li><p>Webapp container.</p></li>
+<li><p>External APIs container.</p></li>
+<li><p>Azure cognitive services container.</p></li>
+<li><p>Azure healthbot container.</p></li>
+<li><p>Azure blobs container.</p></li>
+<li><p>Databases container.</p></li>
+</ul>
+<p>These modules are intercommunicated using a REST interface, that is, the communication is established according to the HTTP protocol.</p>
+<p>(Esquema general de comunicación entre los containers)</p>
+</div>
+<div class="section" id="level-3-component">
+<h2>Level 3: Component<a class="headerlink" href="#level-3-component" title="Permalink to this headline">¶</a></h2>
+<p>Taking into account the division by containers exposed in the previous point, we are now going to study in detail the internal architecture and the components that make up each one of them.</p>
+<div class="section" id="webapp">
+<h3>Webapp<a class="headerlink" href="#webapp" title="Permalink to this headline">¶</a></h3>
+<p><img alt="Alt" src="../_images/Webapp.jpg" /></p>
+<p>This container will be composed of the platform’s webapp services,</p>
+<ul class="simple">
+<li><p>The client or frontend</p></li>
+<li><p>The server or backend</p></li>
+</ul>
+<p>These two modules are intercommunicated using a REST interface, that is, the communication is established according to the HTTP protocol.</p>
+<p>(TODO: Explicar un poco mas aqui a nivel de sistema)</p>
+<p>In turn, the server is connected with the rest of the services offered by the Health29 platform. That is to say, this is the one that establishes communication with the rest of the containers to obtain the necessary information and transfer it to the client.</p>
+<p>(TODO: Introducir que esto se va a ir explicando con el resto de containers indicando en cada caso si se conecta al cliente o al servidor)</p>
+<p>As the client is using the Angular 5 framework, when compiling it (ng build) you get a “/dist” folder that must be included in the server for the construction of the platform.</p>
+</div>
+<div class="section" id="external-apis">
+<h3>External APIs<a class="headerlink" href="#external-apis" title="Permalink to this headline">¶</a></h3>
+<p>TODO</p>
+</div>
+<div class="section" id="azure-cognitive-services">
+<h3>Azure cognitive services<a class="headerlink" href="#azure-cognitive-services" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="computer-vision">
+<h4>Computer Vision<a class="headerlink" href="#computer-vision" title="Permalink to this headline">¶</a></h4>
+<p>It is used in the symptoms section. This service converts images into text in order to obtain the symptoms.
+It is used from the webapp container client.
+You can configure and use this azure service by following the steps in the <a class="reference external" href="https://docs.microsoft.com/bs-latn-ba/azure/cognitive-services/computer-vision/">Microsoft guide</a>. And access the one that uses the Health29 platform from this <a class="reference external" href="https://portal.azure.com/#&#64;foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/health29/providers/Microsoft.CognitiveServices/accounts/recognizetexthealth29/overview">link</a>.</p>
+</div>
+<div class="section" id="qna-maker">
+<h4>Qna maker<a class="headerlink" href="#qna-maker" title="Permalink to this headline">¶</a></h4>
+<p>QnA Maker is a cloud-based Natural Language Processing (NLP) service that easily creates a natural conversation layer with the data.</p>
+<p>In Health29 it is used to manage the FAQs in different ways and from different points of the platform:</p>
+<ul class="simple">
+<li><p>To show the list of FAQs to the <strong>users</strong>. From the user profile you can access the FAQ page where you will be shown the results of the service consultation in the form of a list.</p></li>
+<li><p>So that the <strong>administrators</strong> of the platform can manage the list of FAQs. From the administrator profile you can add, delete and edit the list of FAQs of the service.</p></li>
+<li><p>It is integrated into the <strong>healthbot</strong> to allow users to ask questions or doubts in a more guided and personal way.</p></li>
+</ul>
+<p>In this case the communication of the webapp with this service is requested from the client through an external API that acts as an intermediary. However, there will also be information that will be stored in the databases, therefore, the client will also establish a communication with the server who will manage the storage of this information.</p>
+<p>You can configure and use this azure service by following the steps in the <a class="reference external" href="https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/">Microsoft guide</a>.And access the one that uses the Health29 platform from this <a class="reference external" href="https://portal.azure.com/#&#64;foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/health29/providers/Microsoft.CognitiveServices/accounts/qnamakerhealth29/overview">link</a></p>
+<p>In particular for Health29 the following databases have been created in qnamaker: <a class="reference external" href="https://www.qnamaker.ai/Home/MyServices">My knowledge bases</a>. One would be created for each group of patients to contain their specific information and this in turn would be replicated in as many languages as the question-answer pairs are translated on the Health29 platform.</p>
+</div>
+<div class="section" id="translator">
+<h4>Translator<a class="headerlink" href="#translator" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Traductor para poder realizar una tradución de los distintos datapoints, para añadir un nuevo idioma a la plataforma (traduce todas las etiquetas), y para traducir a inglés el texto obtenido del servicio vision para llamar el servicio NCR que extrae los síntomas (también incluido en dx29).</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="azure-healthbot">
+<h3>Azure healthbot<a class="headerlink" href="#azure-healthbot" title="Permalink to this headline">¶</a></h3>
+<p>TODO</p>
+</div>
+<div class="section" id="azure-blobs">
+<h3>Azure blobs<a class="headerlink" href="#azure-blobs" title="Permalink to this headline">¶</a></h3>
+<p>TODO</p>
+<ul class="simple">
+<li><p>En los blobs de azure, cada paciente tiene su blob donde se guardan pruebas médicas.
+Se hace desde el cliente</p></li>
+</ul>
+</div>
+<div class="section" id="databases">
+<h3>Databases<a class="headerlink" href="#databases" title="Permalink to this headline">¶</a></h3>
+<p>TODO
+(DOC health29_DBs)</p>
+</div>
+</div>
+<div class="section" id="level-4-code">
+<h2>Level 4: Code<a class="headerlink" href="#level-4-code" title="Permalink to this headline">¶</a></h2>
+<p>TODO</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Superadmin profile.html" class="btn btn-neutral float-right" title="Superadmin profile" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Environments.html" class="btn btn-neutral float-left" title="Environments" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Foundation29
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

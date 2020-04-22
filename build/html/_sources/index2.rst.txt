@@ -1,0 +1,32 @@
+.. dx29 documentation master file, created by
+   sphinx-quickstart on Tue Apr 21 16:01:32 2020.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Welcome to dx29's documentation!
+================================
+TEXT FOR 1 HEADER
+
+Another simple header
+======================
+TEXT FOR 2 HEADER
+<h1> Prueba h1 </h1>
+<h2> Prueba h2 </h2>
+
+
+Guide
+^^^^^^
+TEXT FOR GUIDE
+
+.. toctree::
+   :maxdepth: 2 
+   :caption: Contents:
+
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

@@ -30,11 +30,9 @@ master_doc = 'index'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx.ext.autodoc','recommonmark','sphinx_markdown_tables']
-source_parsers = {
-    '.md': 'recommonmark.parser.CommonMarkParser',
-}
-source_suffix = ['.rst', '.md']
+# extensions = ['sphinx.ext.autodoc','recommonmark','sphinx_markdown_tables']
+extensions = ['sphinx.ext.autodoc','recommonmark']
+
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

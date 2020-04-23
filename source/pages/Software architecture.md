@@ -44,11 +44,8 @@ These modules are intercommunicated using a [REST](https://restfulapi.net/) inte
 In this way, it will be necessary to configure the different services you want to use so that communications can be established. To do this, during the implementation of the webapp the keys and the corresponding endpoint will be used to establish communication, and the sending of the REST commands will use specific authorization headers. 
 
 The most common headers we can find are:
-
-| Headers | Description |  
-|---|---|
-| Ocp-Apim-Subscription-Key | Use with Cognitive Services subscription if you pass your secret key. | 
-| Authorization | Use with your Cognitive Services subscription if you pass an authentication token. The value is the bearer token: Bearer token_value |  
+- Ocp-Apim-Subscription-Key. Use with Cognitive Services subscription if you pass your secret key. 
+- Authorization. Use with your Cognitive Services subscription if you pass an authentication token. The value is the bearer token: Bearer token_value 
 
 The webapp will be the core of the Health29 application, from where the frontend will be developed and the communications with different services to provide functionalities.
 

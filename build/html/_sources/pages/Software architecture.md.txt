@@ -1,4 +1,4 @@
-<img align="right" width="100px" src="../../../source/images/All//Foundation29.png">
+<img align="right" width="100px" src="../_images/Foundation29.png">
 
 # 2. Software architecture
 
@@ -9,4 +9,4 @@ We will use the C4 model to expose the software architecture. Thus, in the descr
 - Level 3: A **Component** diagram zooms into an individual container, showing the components inside it.
 - Level 4: A **code** (e.g. UML class) diagram can be used to zoom into an individual component, showing how that component is implemented.
 
-<img width="500px" src="../../../source/images/Architecture/General_schema/H29_C4model.png">
+<img width="500px" src="../_images/H29_C4model.png">

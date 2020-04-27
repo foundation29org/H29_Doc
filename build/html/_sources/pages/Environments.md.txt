@@ -1,4 +1,4 @@
-<img align="right" width="100px" src="../../../source/images/All//Foundation29.png">
+<img align="right" width="100px" src="../_images/Foundation29.png">
 
 # 1. Environments
 ## 1.1. Build 

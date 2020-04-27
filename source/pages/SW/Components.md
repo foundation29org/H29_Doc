@@ -1,4 +1,4 @@
-<img align="right" width="100px" src="../../../../source/images/All//Foundation29.png">
+<img align="right" width="100px" src="../../_images/Foundation29.png">
 
 ## 2.3. Level 3: Component
 
@@ -8,11 +8,11 @@ Taking into account the division by containers exposed in the previous point, we
 
 Health29's architecture uses a client-server software design model, so that the architecture of the webapp is like:
 
-<img width="800px" src="../../../../source/images/Architecture/Components/Webapp/Webapp.jpg">
+<img width="800px" src="../../_images/Webapp.jpg">
 
 For the client we use the Angular 5 framework, and for the nodejs - express server, in which we have implemented an API to connect to the CosmoDb databases using mongoose for its management.
 
-<img width="800px" src="../../../../source/images/Architecture/Components/Webapp/Webapp_frameworks_architecture.jpg">
+<img width="800px" src="../../_images/Webapp_frameworks_architecture.jpg">
 
 These modules are intercommunicated using a [REST](https://restfulapi.net/) interface, that is, the communication is established according to the [HTTP protocol](https://restfulapi.net/http-methods/). 
 

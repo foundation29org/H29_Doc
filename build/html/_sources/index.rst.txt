@@ -2,14 +2,43 @@
    sphinx-quickstart on Tue Apr 21 16:01:32 2020.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
+.. image:: images/All/Foundation29.png
+   :width: 0px
 
+.. image:: images/Architecture/General_schema/H29_c4model.png
+   :width: 0px
+
+.. image:: images/Architecture/Containers/containersH29.jpg
+   :width: 0px
+
+.. image:: images/Architecture/Components/Webapp/Webapp.jpg
+   :width: 0px
+
+.. image:: images/Architecture/Components/Webapp/Webapp_frameworks_architecture.jpg
+   :width: 0px
+
+.. image:: images/Architecture/Code/Healthbot/Scenarios.jpg
+   :width: 0px
+
+.. image:: images/Architecture/Code/Healthbot/botflow.png
+   :width: 0px
+
+.. image:: images/Architecture/Code/Webapp/client/Client_structure.png
+   :width: 0px
+
+.. image:: images/Architecture/Code/Webapp/client/Client_structure_shared.png
+   :width: 0px
+
+.. image:: images/Architecture/Code/Webapp/client/Client_structure_src.png
+   :width: 0px
+
+.. image:: images/Architecture/Code/Webapp/server/Server_structure.png
+   :width: 0px
 
 .. image:: images/All/Foundation29.png
    :width: 100px
    :align: right
    :alt: Foundation29
-
-.. image:: images/Architecture/General_schema/H29_c4model.png
 
 Health29
 =========

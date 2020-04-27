@@ -1,4 +1,4 @@
-<img align="right" width="100px" src="../../../../source/images/All//Foundation29.png">
+<img align="right" width="100px" src="../../_images/Foundation29.png">
 
 ## 2.4. Level 4: Code
 ### 2.4.1. Webapp
@@ -32,12 +32,12 @@ api.get(<url>, auth, function)
 The structure is as follows:
 
 <p style="text-align: center;">
-	<img width="150px" src="../../../../source/images/Architecture/Code/Webapp/client/Client_structure.png">
+	<img width="150px" src="../../_images/Client_structure.png">
 </p>
 
 - The **src folder** has the following:
 
-	<img align="right" width="150px" src="../../../../source/images/Architecture/Code/Webapp/client/Client_structure_src.png">
+	<img align="right" width="150px" src="../../_images/Client_structure_src.png">
 
 	>- app/app.component.{ts,html,css,spec.ts}: Defines the AppComponent along with an HTML template, CSS stylesheet, and a unit test. It is the root component of what will become a tree of nested components as the application evolves. In this file it is controlling the events of inactivity of a session, loading the language of the app depending on the language of the browser, the title that appears in the browser tab with the change of pages. If it is a mobile app, it also controls the backbutton, pause and resume events.
 	>- app/app.module.ts: Defines AppModule, the root module that tells Angular how to assemble the application. 
@@ -64,7 +64,7 @@ The structure is as follows:
 
 - The **shared folder**, which is the shared code:
 
-	<img align="right" width="150px" src="../../../../source/images/Architecture/Code/Webapp/client/Client_structure_shared.png">
+	<img align="right" width="150px" src="../../_images/Client_structure_shared.png">
 
 	>- auth: authorization management (role-guard), authentication (auth-service and auth-guard), http interceptor, oauth.services for external services like fitbit.
 	>- Configs: configuration files, for example configuration for toasts, or parameters for graphs. 
@@ -84,7 +84,7 @@ The rest of the subroutes that come from full-layout, are controlled if they are
 #### 2.4.1.3. Code Structure: Server Structure
 
 <p style="text-align: center;">
-	<img width="150px" src="../../../../source/images/Architecture/Code/Webapp/server/Server_structure.png">
+	<img width="150px" src="../../_images/Server_structure.png">
 </p>
 
 - index.js: file where the app.js and config.js file is loaded It listens to requests.
@@ -322,7 +322,7 @@ And the style is added from the scss file.
 As for the functionality of the bot, this is included in the ".ts" file, taking into account:
 
 <p style="text-align: center;">
-	<img width="800px" src="../../../../source/images/Architecture/Code/Healthbot/botflow.png">
+	<img width="800px" src="../../_images/botflow.png">
 </p>
 
 Health Bot uses [Bot Framework](https://dev.botframework.com/) under the hood as a messaging and routing platform to deliver messages to and from the end user.
@@ -404,7 +404,7 @@ In the microsoft documentation there are [guides](https://docs.microsoft.com/en-
 The general workflow of the Healthbot scenarios defined for Health29 is
 
 <p style="text-align: center;">
-	<img width="800px" src="../../../../source/images/Architecture/Code/Healthbot/Scenarios.jpg">
+	<img width="800px" src="../../_images/Scenarios.jpg">
 </p>
 
 Except for the control scenarios that do not send messages to the user, the rest are replicated: one is created per user language available in Health29 (as can be seen in the previous diagram, the nomenclature "scenarioName_lang" has been used). 

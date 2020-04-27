@@ -1,4 +1,4 @@
-<img align="right" width="100px" src="../../../../source/images/All//Foundation29.png">
+<img align="right" width="100px" src="../../_images/Foundation29.png">
 
 ## 2.2. Level 2: Containers
 
@@ -14,7 +14,7 @@ We have divided them according to their functionality and use within the platfor
 - Databases container.
 
 <p style="text-align: center;">
-	<img width="500px" src="../../../../source/images/Architecture/Containers/containersH29.jpg">
+	<img width="500px" src="../../_images/containersH29.jpg">
 </p>
 
 These modules are intercommunicated using a [REST](https://restfulapi.net/) interface, that is, the communication is established according to the [HTTP protocol](https://restfulapi.net/http-methods/). 

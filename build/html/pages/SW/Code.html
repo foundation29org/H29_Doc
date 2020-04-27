@@ -216,15 +216,23 @@
 <p><em>NOTE: A template was purchased to have a base: <a class="reference external" href="https://themeforest.net/item/apex-angular-4-bootstrap-admin-template/20774875">Template Link</a>.</em></p>
 <p>The structure is as follows:</p>
 <p style="text-align: center;">
-	<img width="150px" src="../../_images/Client_structure.png">
-</p><ul>
-<li><p>The <strong>src folder</strong> has the following:</p>
-  <img align="right" width="150px" src="../../_images/Client_structure_src.png"><blockquote>
+	<img width="800px" src="../../_images/H29_client_code.jpg">
+</p><p>The src folder has the following:</p>
+<ul>
+<li><p>The <strong>app folder</strong> is the one with all the code.</p>
+<blockquote>
 <div><ul class="simple">
 <li><p>app/app.component.{ts,html,css,spec.ts}: Defines the AppComponent along with an HTML template, CSS stylesheet, and a unit test. It is the root component of what will become a tree of nested components as the application evolves. In this file it is controlling the events of inactivity of a session, loading the language of the app depending on the language of the browser, the title that appears in the browser tab with the change of pages. If it is a mobile app, it also controls the backbutton, pause and resume events.</p></li>
 <li><p>app/app.module.ts: Defines AppModule, the root module that tells Angular how to assemble the application.</p></li>
-<li><p>assets/..: It contains all the information that will be accessible from any url. Css files, js, images, language files, jsons listing countries, types of subscriptions, frequently asked questions for each group of patients, etc. It will be the only visible folder when a build is made for production.</p></li>
-<li><p>environments/..: This folder contains one file for each of your destination environments, each exporting simple configuration variables to use in your application. The files are replaced on-the-fly when you build your app. You might use a different API endpoint for development than you do for production or maybe different analytics tokens. You might even use some mock services. Either way, the CLI has you covered. At the moment url of the api, and fitbit credentials</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>The <strong>assets folder</strong>: It contains all the information that will be accessible from any url. Css files, js, images, language files, jsons listing countries, types of subscriptions, frequently asked questions for each group of patients, etc. It will be the only visible folder when a build is made for production.</p></li>
+<li><p>The <strong>environments folder</strong>. This folder contains one file for each of your destination environments, each exporting simple configuration variables to use in your application. The files are replaced on-the-fly when you build your app. You might use a different API endpoint for development than you do for production or maybe different analytics tokens. You might even use some mock services. Either way, the CLI has you covered. At the moment url of the api, and fitbit credentials</p></li>
+<li><p><strong>Some files</strong>:</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
 <li><p>favicon.ico: Every site wants to look good on the bookmark bar. Get started with your very own Angular icon</p></li>
 <li><p>index.html: The main HTML page that is served when someone visits your site. Most of the time you’ll never need to edit it. The CLI automatically adds all js and css files when building your app so you never need to add any script or link tags here manually. For the mobile version, two small changes must be made in this file:
 Change base: base href=”./”
@@ -236,21 +244,26 @@ Add cordova:  “script src=”cordova.js”</p></li>
 <li><p>tsconfig.{app|spec}.json: TypeScript compiler configuration for the Angular app (tsconfig.app.json) and for the unit tests (tsconfig.spec.json).</p></li>
 </ul>
 </div></blockquote>
-</li>
-<li><p>The <strong>app folder</strong> is the one with all the code:</p>
+<p>The <strong>app folder</strong> is the one with all the code:</p>
+<p style="text-align: center;">
+	<img width="800px" src="../../_images/Health29_client_code_app.jpg">
+</p><ul class="simple">
+<li><p><strong>Layouts</strong>: the different layouts that there are, at the moment two subfolders, for the logged ones (full) and for the ones that are not (content).</p></li>
+<li><p><strong>Pages</strong>: It has two subfolders, content-pages (corresponds to the logged out pages like login page, registration, etc) and full-pages (common pages for all logged out roles, like the user-profile page).</p></li>
+</ul>
 <blockquote>
 <div><ul class="simple">
-<li><p>Layouts: the different layouts that there are, at the moment two subfolders, for the logged ones (full) and for the ones that are not (content).</p></li>
-<li><p>Pages: It has two subfolders, content-pages (corresponds to the logged out pages like login page, registration, etc) and full-pages (common pages for all logged out roles, like the user-profile page).</p></li>
-<li><p>admin: contains all pages for the admin role</p></li>
-<li><p>superadmin: contains all pages for the superadmin role</p></li>
-<li><p>user: contains all the pages for the user role.
+<li><p><strong>admin</strong>: contains all pages for the admin role</p></li>
+<li><p><strong>superadmin</strong>: contains all pages for the superadmin role</p></li>
+<li><p><strong>clinical</strong>: contains all pages for the clinical role</p></li>
+<li><p><strong>user</strong>: contains all the pages for the user role.
 Each folder of these roles has a module file (it loads the needed modules), and a route file to manage the routes and control the authentication and authorization (auth-guard and role-guard)</p></li>
 </ul>
 </div></blockquote>
-</li>
-<li><p>The <strong>shared folder</strong>, which is the shared code:</p>
-  <img align="right" width="150px" src="../../_images/Client_structure_shared.png"><blockquote>
+<ul class="simple">
+<li><p>The <strong>shared folder</strong>, which is the shared code:</p></li>
+</ul>
+<blockquote>
 <div><ul class="simple">
 <li><p>auth: authorization management (role-guard), authentication (auth-service and auth-guard), http interceptor, oauth.services for external services like fitbit.</p></li>
 <li><p>Configs: configuration files, for example configuration for toasts, or parameters for graphs.</p></li>
@@ -264,10 +277,8 @@ Each folder of these roles has a module file (it loads the needed modules), and 
 <li><p>Sidebar: side menu, depending on the role, loads one menu or another.</p></li>
 </ul>
 </div></blockquote>
-</li>
-<li><p><strong>Routes</strong>: In the root of the app folder, there is a file called app-routing.module.ts, which is the root of the routes management. Depending on the path, it loads some subroutes and others. For example, if it is unlogged, it loads the routes ./shared/routes/content-layout.routes, on the other hand, if it is logged in it loads ./shared/routes/full-layout.routes. In this second case, check that it is authenticated (canActivate: [AuthGuard])
-The rest of the subroutes that come from full-layout, are controlled if they are logged and authenticated in the routing-module file of each module (each profile has a module) with canActivate: [AuthGuard, RoleGuard].</p></li>
-</ul>
+<p><strong>Routes</strong>: In the root of the app folder, there is a file called app-routing.module.ts, which is the root of the routes management. Depending on the path, it loads some subroutes and others. For example, if it is unlogged, it loads the routes ./shared/routes/content-layout.routes, on the other hand, if it is logged in it loads ./shared/routes/full-layout.routes. In this second case, check that it is authenticated (canActivate: [AuthGuard])
+The rest of the subroutes that come from full-layout, are controlled if they are logged and authenticated in the routing-module file of each module (each profile has a module) with canActivate: [AuthGuard, RoleGuard].</p>
 </div>
 <div class="section" id="code-structure-server-structure">
 <h3>2.4.1.3. Code Structure: Server Structure<a class="headerlink" href="#code-structure-server-structure" title="Permalink to this headline">¶</a></h3>
@@ -787,6 +798,15 @@ The structure of the databases of the two environments will be the same, so we h
 <p>In the following sections we will explain how this connection between Health29 and Azure’s databases is made, and we will go deeper into each of them by explaining the structure and layout of the collections they contain in each case.</p>
 <div class="section" id="databases-and-health29-communication">
 <h3>2.4.7.1. Databases and health29 communication<a class="headerlink" href="#databases-and-health29-communication" title="Permalink to this headline">¶</a></h3>
+<p>As indicated above, the communication is established using mongoose, so for each model or scheme in a database collection, we will have</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">mongoose</span> <span class="o">=</span> <span class="n">require</span> <span class="p">(</span><span class="s1">&#39;mongoose&#39;</span><span class="p">);</span>
+<span class="n">const</span> <span class="p">{</span> <span class="n">conndbaccounts</span> <span class="p">}</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;../db_connect&#39;</span><span class="p">)</span>
+
+<span class="p">[</span><span class="o">...</span><span class="p">]</span> <span class="p">{</span><span class="n">Schema</span> <span class="n">definition</span><span class="p">}</span>
+
+<span class="n">module</span><span class="o">.</span><span class="n">exports</span> <span class="o">=</span> <span class="n">conndbaccounts</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="o">&lt;</span><span class="n">Collection</span> <span class="n">name</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="n">schema</span> <span class="n">name</span><span class="o">&gt;</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="ddbb-accounts">
 <h3>2.4.7.2. DDBB: Accounts<a class="headerlink" href="#ddbb-accounts" title="Permalink to this headline">¶</a></h3>

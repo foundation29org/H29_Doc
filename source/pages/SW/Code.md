@@ -32,52 +32,57 @@ api.get(<url>, auth, function)
 The structure is as follows:
 
 <p style="text-align: center;">
-	<img width="150px" src="../../_images/Client_structure.png">
+	<img width="800px" src="../../_images/H29_client_code.jpg">
 </p>
 
-- The **src folder** has the following:
-
-	<img align="right" width="150px" src="../../_images/Client_structure_src.png">
-
+The src folder has the following:
+- The **app folder** is the one with all the code.
 	>- app/app.component.{ts,html,css,spec.ts}: Defines the AppComponent along with an HTML template, CSS stylesheet, and a unit test. It is the root component of what will become a tree of nested components as the application evolves. In this file it is controlling the events of inactivity of a session, loading the language of the app depending on the language of the browser, the title that appears in the browser tab with the change of pages. If it is a mobile app, it also controls the backbutton, pause and resume events.
 	>- app/app.module.ts: Defines AppModule, the root module that tells Angular how to assemble the application. 
-	>- assets/..: It contains all the information that will be accessible from any url. Css files, js, images, language files, jsons listing countries, types of subscriptions, frequently asked questions for each group of patients, etc. It will be the only visible folder when a build is made for production.
-	>- environments/..: This folder contains one file for each of your destination environments, each exporting simple configuration variables to use in your application. The files are replaced on-the-fly when you build your app. You might use a different API endpoint for development than you do for production or maybe different analytics tokens. You might even use some mock services. Either way, the CLI has you covered. At the moment url of the api, and fitbit credentials
-	>- favicon.ico: Every site wants to look good on the bookmark bar. Get started with your very own Angular icon
-	>- index.html: The main HTML page that is served when someone visits your site. Most of the time you'll never need to edit it. The CLI automatically adds all js and css files when building your app so you never need to add any script or link tags here manually. For the mobile version, two small changes must be made in this file:
-		Change base: base href="./"
-		Add cordova:  "script src="cordova.js"
-	>- main.ts: The main entry point for your app. Compiles the application with the JIT compiler and bootstraps the application's root module (AppModule) to run in the browser. You can also use the AOT compiler without changing any code by passing in --aot to ng build or ng serve
-	>- polyfills.ts: Different browsers have different levels of support of the web standards. Polyfills help normalize those differences. You should be pretty safe with core-js and zone.js, but be sure to check out the Browser Support guide for more information.
-	>- styles.css: Your global styles go here. Most of the time you'll want to have local styles in your components for easier maintenance, but styles that affect all of your app need to be in a central place.
-	>- test.ts: This is the main entry point for your unit tests. It has some custom configuration that might be unfamiliar, but it's not something you'll need to edit.
-	>- tsconfig.{app|spec}.json: TypeScript compiler configuration for the Angular app (tsconfig.app.json) and for the unit tests (tsconfig.spec.json).
+
+- The **assets folder**: It contains all the information that will be accessible from any url. Css files, js, images, language files, jsons listing countries, types of subscriptions, frequently asked questions for each group of patients, etc. It will be the only visible folder when a build is made for production.
+
+- The **environments folder**. This folder contains one file for each of your destination environments, each exporting simple configuration variables to use in your application. The files are replaced on-the-fly when you build your app. You might use a different API endpoint for development than you do for production or maybe different analytics tokens. You might even use some mock services. Either way, the CLI has you covered. At the moment url of the api, and fitbit credentials
+
+- **Some files**:
+>- favicon.ico: Every site wants to look good on the bookmark bar. Get started with your very own Angular icon
+>- index.html: The main HTML page that is served when someone visits your site. Most of the time you'll never need to edit it. The CLI automatically adds all js and css files when building your app so you never need to add any script or link tags here manually. For the mobile version, two small changes must be made in this file:
+	Change base: base href="./"
+	Add cordova:  "script src="cordova.js"
+>- main.ts: The main entry point for your app. Compiles the application with the JIT compiler and bootstraps the application's root module (AppModule) to run in the browser. You can also use the AOT compiler without changing any code by passing in --aot to ng build or ng serve
+>- polyfills.ts: Different browsers have different levels of support of the web standards. Polyfills help normalize those differences. You should be pretty safe with core-js and zone.js, but be sure to check out the Browser Support guide for more information.
+>- styles.css: Your global styles go here. Most of the time you'll want to have local styles in your components for easier maintenance, but styles that affect all of your app need to be in a central place.
+>- test.ts: This is the main entry point for your unit tests. It has some custom configuration that might be unfamiliar, but it's not something you'll need to edit.
+>- tsconfig.{app|spec}.json: TypeScript compiler configuration for the Angular app (tsconfig.app.json) and for the unit tests (tsconfig.spec.json).
 
 
-- The **app folder** is the one with all the code:
-	>- Layouts: the different layouts that there are, at the moment two subfolders, for the logged ones (full) and for the ones that are not (content).
-	>- Pages: It has two subfolders, content-pages (corresponds to the logged out pages like login page, registration, etc) and full-pages (common pages for all logged out roles, like the user-profile page).
-	>- admin: contains all pages for the admin role
-	>- superadmin: contains all pages for the superadmin role
-	>- user: contains all the pages for the user role. 
-	Each folder of these roles has a module file (it loads the needed modules), and a route file to manage the routes and control the authentication and authorization (auth-guard and role-guard)
+The **app folder** is the one with all the code:
+
+<p style="text-align: center;">
+	<img width="800px" src="../../_images/Health29_client_code_app.jpg">
+</p>
+
+- **Layouts**: the different layouts that there are, at the moment two subfolders, for the logged ones (full) and for the ones that are not (content).
+- **Pages**: It has two subfolders, content-pages (corresponds to the logged out pages like login page, registration, etc) and full-pages (common pages for all logged out roles, like the user-profile page).
+>- **admin**: contains all pages for the admin role
+>- **superadmin**: contains all pages for the superadmin role
+>- **clinical**: contains all pages for the clinical role
+>- **user**: contains all the pages for the user role. 
+Each folder of these roles has a module file (it loads the needed modules), and a route file to manage the routes and control the authentication and authorization (auth-guard and role-guard)
 
 - The **shared folder**, which is the shared code:
+>- auth: authorization management (role-guard), authentication (auth-service and auth-guard), http interceptor, oauth.services for external services like fitbit.
+>- Configs: configuration files, for example configuration for toasts, or parameters for graphs. 
+>- Customizer: right side slide (not used at the moment)
+>- Directives: correspond to the angle directives
+>- Footer: app footer
+>- Models: data models
+>- Navbar and navbar-nolog: It corresponds to the top bar. Navbar-nolog is for when you are not logged in.
+>- Routes: route management. It has two files, one for the paths of the unlogged pages, and another for the rest. 
+>- Services: corresponds to the angle services. Several have been developed as faq.service or lang.service
+>- Sidebar: side menu, depending on the role, loads one menu or another.  
 
-	<img align="right" width="150px" src="../../_images/Client_structure_shared.png">
-
-	>- auth: authorization management (role-guard), authentication (auth-service and auth-guard), http interceptor, oauth.services for external services like fitbit.
-	>- Configs: configuration files, for example configuration for toasts, or parameters for graphs. 
-	>- Customizer: right side slide (not used at the moment)
-	>- Directives: correspond to the angle directives
-	>- Footer: app footer
-	>- Models: data models
-	>- Navbar and navbar-nolog: It corresponds to the top bar. Navbar-nolog is for when you are not logged in.
-	>- Routes: route management. It has two files, one for the paths of the unlogged pages, and another for the rest. 
-	>- Services: corresponds to the angle services. Several have been developed as faq.service or lang.service
-	>- Sidebar: side menu, depending on the role, loads one menu or another.  
-
-- **Routes**: In the root of the app folder, there is a file called app-routing.module.ts, which is the root of the routes management. Depending on the path, it loads some subroutes and others. For example, if it is unlogged, it loads the routes ./shared/routes/content-layout.routes, on the other hand, if it is logged in it loads ./shared/routes/full-layout.routes. In this second case, check that it is authenticated (canActivate: [AuthGuard])
+**Routes**: In the root of the app folder, there is a file called app-routing.module.ts, which is the root of the routes management. Depending on the path, it loads some subroutes and others. For example, if it is unlogged, it loads the routes ./shared/routes/content-layout.routes, on the other hand, if it is logged in it loads ./shared/routes/full-layout.routes. In this second case, check that it is authenticated (canActivate: [AuthGuard])
 The rest of the subroutes that come from full-layout, are controlled if they are logged and authenticated in the routing-module file of each module (each profile has a module) with canActivate: [AuthGuard, RoleGuard].
 
 
@@ -569,6 +574,17 @@ Each database will be composed of some collections that will be accessed from th
 In the following sections we will explain how this connection between Health29 and Azure's databases is made, and we will go deeper into each of them by explaining the structure and layout of the collections they contain in each case.
 
 #### 2.4.7.1. Databases and health29 communication
+
+As indicated above, the communication is established using mongoose, so for each model or scheme in a database collection, we will have
+```
+const mongoose = require ('mongoose');
+const { conndbaccounts } = require('../db_connect')
+
+[...] {Schema definition}
+
+module.exports = conndbaccounts.model(<Collection name>,<schema name>)
+
+```
 
 #### 2.4.7.2. DDBB: Accounts
 **Alerts**

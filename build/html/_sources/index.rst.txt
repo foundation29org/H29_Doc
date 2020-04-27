@@ -23,13 +23,10 @@
 .. image:: images/Architecture/Code/Healthbot/botflow.png
    :width: 0px
 
-.. image:: images/Architecture/Code/Webapp/client/Client_structure.png
+.. image:: images/Architecture/Code/Webapp/client/H29_client_code.jpg
    :width: 0px
 
-.. image:: images/Architecture/Code/Webapp/client/Client_structure_shared.png
-   :width: 0px
-
-.. image:: images/Architecture/Code/Webapp/client/Client_structure_src.png
+.. image:: images/Architecture/Code/Webapp/client/Health29_client_code_app.jpg
    :width: 0px
 
 .. image:: images/Architecture/Code/Webapp/server/Server_structure.png
@@ -57,13 +54,6 @@ We create health decision support systems by obtaining medical information produ
    :alt: Health29 tasks
 
 This document presents a technical description of the Health29 software architecture.
-
-There are four user profiles on this platform, so each one will have different associated functionalities:
-
-- User. You can manage your profile (name, language, weight and length units), FAQs, personal information, social information, anthropometry, disease course (datapoints), medical care, medication, clinical trials, phenotype and genotype.  
-- Administrator (of each patient group). You can request new language or translations and manage FAQs, request translations. In addition, you can obtain information from your patients (statistics) or send them notifications/alerts. 
-- Super Administrator. This is a more technical profile. You can add languages to the platform, manage translations, and manage the different groups of patients (Add symptoms, FAQs, datapoints, medicines). 
-- Clinical. You can create patients, and work on the phenotype and genotype.
 
 .. toctree::
    :maxdepth: 2

@@ -157,6 +157,13 @@
   <img align="right" width="100px" src="../../_images/Foundation29.png"><div class="section" id="level-1-system-context">
 <h1>2.1. Level 1: System Context<a class="headerlink" href="#level-1-system-context" title="Permalink to this headline">¶</a></h1>
 <p>(TODO)</p>
+<p>There are four user profiles on this platform, so each one will have different associated functionalities:</p>
+<ul class="simple">
+<li><p>User. You can manage your profile (name, language, weight and length units), FAQs, personal information, social information, anthropometry, disease course (datapoints), medical care, medication, clinical trials, phenotype and genotype.</p></li>
+<li><p>Administrator (of each patient group). You can request new language or translations and manage FAQs, request translations. In addition, you can obtain information from your patients (statistics) or send them notifications/alerts.</p></li>
+<li><p>Super Administrator. This is a more technical profile. You can add languages to the platform, manage translations, and manage the different groups of patients (Add symptoms, FAQs, datapoints, medicines).</p></li>
+<li><p>Clinical. You can create patients, and work on the phenotype and genotype.</p></li>
+</ul>
 <p>For Android and iOS apps, we use the cordova framework. When compiling the Angular project, it generates the dist folder, which is the one to be added to the www folder of the Corova project.  We were evaluating ionic, nativescript and reactscript, they would be good options if we were more people, but at the moment we fit more cordova.</p>
 <p>Our idea is to migrate to FHIR, so we would have to modify our API to make calls to <a class="reference external" href="https://www.hl7.org/fhir/">FHIR’s API</a></p>
 <p>Health29 provides a web API to access the data. Anyone can develop an application to access and modify the data of a Health29 user. OAuth 2.0 is used as an authorization protocol to give an API client limited access to the user’s data.</p>

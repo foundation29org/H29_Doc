@@ -571,13 +571,13 @@ In the following sections we will explain how this connection between Health29 a
 #### 2.4.7.1. Databases and health29 communication
 
 #### 2.4.7.2. DDBB: Accounts
-Alerts
+**Alerts**
+In this collection are saved the notifications or alerts created by the administrator or super administrator profiles, indicating the group of users (receivers) to which they will be sent/displayed. It also includes fields to manage the language of the notification.
 ```
 const AlertsSchema = Schema({
     groupId: {type:String, default:"None"},
     type: {type:String, default:""},
     identifier: {type:String, default:""},
-    //translatedName: [{lang: {type:String, default:""}, value: {type:String, default:""}}],
     translatedName: {type: Object, default: []},
     launchDate: {type: Date, default: Date.now},
     endDate: {type: Date},
@@ -591,7 +591,8 @@ const AlertsSchema = Schema({
 })
 ```
 
-Bot
+**Bot**
+This collection stores the information exchanged between the bot and a user when using the Healthbot direct question scenario.
 ```
 const BotSchema = Schema({
 	lang: {type:String, default:""},
@@ -604,7 +605,8 @@ const BotSchema = Schema({
 
 ```
 
-Group
+**Group**
+In this collection, the patient groups available at Health29 are stored.
 ```
 const GroupSchema = Schema({
 	name: {
@@ -618,7 +620,8 @@ const GroupSchema = Schema({
 })
 ```
 
-Lab
+**Lab**
+Same as the last one but with the labs.
 ```
 const LabSchema = Schema({
 	name: {
@@ -629,7 +632,8 @@ const LabSchema = Schema({
 })
 ```
 
-Lang
+**Lang**
+There will be one entry in this collection for each language you want to use on the Health29 platform
 ```
 const LangSchema = Schema({
 	name: {	type: String,	unique: true,	required: true },
@@ -638,7 +642,8 @@ const LangSchema = Schema({
 { versionKey: false // You should be aware of the outcome after set to false
 })
 ```
-Patient
+**Patient**
+In this collection the data of the patients registered in the platform are stored.
 ```
 const SiblingSchema = Schema({
 	gender: String,
@@ -677,7 +682,8 @@ const PatientSchema = Schema({
 })
 ```
 
-Prom
+**Prom**
+The datapoints associated with a group of patients are stored here.
 ```
 const PromSchema = Schema({
 	name: String,
@@ -698,8 +704,11 @@ const PromSchema = Schema({
 	disableDataPoints: { type: Schema.Types.ObjectId, ref: "PromSchema"}
 
 })
+
 ```
-PromSection
+
+**PromSection**
+Each of the above datapoints is encapsulated within a section. The different sections or groupings of datapoints that can appear on the platform for each group of patients are saved in this collection.
 ```
 const PromSectionSchema = Schema({
 	name: String,
@@ -710,7 +719,8 @@ const PromSectionSchema = Schema({
 })
 ```
 
-Qna
+**Qna**
+To access the information contained in qnaMaker, it is necessary to identify each of the databases created there, according to language and patient group. This collection contains this identifying information.
 ```
 const QnaSchema = Schema({
 	group: { type: String, required: true},
@@ -720,7 +730,9 @@ const QnaSchema = Schema({
 })
 ```
 
-StructureProms
+**StructureProms**
+Again this collection provides functionality to work with the different datapoints of a group of patients. It stores the structure of the datapoints for each patient group for each available language. 
+Highlight here the data field: it contains a lot of information, for example for the duchenne patient group it is 2,000 lines of a JSON. It has been done this way because we have a section to translate, and so we load everything in the language of the patient
 ```
 const StructurePromSchema = Schema({
 	data: Schema.Types.Mixed,
@@ -730,7 +742,8 @@ const StructurePromSchema = Schema({
 
 ```
 
-Support
+**Support**
+In this collection is stored the information related to the requests made by users to the support of the platform. 
 ```
 const SupportSchema = Schema({
 	platform: String,
@@ -746,7 +759,9 @@ const SupportSchema = Schema({
 
 ```
 
-UserAlerts
+**UserAlerts**
+This collection is related to the "Alerts" collection. The content of this one will be generated from the previous one, according to the receiver and the launch date of the alert. 
+The information about the notifications and their status for each patient in the platform will be stored here.  
 ```
 const UseralertsSchema = Schema({
     alertId: {type:String, default:""},
@@ -759,7 +774,8 @@ const UseralertsSchema = Schema({
 })
 ```
 
-User
+**User**
+Analogous to patient collection but with user data.
 ```
 const SiblingSchema = Schema({
 	gender: String,
@@ -808,6 +824,225 @@ const UserSchema = Schema({
 
 
 #### 2.4.7.3. DDBB: Data
+
+In all the collections of this database, the information entered by the patient in the Health29 platform will be saved. Thus, for each of the sections that appear in it, the information relating to it will be saved in the corresponding collection of this database.
+
+ClinicalTrials
+```
+const ClinicalTrialSchema = Schema({
+	nameClinicalTrial: String,
+	takingClinicalTrial: String,
+	drugName: String,
+	center: String,
+	date: Date,
+	createdBy: { type: Schema.Types.ObjectId, ref: "Patient"}
+})
+```
+
+Diagnosis
+```
+const DiagnosisSchema = Schema({
+	hasDiagnosis: {type: Boolean, default: false},
+	previousDiagnosis: {type: String, default: null},
+	identifiedGene: {type: String, default: null},
+	evaluation: String,
+	notes: {type: String, default: ''},
+	infoGenesAndConditionsExomizer: {type: Object, default: []},
+	infoGenesAndConditionsPhenolyzer: {type: Object, default: []},
+	relatedConditions: {type: Object, default: []},
+	hasVcf: {type: Boolean, default: false},
+	createdBy: { type: Schema.Types.ObjectId, ref: "Patient"}
+})
+
+```
+
+Genotype
+```
+const GenotypeSchema = Schema({
+	inputType: {type: String, default: null},
+	date: {type: Date, default: Date.now},
+	data: Object,
+	createdBy: { type: Schema.Types.ObjectId, ref: "Patient"}
+})
+```
+
+HeightHistory
+```
+const HeightHistorySchema = Schema({
+	dateTime: {type: Date, default: Date.now},
+	value: String,
+	technique: String,
+	createdBy: { type: Schema.Types.ObjectId, ref: "Patient"}
+}, {
+    versionKey: false // You should be aware of the outcome after set to false
+})
+```
+
+Height
+```
+const HeightSchema = Schema({
+	dateTime: {type: Date, default: Date.now},
+	value: String,
+	technique: String,
+	createdBy: { type: Schema.Types.ObjectId, ref: "Patient"}
+}, {
+    versionKey: false // You should be aware of the outcome after set to false
+})
+```
+
+Medicalcare
+```
+const MedicalCareSchema = Schema({
+	date: Date,
+	data: Object,
+	createdBy: { type: Schema.Types.ObjectId, ref: "Patient"}
+})
+```
+
+Medication
+```
+const MedicationSchema = Schema({
+	drug: Object,
+	dose: String,
+	startDate: {type: Date, default: Date.now},
+	endDate: {type: Date, default: null},
+	sideEffects: {type: Object, default: null},
+	adverseEffects: Object,
+	compassionateUse: {type: String, default: ''},
+	vaccinations: String,
+	vaccinationDate: {type: Date, default: Date.now},
+	notes: {type: String, default: ''},
+	freesideEffects: {type: String, default: ''},
+	createdBy: { type: Schema.Types.ObjectId, ref: "Patient"}
+})
+```
+
+Othermedications
+```
+const OtherMedicationSchema = Schema({
+	name: String,
+	dose: String,
+	startDate: {type: Date, default: Date.now},
+	endDate: {type: Date, default: null},
+	type: String,
+	notes: String,
+	createdBy: { type: Schema.Types.ObjectId, ref: "Patient"}
+})
+```
+
+Patient-proms
+```
+const PatientPromSchema = Schema({
+	data: Schema.Types.Mixed,
+	date: {type: Date, default: Date.now},
+	definitionPromId: { type: Schema.Types.ObjectId, ref: "PromSchema"},
+	createdBy: { type: Schema.Types.ObjectId, ref: "Patient"}
+})
+```
+
+PhenotypeHistory
+```
+const PhenotypeHistorySchema = Schema({
+	validator_id: {type: String, default: null},
+	validated: {type: Boolean, default: false},
+	inputType: {type: String, default: null},
+	date: {type: Date, default: Date.now},
+	data: Object,
+	createdBy: { type: Schema.Types.ObjectId, ref: "Patient"}
+})
+```
+
+Phenotype
+```
+const PhenotypeSchema = Schema({
+	validator_id: {type: String, default: null},
+	validated: {type: Boolean, default: false},
+	inputType: {type: String, default: null},
+	date: {type: Date, default: Date.now},
+	data: Object,
+	createdBy: { type: Schema.Types.ObjectId, ref: "Patient"}
+})
+```
+
+Seizures
+```
+const SeizuresSchema = Schema({
+	disparadores: {type: Object, default: []},
+	disparadorEnfermo: {type: String, default: ''},
+	disparadorOtro: {type: String, default: ''},
+	disparadorNotas: {type: String, default: ''},
+	descripcion: {type: Object, default: []},
+	descripcionRigidez: {type: String, default: ''},
+	descripcionContraccion: {type: String, default: ''},
+	descripcionOtro: {type: String, default: ''},
+	descipcionNotas: {type: String, default: ''},
+	postCrisis: {type: Object, default: []},
+	postCrisisOtro: {type: String, default: ''},
+	postCrisisNotas: {type: String, default: ''},
+	estadoAnimo: {type: String, default: ''},
+	estadoConsciencia: {type: String, default: ''},
+	duracion: {type: Object, default: {hours: 0, minutes: 0, seconds:0}},
+	type: {type: String, default: null},
+	start: {type: Date, default: null},
+	end: {type: Date, default: null},
+	GUID: {type: String, default: ''},
+	title: {type: String, default: ''},
+	color: {type: Object, default: {}},
+	actions: {type: Object, default: []},
+	createdBy: { type: Schema.Types.ObjectId, ref: "Patient"}
+})
+
+```
+
+Social info
+```
+const SocialInfoSchema = Schema({
+	education: String,
+	completedEducation: String,
+	currentEducation: String,
+	work: String,
+	hoursWork: String,
+	profession: String,
+	livingSituation: Array,
+	support: Array,
+	sports: Array,
+	interests: Array,
+	moreInterests: String,
+	createdBy: { type: Schema.Types.ObjectId, ref: "Patient"}
+})
+```
+
+Vaccinations
+```
+const VaccinationSchema = Schema({
+	name: String,
+	date: Date,
+	createdBy: { type: Schema.Types.ObjectId, ref: "Patient"}
+})
+```
+
+WeightHistory
+```
+const WeightHistorySchema = Schema({
+	dateTime: {type: Date, default: Date.now},
+	value: String,
+	createdBy: { type: Schema.Types.ObjectId, ref: "Patient"}
+}, {
+    versionKey: false // You should be aware of the outcome after set to false
+})
+```
+
+Weight
+```
+const WeightSchema = Schema({
+	dateTime: {type: Date, default: Date.now},
+	value: String,
+	createdBy: { type: Schema.Types.ObjectId, ref: "Patient"}
+}, {
+    versionKey: false // You should be aware of the outcome after set to false
+})
+```
+
 
 ### 2.4.8. Multilanguage
 (TODO)

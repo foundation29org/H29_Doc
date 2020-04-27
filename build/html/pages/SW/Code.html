@@ -790,12 +790,12 @@ The structure of the databases of the two environments will be the same, so we h
 </div>
 <div class="section" id="ddbb-accounts">
 <h3>2.4.7.2. DDBB: Accounts<a class="headerlink" href="#ddbb-accounts" title="Permalink to this headline">¶</a></h3>
-<p>Alerts</p>
+<p><strong>Alerts</strong>
+In this collection are saved the notifications or alerts created by the administrator or super administrator profiles, indicating the group of users (receivers) to which they will be sent/displayed. It also includes fields to manage the language of the notification.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">AlertsSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
     <span class="n">groupId</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span><span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span><span class="s2">&quot;None&quot;</span><span class="p">},</span>
     <span class="nb">type</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span><span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">},</span>
     <span class="n">identifier</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span><span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">},</span>
-    <span class="o">//</span><span class="n">translatedName</span><span class="p">:</span> <span class="p">[{</span><span class="n">lang</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span><span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">},</span> <span class="n">value</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span><span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">}}],</span>
     <span class="n">translatedName</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Object</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="p">[]},</span>
     <span class="n">launchDate</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">Date</span><span class="o">.</span><span class="n">now</span><span class="p">},</span>
     <span class="n">endDate</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Date</span><span class="p">},</span>
@@ -809,7 +809,8 @@ The structure of the databases of the two environments will be the same, so we h
 <span class="p">})</span>
 </pre></div>
 </div>
-<p>Bot</p>
+<p><strong>Bot</strong>
+This collection stores the information exchanged between the bot and a user when using the Healthbot direct question scenario.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">BotSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
 	<span class="n">lang</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span><span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">},</span>
     <span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Object</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="p">[]},</span>
@@ -820,7 +821,8 @@ The structure of the databases of the two environments will be the same, so we h
 <span class="p">})</span>
 </pre></div>
 </div>
-<p>Group</p>
+<p><strong>Group</strong>
+In this collection, the patient groups available at Health29 are stored.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">GroupSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
 	<span class="n">name</span><span class="p">:</span> <span class="p">{</span>
 		<span class="nb">type</span><span class="p">:</span> <span class="n">String</span>
@@ -833,7 +835,8 @@ The structure of the databases of the two environments will be the same, so we h
 <span class="p">})</span>
 </pre></div>
 </div>
-<p>Lab</p>
+<p><strong>Lab</strong>
+Same as the last one but with the labs.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">LabSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
 	<span class="n">name</span><span class="p">:</span> <span class="p">{</span>
 		<span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
@@ -843,7 +846,8 @@ The structure of the databases of the two environments will be the same, so we h
 <span class="p">})</span>
 </pre></div>
 </div>
-<p>Lang</p>
+<p><strong>Lang</strong>
+There will be one entry in this collection for each language you want to use on the Health29 platform</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">LangSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
 	<span class="n">name</span><span class="p">:</span> <span class="p">{</span>	<span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>	<span class="n">unique</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>	<span class="n">required</span><span class="p">:</span> <span class="n">true</span> <span class="p">},</span>
 	<span class="n">code</span><span class="p">:</span> <span class="p">{</span>	<span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>	<span class="n">index</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>	<span class="n">unique</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>	<span class="n">required</span><span class="p">:</span> <span class="n">true</span> <span class="p">}</span>
@@ -852,7 +856,8 @@ The structure of the databases of the two environments will be the same, so we h
 <span class="p">})</span>
 </pre></div>
 </div>
-<p>Patient</p>
+<p><strong>Patient</strong>
+In this collection the data of the patients registered in the platform are stored.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">SiblingSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
 	<span class="n">gender</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
 	<span class="n">affected</span><span class="p">:</span> <span class="n">String</span> <span class="o">//</span><span class="n">affected</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">enum</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;yes&#39;</span><span class="p">,</span> <span class="s1">&#39;no&#39;</span><span class="p">]}</span> <span class="n">si</span> <span class="n">hacemos</span> <span class="n">validacion</span> <span class="n">de</span> <span class="n">que</span> <span class="n">no</span> <span class="n">pueda</span> <span class="n">ser</span> <span class="n">null</span><span class="p">,</span> <span class="n">igual</span> <span class="n">poner</span> <span class="n">el</span> <span class="n">enum</span>
@@ -890,7 +895,8 @@ The structure of the databases of the two environments will be the same, so we h
 <span class="p">})</span>
 </pre></div>
 </div>
-<p>Prom</p>
+<p><strong>Prom</strong>
+The datapoints associated with a group of patients are stored here.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">PromSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
 	<span class="n">name</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
 	<span class="n">responseType</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
@@ -912,7 +918,8 @@ The structure of the databases of the two environments will be the same, so we h
 <span class="p">})</span>
 </pre></div>
 </div>
-<p>PromSection</p>
+<p><strong>PromSection</strong>
+Each of the above datapoints is encapsulated within a section. The different sections or groupings of datapoints that can appear on the platform for each group of patients are saved in this collection.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">PromSectionSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
 	<span class="n">name</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
 	<span class="n">description</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
@@ -922,7 +929,8 @@ The structure of the databases of the two environments will be the same, so we h
 <span class="p">})</span>
 </pre></div>
 </div>
-<p>Qna</p>
+<p><strong>Qna</strong>
+To access the information contained in qnaMaker, it is necessary to identify each of the databases created there, according to language and patient group. This collection contains this identifying information.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">QnaSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
 	<span class="n">group</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">required</span><span class="p">:</span> <span class="n">true</span><span class="p">},</span>
 	<span class="n">knowledgeBaseID</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">required</span><span class="p">:</span> <span class="n">true</span><span class="p">},</span>
@@ -931,7 +939,9 @@ The structure of the databases of the two environments will be the same, so we h
 <span class="p">})</span>
 </pre></div>
 </div>
-<p>StructureProms</p>
+<p><strong>StructureProms</strong>
+Again this collection provides functionality to work with the different datapoints of a group of patients. It stores the structure of the datapoints for each patient group for each available language.
+Highlight here the data field: it contains a lot of information, for example for the duchenne patient group it is 2,000 lines of a JSON. It has been done this way because we have a section to translate, and so we load everything in the language of the patient</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">StructurePromSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
 	<span class="n">data</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">Mixed</span><span class="p">,</span>
 	<span class="n">lang</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">required</span><span class="p">:</span> <span class="n">true</span><span class="p">},</span>
@@ -939,7 +949,8 @@ The structure of the databases of the two environments will be the same, so we h
 <span class="p">})</span>
 </pre></div>
 </div>
-<p>Support</p>
+<p><strong>Support</strong>
+In this collection is stored the information related to the requests made by users to the support of the platform.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">SupportSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
 	<span class="n">platform</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
 	<span class="n">subject</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
@@ -953,7 +964,9 @@ The structure of the databases of the two environments will be the same, so we h
 <span class="p">})</span>
 </pre></div>
 </div>
-<p>UserAlerts</p>
+<p><strong>UserAlerts</strong>
+This collection is related to the “Alerts” collection. The content of this one will be generated from the previous one, according to the receiver and the launch date of the alert.
+The information about the notifications and their status for each patient in the platform will be stored here.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">UseralertsSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
     <span class="n">alertId</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span><span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">},</span>
     <span class="n">patientId</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span><span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">},</span>
@@ -965,7 +978,8 @@ The structure of the databases of the two environments will be the same, so we h
 <span class="p">})</span>
 </pre></div>
 </div>
-<p>User</p>
+<p><strong>User</strong>
+Analogous to patient collection but with user data.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>const SiblingSchema = Schema({
 	gender: String,
 	affected: { type: String, enum: [&#39;yes&#39;, &#39;no&#39;]}
@@ -1014,6 +1028,205 @@ const UserSchema = Schema({
 </div>
 <div class="section" id="ddbb-data">
 <h3>2.4.7.3. DDBB: Data<a class="headerlink" href="#ddbb-data" title="Permalink to this headline">¶</a></h3>
+<p>In all the collections of this database, the information entered by the patient in the Health29 platform will be saved. Thus, for each of the sections that appear in it, the information relating to it will be saved in the corresponding collection of this database.</p>
+<p>ClinicalTrials</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">ClinicalTrialSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
+	<span class="n">nameClinicalTrial</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">takingClinicalTrial</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">drugName</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">center</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">date</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span>
+	<span class="n">createdBy</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;Patient&quot;</span><span class="p">}</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Diagnosis</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">DiagnosisSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
+	<span class="n">hasDiagnosis</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Boolean</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">false</span><span class="p">},</span>
+	<span class="n">previousDiagnosis</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">null</span><span class="p">},</span>
+	<span class="n">identifiedGene</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">null</span><span class="p">},</span>
+	<span class="n">evaluation</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">notes</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">},</span>
+	<span class="n">infoGenesAndConditionsExomizer</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Object</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="p">[]},</span>
+	<span class="n">infoGenesAndConditionsPhenolyzer</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Object</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="p">[]},</span>
+	<span class="n">relatedConditions</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Object</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="p">[]},</span>
+	<span class="n">hasVcf</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Boolean</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">false</span><span class="p">},</span>
+	<span class="n">createdBy</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;Patient&quot;</span><span class="p">}</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Genotype</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">GenotypeSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
+	<span class="n">inputType</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">null</span><span class="p">},</span>
+	<span class="n">date</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">Date</span><span class="o">.</span><span class="n">now</span><span class="p">},</span>
+	<span class="n">data</span><span class="p">:</span> <span class="n">Object</span><span class="p">,</span>
+	<span class="n">createdBy</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;Patient&quot;</span><span class="p">}</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>HeightHistory</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">HeightHistorySchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
+	<span class="n">dateTime</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">Date</span><span class="o">.</span><span class="n">now</span><span class="p">},</span>
+	<span class="n">value</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">technique</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">createdBy</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;Patient&quot;</span><span class="p">}</span>
+<span class="p">},</span> <span class="p">{</span>
+    <span class="n">versionKey</span><span class="p">:</span> <span class="n">false</span> <span class="o">//</span> <span class="n">You</span> <span class="n">should</span> <span class="n">be</span> <span class="n">aware</span> <span class="n">of</span> <span class="n">the</span> <span class="n">outcome</span> <span class="n">after</span> <span class="nb">set</span> <span class="n">to</span> <span class="n">false</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Height</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">HeightSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
+	<span class="n">dateTime</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">Date</span><span class="o">.</span><span class="n">now</span><span class="p">},</span>
+	<span class="n">value</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">technique</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">createdBy</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;Patient&quot;</span><span class="p">}</span>
+<span class="p">},</span> <span class="p">{</span>
+    <span class="n">versionKey</span><span class="p">:</span> <span class="n">false</span> <span class="o">//</span> <span class="n">You</span> <span class="n">should</span> <span class="n">be</span> <span class="n">aware</span> <span class="n">of</span> <span class="n">the</span> <span class="n">outcome</span> <span class="n">after</span> <span class="nb">set</span> <span class="n">to</span> <span class="n">false</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Medicalcare</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">MedicalCareSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
+	<span class="n">date</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span>
+	<span class="n">data</span><span class="p">:</span> <span class="n">Object</span><span class="p">,</span>
+	<span class="n">createdBy</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;Patient&quot;</span><span class="p">}</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Medication</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">MedicationSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
+	<span class="n">drug</span><span class="p">:</span> <span class="n">Object</span><span class="p">,</span>
+	<span class="n">dose</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">startDate</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">Date</span><span class="o">.</span><span class="n">now</span><span class="p">},</span>
+	<span class="n">endDate</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">null</span><span class="p">},</span>
+	<span class="n">sideEffects</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Object</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">null</span><span class="p">},</span>
+	<span class="n">adverseEffects</span><span class="p">:</span> <span class="n">Object</span><span class="p">,</span>
+	<span class="n">compassionateUse</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">},</span>
+	<span class="n">vaccinations</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">vaccinationDate</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">Date</span><span class="o">.</span><span class="n">now</span><span class="p">},</span>
+	<span class="n">notes</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">},</span>
+	<span class="n">freesideEffects</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">},</span>
+	<span class="n">createdBy</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;Patient&quot;</span><span class="p">}</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Othermedications</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">OtherMedicationSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
+	<span class="n">name</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">dose</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">startDate</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">Date</span><span class="o">.</span><span class="n">now</span><span class="p">},</span>
+	<span class="n">endDate</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">null</span><span class="p">},</span>
+	<span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">notes</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">createdBy</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;Patient&quot;</span><span class="p">}</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Patient-proms</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">PatientPromSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
+	<span class="n">data</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">Mixed</span><span class="p">,</span>
+	<span class="n">date</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">Date</span><span class="o">.</span><span class="n">now</span><span class="p">},</span>
+	<span class="n">definitionPromId</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;PromSchema&quot;</span><span class="p">},</span>
+	<span class="n">createdBy</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;Patient&quot;</span><span class="p">}</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>PhenotypeHistory</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">PhenotypeHistorySchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
+	<span class="n">validator_id</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">null</span><span class="p">},</span>
+	<span class="n">validated</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Boolean</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">false</span><span class="p">},</span>
+	<span class="n">inputType</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">null</span><span class="p">},</span>
+	<span class="n">date</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">Date</span><span class="o">.</span><span class="n">now</span><span class="p">},</span>
+	<span class="n">data</span><span class="p">:</span> <span class="n">Object</span><span class="p">,</span>
+	<span class="n">createdBy</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;Patient&quot;</span><span class="p">}</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Phenotype</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">PhenotypeSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
+	<span class="n">validator_id</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">null</span><span class="p">},</span>
+	<span class="n">validated</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Boolean</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">false</span><span class="p">},</span>
+	<span class="n">inputType</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">null</span><span class="p">},</span>
+	<span class="n">date</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">Date</span><span class="o">.</span><span class="n">now</span><span class="p">},</span>
+	<span class="n">data</span><span class="p">:</span> <span class="n">Object</span><span class="p">,</span>
+	<span class="n">createdBy</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;Patient&quot;</span><span class="p">}</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Seizures</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">SeizuresSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
+	<span class="n">disparadores</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Object</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="p">[]},</span>
+	<span class="n">disparadorEnfermo</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">},</span>
+	<span class="n">disparadorOtro</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">},</span>
+	<span class="n">disparadorNotas</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">},</span>
+	<span class="n">descripcion</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Object</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="p">[]},</span>
+	<span class="n">descripcionRigidez</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">},</span>
+	<span class="n">descripcionContraccion</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">},</span>
+	<span class="n">descripcionOtro</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">},</span>
+	<span class="n">descipcionNotas</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">},</span>
+	<span class="n">postCrisis</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Object</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="p">[]},</span>
+	<span class="n">postCrisisOtro</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">},</span>
+	<span class="n">postCrisisNotas</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">},</span>
+	<span class="n">estadoAnimo</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">},</span>
+	<span class="n">estadoConsciencia</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">},</span>
+	<span class="n">duracion</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Object</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="p">{</span><span class="n">hours</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">minutes</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">seconds</span><span class="p">:</span><span class="mi">0</span><span class="p">}},</span>
+	<span class="nb">type</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">null</span><span class="p">},</span>
+	<span class="n">start</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">null</span><span class="p">},</span>
+	<span class="n">end</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">null</span><span class="p">},</span>
+	<span class="n">GUID</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">},</span>
+	<span class="n">title</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">},</span>
+	<span class="n">color</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Object</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="p">{}},</span>
+	<span class="n">actions</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Object</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="p">[]},</span>
+	<span class="n">createdBy</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;Patient&quot;</span><span class="p">}</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Social info</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">SocialInfoSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
+	<span class="n">education</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">completedEducation</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">currentEducation</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">work</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">hoursWork</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">profession</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">livingSituation</span><span class="p">:</span> <span class="n">Array</span><span class="p">,</span>
+	<span class="n">support</span><span class="p">:</span> <span class="n">Array</span><span class="p">,</span>
+	<span class="n">sports</span><span class="p">:</span> <span class="n">Array</span><span class="p">,</span>
+	<span class="n">interests</span><span class="p">:</span> <span class="n">Array</span><span class="p">,</span>
+	<span class="n">moreInterests</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">createdBy</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;Patient&quot;</span><span class="p">}</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Vaccinations</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">VaccinationSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
+	<span class="n">name</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">date</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span>
+	<span class="n">createdBy</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;Patient&quot;</span><span class="p">}</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>WeightHistory</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">WeightHistorySchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
+	<span class="n">dateTime</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">Date</span><span class="o">.</span><span class="n">now</span><span class="p">},</span>
+	<span class="n">value</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">createdBy</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;Patient&quot;</span><span class="p">}</span>
+<span class="p">},</span> <span class="p">{</span>
+    <span class="n">versionKey</span><span class="p">:</span> <span class="n">false</span> <span class="o">//</span> <span class="n">You</span> <span class="n">should</span> <span class="n">be</span> <span class="n">aware</span> <span class="n">of</span> <span class="n">the</span> <span class="n">outcome</span> <span class="n">after</span> <span class="nb">set</span> <span class="n">to</span> <span class="n">false</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Weight</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">WeightSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
+	<span class="n">dateTime</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">Date</span><span class="o">.</span><span class="n">now</span><span class="p">},</span>
+	<span class="n">value</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">createdBy</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;Patient&quot;</span><span class="p">}</span>
+<span class="p">},</span> <span class="p">{</span>
+    <span class="n">versionKey</span><span class="p">:</span> <span class="n">false</span> <span class="o">//</span> <span class="n">You</span> <span class="n">should</span> <span class="n">be</span> <span class="n">aware</span> <span class="n">of</span> <span class="n">the</span> <span class="n">outcome</span> <span class="n">after</span> <span class="nb">set</span> <span class="n">to</span> <span class="n">false</span>
+<span class="p">})</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="multilanguage">

@@ -2,10 +2,14 @@
    sphinx-quickstart on Tue Apr 21 16:01:32 2020.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
+
+
 .. image:: images/All/Foundation29.png
    :width: 100px
    :align: right
    :alt: Foundation29
+
+.. image:: images/Architecture/General_schema/H29_c4model.png
 
 Health29
 =========

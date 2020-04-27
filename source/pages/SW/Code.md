@@ -291,7 +291,7 @@ The first of these is used to translate the datapoints and to add a new language
 All the commands and settings for establishing this communication are described in the [Microsoft documentation](https://docs.microsoft.com/bs-cyrl-ba/azure/cognitive-services/translator/).
 
 ### 2.4.4. Azure Healthbot
-To create it from azure you just have to select the cognitive service in the marketplace: "Healthcare Bot".
+To create it from azure you just have to select the Healthcare Bot in the marketplace.
 To create and configure it, just follow the steps in the [Microsoft guide](https://docs.microsoft.com/en-us/healthbot/quickstart-createyourhealthcarebot).
 
 In the case of Health29, the App service [server](https://healthbotcontainersamplef666.scm.azurewebsites.net/dev/wwwroot/server.js) has been configured to be able to deploy the three bots depending on the webapp client that is running it. So that:
@@ -434,7 +434,7 @@ Finally, it should also be noted that an action flow has been defined for the ta
 - The behavior of the buttons to maximize/minimize and open/close the assistant in Health29 is maintained.
 
 ### 2.4.5. Azure blobs
-To create it from azure you just have to select the cognitive service in the marketplace: "Storage account".
+To create it from azure you just have to search in the marketplace: "Storage account".
 The configuration has no complexity, 
 - Fill project details: subscription and resource group
 - Fill instance details: 
@@ -555,7 +555,339 @@ if(req.url.indexOf('https://genomicservices.azurewebsites.net/api/exomize')!==-1
 ```
 
 ### 2.4.7. Databases
-(TODO)
+The databases are created in Azure as [Azure Cosmos DB account](https://docs.microsoft.com/en-US/azure/cosmos-db/).To create it you just have to select in the marketplace: "Azure Cosmo db" and configure it.
+
+As mentioned throughout the development of this document, there will be 4 databases: two for the test and development environments, and two for the production environment.
+The structure of the databases of the two environments will be the same, so we have:
+
+<p style="text-align: center;">
+	<img width="400px" src="../../_images/DDBB_Division.jpg">
+</p>
+
+Each database will be composed of some collections that will be accessed from the Health29 platform server.
+
+In the following sections we will explain how this connection between Health29 and Azure's databases is made, and we will go deeper into each of them by explaining the structure and layout of the collections they contain in each case.
+
+#### 2.4.7.1. Databases and health29 communication
+
+#### 2.4.7.2. DDBB: Accounts
+Alerts
+```
+const AlertsSchema = Schema({
+    groupId: {type:String, default:"None"},
+    type: {type:String, default:""},
+    identifier: {type:String, default:""},
+    //translatedName: [{lang: {type:String, default:""}, value: {type:String, default:""}}],
+    translatedName: {type: Object, default: []},
+    launchDate: {type: Date, default: Date.now},
+    endDate: {type: Date},
+    url: {type:Object, default:[]},
+	role: { type: String, enum: ['SuperAdmin', 'Admin', 'User', 'Clinical', 'Lab'], default: 'User'},
+    color: {type:String, default:""},
+    logo: {type:String, default:""},
+    importance: {type:String, default:""},
+    receiver: {type:Object, default:[]},
+	createdBy: { type: Schema.Types.ObjectId, ref: "Group"}
+})
+```
+
+Bot
+```
+const BotSchema = Schema({
+	lang: {type:String, default:""},
+    data: {type: Object, default: []},
+	date: {type: Date, default: Date.now},
+	curatedBy: {type:String, default:""},
+	type: String,
+	createdBy: { type: Schema.Types.ObjectId, ref: "Group"}
+})
+
+```
+
+Group
+```
+const GroupSchema = Schema({
+	name: {
+		type: String
+  	},
+	subscription: String,
+	email: String,
+	defaultLang: {type: String, default: 'en'},
+	phenotype: {type: Object, default: []},
+	medications: {type: Object, default: []}
+})
+```
+
+Lab
+```
+const LabSchema = Schema({
+	name: {
+		type: String,
+		index: true,
+		unique: true
+  	}
+})
+```
+
+Lang
+```
+const LangSchema = Schema({
+	name: {	type: String,	unique: true,	required: true },
+	code: {	type: String,	index: true,	unique: true,	required: true }
+}, 
+{ versionKey: false // You should be aware of the outcome after set to false
+})
+```
+Patient
+```
+const SiblingSchema = Schema({
+	gender: String,
+	affected: String //affected: { type: String, enum: ['yes', 'no']} si hacemos validacion de que no pueda ser null, igual poner el enum
+})
+
+const ParentSchema = Schema({
+	highEducation: String,
+	profession: String,
+	relationship: String,
+	nameCaregiver: String
+})
+
+const PatientSchema = Schema({
+	patientName: String,
+	surname: String,
+	birthDate: Date,
+	citybirth: String,
+	provincebirth: String,
+	countrybirth: String,
+	street: String,
+	postalCode: String,
+	city: String,
+	province: String,
+	country: String,
+	phone1: String,
+	phone2: String,
+	gender: String,
+	siblings: [SiblingSchema],
+	parents: [ParentSchema],
+	createdBy: { type: Schema.Types.ObjectId, ref: "User"},
+	death: Date,
+	notes: {type: String, default: ''},
+	answers: {type: Object, default: []},
+	subscriptionToGroupAlerts:{type:Boolean,default:true}
+})
+```
+
+Prom
+```
+const PromSchema = Schema({
+	name: String,
+	responseType: String,
+	question: String,
+	hideQuestion: {type: Boolean, default: false},
+	marginTop: {type: Boolean, default: false},
+	values: Array,
+	section: { type: Schema.Types.ObjectId, ref: "PromSection"},
+	order:Number,
+	periodicity: Number,
+	isRequired: {type: Boolean, default: false},
+	enabled: {type: Boolean, default: false},
+	createdBy: { type: Schema.Types.ObjectId, ref: "Group"},
+	width: String,
+	hpo: String,
+	relatedTo: { type: Schema.Types.ObjectId, ref: "PromSchema"},
+	disableDataPoints: { type: Schema.Types.ObjectId, ref: "PromSchema"}
+
+})
+```
+PromSection
+```
+const PromSectionSchema = Schema({
+	name: String,
+	description: String,
+	enabled: {type: Boolean, default: true},
+	order: {type: Number, default: 0},
+	createdBy: { type: Schema.Types.ObjectId, ref: "Group"}
+})
+```
+
+Qna
+```
+const QnaSchema = Schema({
+	group: { type: String, required: true},
+	knowledgeBaseID: { type: String, required: true},
+	lang: { type: String, required: true},
+	categories:{type:Object,default:[]}
+})
+```
+
+StructureProms
+```
+const StructurePromSchema = Schema({
+	data: Schema.Types.Mixed,
+	lang: { type: String, required: true},
+	createdBy: { type: Schema.Types.ObjectId, ref: "Group"}
+})
+
+```
+
+Support
+```
+const SupportSchema = Schema({
+	platform: String,
+	subject: String,
+	description: String,
+	type: String,
+	status: {type: String, default: 'unread'},
+	statusDate: {type: Date, default: Date.now},
+	files: Object,
+	date: {type: Date, default: Date.now},
+	createdBy: { type: Schema.Types.ObjectId, ref: "User"}
+})
+
+```
+
+UserAlerts
+```
+const UseralertsSchema = Schema({
+    alertId: {type:String, default:""},
+    patientId: {type:String, default:""},
+    state: {type:String, default:"Not read"},
+    snooze: {type:String, default:"1"},
+    showDate: {type: Date},
+    launch: {type: Boolean, default: false},
+    createdBy: { type: Schema.Types.ObjectId, ref: "Group"}
+})
+```
+
+User
+```
+const SiblingSchema = Schema({
+	gender: String,
+	affected: { type: String, enum: ['yes', 'no']}
+})
+
+const ParentSchema = Schema({
+	highEducation: String,
+	profession: String
+})
+
+const UserSchema = Schema({
+	email: {
+		type: String,
+		index: true,
+		trim: true,
+		lowercase: true,
+		unique: true,
+		required: 'Email address is required',
+        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
+    },
+	password: { type: String, select: false, required: true, minlength: [8,'Password too short']},
+	role: { type: String, required: true, enum: ['SuperAdmin', 'Admin', 'User', 'Clinical', 'Lab'], default: 'User'},
+	group: { type: String, required: true, default: 'None'},
+	confirmed: {type: Boolean, default: false},
+	confirmationCode: String,
+	signupDate: {type: Date, default: Date.now},
+	lastLogin: {type: Date, default: null},
+	userName: String,
+	loginAttempts: { type: Number, required: true, default: 0 },
+  	lockUntil: { type: Number },
+	lang: { type: String, required: true, default: 'en'},
+	randomCodeRecoverPass: String,
+	dateTimeRecoverPass: Date,
+	massunit: { type: String, required: true, default: 'kg'},
+	lengthunit: { type: String, required: true, default: 'cm'},
+	blockedaccount: {type: Boolean, default: false},
+	permissions: {type: Object, default: {}},
+	modules: {type: Object, default: []},
+	platform: {type: String, default: ''},
+	authyId:{type:String,default:null},
+	authyDeviceId:{type:Object,default:[]},
+	phone: String,
+})
+```
+
+
+#### 2.4.7.3. DDBB: Data
+
+ClinicalTrials
+```
+
+```
+
+Diagnoses
+```
+
+```
+
+Genotypes
+```
+
+```
+
+HeightHistories
+```
+
+```
+
+Height
+```
+
+```
+
+Medicalcares
+```
+
+```
+
+Medication
+```
+
+```
+
+Othermedications
+```
+
+```
+
+Patient-proms
+```
+
+```
+
+PhenotypeHistories
+```
+
+```
+
+Phenotypes
+```
+
+```
+
+Seizures
+```
+
+```
+
+Social info
+```
+
+```
+
+Vaccinations
+```
+
+```
+
+WeightHistories
+```
+
+```
+
+Weight
+```
+
+```
 
 
 ### 2.4.8. Multilanguage

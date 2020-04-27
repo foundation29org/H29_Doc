@@ -1,7 +1,7 @@
 <img align="right" width="100px" src="../../_images/Foundation29.png">
 
 ## 2.1. Level 1: System Context
-************************TODO: 
+(TODO)
 
 For Android and iOS apps, we use the cordova framework. When compiling the Angular project, it generates the dist folder, which is the one to be added to the www folder of the Corova project.  We were evaluating ionic, nativescript and reactscript, they would be good options if we were more people, but at the moment we fit more cordova.
 

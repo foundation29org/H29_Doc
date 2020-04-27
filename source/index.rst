@@ -35,6 +35,9 @@
 .. image:: images/Architecture/Code/Webapp/server/Server_structure.png
    :width: 0px
 
+.. image:: images/Architecture/Code/DDBB/DDBB_Division.jpg
+   :width: 0px
+
 .. image:: images/All/Foundation29.png
    :width: 100px
    :align: right

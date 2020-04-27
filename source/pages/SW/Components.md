@@ -25,7 +25,7 @@ All Methods APIs that have the authorization field in the header use Bearer auth
 
 These requests can return some errors, such as the token is invalid, or has expired: { status: 401, message: "Token expired"} or { status: 401, message: "Invalid Token"}
 
-As the client is implemented using the Angular 5 framework, when compiling it ([ng build](https://angular.io/guide/deployment)) you will get a "/dist" folder that must be included in the server for the construction of the platform.
+As the client is implemented using the Angular 5 framework, when compiling it ([ng build](https://angular.io/guide/deployment)) you will get a "/dist" folder that must be included in the server for the construction of the platform. This is further detailed in the Environments section of this document, in the build section of the project.
 
 ### 2.4.2. External APIs
 **[Foundation29 API](https://f29api.northeurope.cloudapp.azure.com/index.html)**, implemented by Foundation29 to use it as an intermediary between the webapp and the azure qnamaker service. It is used for QNA functions for the different roles of Health29 platform.
@@ -112,5 +112,14 @@ And access the two that uses the Health29 platform from these links:
 - The [DiagnosisApi](https://portal.azure.com/#@foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/phenotypeBot/providers/Microsoft.Web/sites/DiagnosisApi/appServices) is an App Service of Azure that is used for consulting the symptons of a diagnose. It is an Azure service.
 
 ### 2.4.7. Databases
-(TODO)
-(DOC health29_DBs)
+We have several separate collections in two databases, one for accounts and general things, and one for patient data. 
+ 
+The development and test environments share the same databases, while the production ones do not. So, in total we have 4 databases:
+- Two for accounts
+>- Development and testing: [health29-accounts-test](https://portal.azure.com/#@foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/health29/providers/Microsoft.DocumentDb/databaseAccounts/health29-accounts-test/overview)
+>- Production: [health29-accounts-final](https://portal.azure.com/#@foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/health29/providers/Microsoft.DocumentDb/databaseAccounts/health29-accounts-final/overview)
+- Two for patient data
+>- Development and testing: [health29-data-test](https://portal.azure.com/#@foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/health29/providers/Microsoft.DocumentDb/databaseAccounts/health29-data-test/overview)
+>- Production: [health29-data-final](https://portal.azure.com/#@foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/health29/providers/Microsoft.DocumentDb/databaseAccounts/health29-data-final/overview)
+
+Access from the Health29 platform is done from the application server,using [mongoose](https://mongoosejs.com/docs/).

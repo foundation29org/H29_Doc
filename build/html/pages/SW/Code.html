@@ -105,7 +105,13 @@
 <li class="toctree-l2"><a class="reference internal" href="#azure-healthbot">2.4.4. Azure Healthbot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#azure-blobs">2.4.5. Azure blobs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#other-services">2.4.6. Other services</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#databases">2.4.7. Databases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#databases">2.4.7. Databases</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#databases-and-health29-communication">2.4.7.1. Databases and health29 communication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ddbb-accounts">2.4.7.2. DDBB: Accounts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ddbb-data">2.4.7.3. DDBB: Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#multilanguage">2.4.8. Multilanguage</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../Superadmin profile.html">3. Superadmin profile</a></li>
@@ -519,7 +525,7 @@ The configuration has no complexity, just select the Price tier and the resource
 </div>
 <div class="section" id="azure-healthbot">
 <h2>2.4.4. Azure Healthbot<a class="headerlink" href="#azure-healthbot" title="Permalink to this headline">¶</a></h2>
-<p>To create it from azure you just have to select the cognitive service in the marketplace: “Healthcare Bot”.
+<p>To create it from azure you just have to select the Healthcare Bot in the marketplace.
 To create and configure it, just follow the steps in the <a class="reference external" href="https://docs.microsoft.com/en-us/healthbot/quickstart-createyourhealthcarebot">Microsoft guide</a>.</p>
 <p>In the case of Health29, the App service <a class="reference external" href="https://healthbotcontainersamplef666.scm.azurewebsites.net/dev/wwwroot/server.js">server</a> has been configured to be able to deploy the three bots depending on the webapp client that is running it. So that:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">WEBCHAT_SECRET</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">WEBCHAT_SECRET</span><span class="p">;</span>
@@ -653,7 +659,7 @@ For example:</p>
 </div>
 <div class="section" id="azure-blobs">
 <h2>2.4.5. Azure blobs<a class="headerlink" href="#azure-blobs" title="Permalink to this headline">¶</a></h2>
-<p>To create it from azure you just have to select the cognitive service in the marketplace: “Storage account”.
+<p>To create it from azure you just have to search in the marketplace: “Storage account”.
 The configuration has no complexity,</p>
 <ul class="simple">
 <li><p>Fill project details: subscription and resource group</p></li>
@@ -772,7 +778,247 @@ It is used in the webapp client establishing a REST communication:</p>
 </div>
 <div class="section" id="databases">
 <h2>2.4.7. Databases<a class="headerlink" href="#databases" title="Permalink to this headline">¶</a></h2>
-<p>************************TODO:</p>
+<p>The databases are created in Azure as <a class="reference external" href="https://docs.microsoft.com/en-US/azure/cosmos-db/">Azure Cosmos DB account</a>.To create it you just have to select in the marketplace: “Azure Cosmo db” and configure it.</p>
+<p>As mentioned throughout the development of this document, there will be 4 databases: two for the test and development environments, and two for the production environment.
+The structure of the databases of the two environments will be the same, so we have:</p>
+<p style="text-align: center;">
+	<img width="400px" src="../../_images/DDBB_Division.jpg">
+</p><p>Each database will be composed of some collections that will be accessed from the Health29 platform server.</p>
+<p>In the following sections we will explain how this connection between Health29 and Azure’s databases is made, and we will go deeper into each of them by explaining the structure and layout of the collections they contain in each case.</p>
+<div class="section" id="databases-and-health29-communication">
+<h3>2.4.7.1. Databases and health29 communication<a class="headerlink" href="#databases-and-health29-communication" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="ddbb-accounts">
+<h3>2.4.7.2. DDBB: Accounts<a class="headerlink" href="#ddbb-accounts" title="Permalink to this headline">¶</a></h3>
+<p>Alerts</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">AlertsSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
+    <span class="n">groupId</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span><span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span><span class="s2">&quot;None&quot;</span><span class="p">},</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span><span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">},</span>
+    <span class="n">identifier</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span><span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">},</span>
+    <span class="o">//</span><span class="n">translatedName</span><span class="p">:</span> <span class="p">[{</span><span class="n">lang</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span><span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">},</span> <span class="n">value</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span><span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">}}],</span>
+    <span class="n">translatedName</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Object</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="p">[]},</span>
+    <span class="n">launchDate</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">Date</span><span class="o">.</span><span class="n">now</span><span class="p">},</span>
+    <span class="n">endDate</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Date</span><span class="p">},</span>
+    <span class="n">url</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span><span class="n">Object</span><span class="p">,</span> <span class="n">default</span><span class="p">:[]},</span>
+	<span class="n">role</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">enum</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;SuperAdmin&#39;</span><span class="p">,</span> <span class="s1">&#39;Admin&#39;</span><span class="p">,</span> <span class="s1">&#39;User&#39;</span><span class="p">,</span> <span class="s1">&#39;Clinical&#39;</span><span class="p">,</span> <span class="s1">&#39;Lab&#39;</span><span class="p">],</span> <span class="n">default</span><span class="p">:</span> <span class="s1">&#39;User&#39;</span><span class="p">},</span>
+    <span class="n">color</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span><span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">},</span>
+    <span class="n">logo</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span><span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">},</span>
+    <span class="n">importance</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span><span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">},</span>
+    <span class="n">receiver</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span><span class="n">Object</span><span class="p">,</span> <span class="n">default</span><span class="p">:[]},</span>
+	<span class="n">createdBy</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;Group&quot;</span><span class="p">}</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Bot</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">BotSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
+	<span class="n">lang</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span><span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">},</span>
+    <span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Object</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="p">[]},</span>
+	<span class="n">date</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">Date</span><span class="o">.</span><span class="n">now</span><span class="p">},</span>
+	<span class="n">curatedBy</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span><span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">},</span>
+	<span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">createdBy</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;Group&quot;</span><span class="p">}</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Group</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">GroupSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
+	<span class="n">name</span><span class="p">:</span> <span class="p">{</span>
+		<span class="nb">type</span><span class="p">:</span> <span class="n">String</span>
+  	<span class="p">},</span>
+	<span class="n">subscription</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">email</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">defaultLang</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="s1">&#39;en&#39;</span><span class="p">},</span>
+	<span class="n">phenotype</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Object</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="p">[]},</span>
+	<span class="n">medications</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Object</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="p">[]}</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Lab</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">LabSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
+	<span class="n">name</span><span class="p">:</span> <span class="p">{</span>
+		<span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+		<span class="n">index</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+		<span class="n">unique</span><span class="p">:</span> <span class="n">true</span>
+  	<span class="p">}</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Lang</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">LangSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
+	<span class="n">name</span><span class="p">:</span> <span class="p">{</span>	<span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>	<span class="n">unique</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>	<span class="n">required</span><span class="p">:</span> <span class="n">true</span> <span class="p">},</span>
+	<span class="n">code</span><span class="p">:</span> <span class="p">{</span>	<span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>	<span class="n">index</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>	<span class="n">unique</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>	<span class="n">required</span><span class="p">:</span> <span class="n">true</span> <span class="p">}</span>
+<span class="p">},</span> 
+<span class="p">{</span> <span class="n">versionKey</span><span class="p">:</span> <span class="n">false</span> <span class="o">//</span> <span class="n">You</span> <span class="n">should</span> <span class="n">be</span> <span class="n">aware</span> <span class="n">of</span> <span class="n">the</span> <span class="n">outcome</span> <span class="n">after</span> <span class="nb">set</span> <span class="n">to</span> <span class="n">false</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Patient</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">SiblingSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
+	<span class="n">gender</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">affected</span><span class="p">:</span> <span class="n">String</span> <span class="o">//</span><span class="n">affected</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">enum</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;yes&#39;</span><span class="p">,</span> <span class="s1">&#39;no&#39;</span><span class="p">]}</span> <span class="n">si</span> <span class="n">hacemos</span> <span class="n">validacion</span> <span class="n">de</span> <span class="n">que</span> <span class="n">no</span> <span class="n">pueda</span> <span class="n">ser</span> <span class="n">null</span><span class="p">,</span> <span class="n">igual</span> <span class="n">poner</span> <span class="n">el</span> <span class="n">enum</span>
+<span class="p">})</span>
+
+<span class="n">const</span> <span class="n">ParentSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
+	<span class="n">highEducation</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">profession</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">relationship</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">nameCaregiver</span><span class="p">:</span> <span class="n">String</span>
+<span class="p">})</span>
+
+<span class="n">const</span> <span class="n">PatientSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
+	<span class="n">patientName</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">surname</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">birthDate</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span>
+	<span class="n">citybirth</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">provincebirth</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">countrybirth</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">street</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">postalCode</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">city</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">province</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">country</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">phone1</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">phone2</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">gender</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">siblings</span><span class="p">:</span> <span class="p">[</span><span class="n">SiblingSchema</span><span class="p">],</span>
+	<span class="n">parents</span><span class="p">:</span> <span class="p">[</span><span class="n">ParentSchema</span><span class="p">],</span>
+	<span class="n">createdBy</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;User&quot;</span><span class="p">},</span>
+	<span class="n">death</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span>
+	<span class="n">notes</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">},</span>
+	<span class="n">answers</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Object</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="p">[]},</span>
+	<span class="n">subscriptionToGroupAlerts</span><span class="p">:{</span><span class="nb">type</span><span class="p">:</span><span class="n">Boolean</span><span class="p">,</span><span class="n">default</span><span class="p">:</span><span class="n">true</span><span class="p">}</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Prom</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">PromSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
+	<span class="n">name</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">responseType</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">question</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">hideQuestion</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Boolean</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">false</span><span class="p">},</span>
+	<span class="n">marginTop</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Boolean</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">false</span><span class="p">},</span>
+	<span class="n">values</span><span class="p">:</span> <span class="n">Array</span><span class="p">,</span>
+	<span class="n">section</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;PromSection&quot;</span><span class="p">},</span>
+	<span class="n">order</span><span class="p">:</span><span class="n">Number</span><span class="p">,</span>
+	<span class="n">periodicity</span><span class="p">:</span> <span class="n">Number</span><span class="p">,</span>
+	<span class="n">isRequired</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Boolean</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">false</span><span class="p">},</span>
+	<span class="n">enabled</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Boolean</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">false</span><span class="p">},</span>
+	<span class="n">createdBy</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;Group&quot;</span><span class="p">},</span>
+	<span class="n">width</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">hpo</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">relatedTo</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;PromSchema&quot;</span><span class="p">},</span>
+	<span class="n">disableDataPoints</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;PromSchema&quot;</span><span class="p">}</span>
+
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>PromSection</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">PromSectionSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
+	<span class="n">name</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">description</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">enabled</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Boolean</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">true</span><span class="p">},</span>
+	<span class="n">order</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Number</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span>
+	<span class="n">createdBy</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;Group&quot;</span><span class="p">}</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Qna</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">QnaSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
+	<span class="n">group</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">required</span><span class="p">:</span> <span class="n">true</span><span class="p">},</span>
+	<span class="n">knowledgeBaseID</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">required</span><span class="p">:</span> <span class="n">true</span><span class="p">},</span>
+	<span class="n">lang</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">required</span><span class="p">:</span> <span class="n">true</span><span class="p">},</span>
+	<span class="n">categories</span><span class="p">:{</span><span class="nb">type</span><span class="p">:</span><span class="n">Object</span><span class="p">,</span><span class="n">default</span><span class="p">:[]}</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>StructureProms</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">StructurePromSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
+	<span class="n">data</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">Mixed</span><span class="p">,</span>
+	<span class="n">lang</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">required</span><span class="p">:</span> <span class="n">true</span><span class="p">},</span>
+	<span class="n">createdBy</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;Group&quot;</span><span class="p">}</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Support</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">SupportSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
+	<span class="n">platform</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">subject</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">description</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+	<span class="n">status</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="s1">&#39;unread&#39;</span><span class="p">},</span>
+	<span class="n">statusDate</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">Date</span><span class="o">.</span><span class="n">now</span><span class="p">},</span>
+	<span class="n">files</span><span class="p">:</span> <span class="n">Object</span><span class="p">,</span>
+	<span class="n">date</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">Date</span><span class="o">.</span><span class="n">now</span><span class="p">},</span>
+	<span class="n">createdBy</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;User&quot;</span><span class="p">}</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>UserAlerts</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">UseralertsSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
+    <span class="n">alertId</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span><span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">},</span>
+    <span class="n">patientId</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span><span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">},</span>
+    <span class="n">state</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span><span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span><span class="s2">&quot;Not read&quot;</span><span class="p">},</span>
+    <span class="n">snooze</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span><span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span><span class="s2">&quot;1&quot;</span><span class="p">},</span>
+    <span class="n">showDate</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Date</span><span class="p">},</span>
+    <span class="n">launch</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Boolean</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">false</span><span class="p">},</span>
+    <span class="n">createdBy</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;Group&quot;</span><span class="p">}</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>User</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>const SiblingSchema = Schema({
+	gender: String,
+	affected: { type: String, enum: [&#39;yes&#39;, &#39;no&#39;]}
+})
+
+const ParentSchema = Schema({
+	highEducation: String,
+	profession: String
+})
+
+const UserSchema = Schema({
+	email: {
+		type: String,
+		index: true,
+		trim: true,
+		lowercase: true,
+		unique: true,
+		required: &#39;Email address is required&#39;,
+        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, &#39;Please fill a valid email address&#39;]
+    },
+	password: { type: String, select: false, required: true, minlength: [8,&#39;Password too short&#39;]},
+	role: { type: String, required: true, enum: [&#39;SuperAdmin&#39;, &#39;Admin&#39;, &#39;User&#39;, &#39;Clinical&#39;, &#39;Lab&#39;], default: &#39;User&#39;},
+	group: { type: String, required: true, default: &#39;None&#39;},
+	confirmed: {type: Boolean, default: false},
+	confirmationCode: String,
+	signupDate: {type: Date, default: Date.now},
+	lastLogin: {type: Date, default: null},
+	userName: String,
+	loginAttempts: { type: Number, required: true, default: 0 },
+  	lockUntil: { type: Number },
+	lang: { type: String, required: true, default: &#39;en&#39;},
+	randomCodeRecoverPass: String,
+	dateTimeRecoverPass: Date,
+	massunit: { type: String, required: true, default: &#39;kg&#39;},
+	lengthunit: { type: String, required: true, default: &#39;cm&#39;},
+	blockedaccount: {type: Boolean, default: false},
+	permissions: {type: Object, default: {}},
+	modules: {type: Object, default: []},
+	platform: {type: String, default: &#39;&#39;},
+	authyId:{type:String,default:null},
+	authyDeviceId:{type:Object,default:[]},
+	phone: String,
+})
+</pre></div>
+</div>
+</div>
+<div class="section" id="ddbb-data">
+<h3>2.4.7.3. DDBB: Data<a class="headerlink" href="#ddbb-data" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="multilanguage">
+<h2>2.4.8. Multilanguage<a class="headerlink" href="#multilanguage" title="Permalink to this headline">¶</a></h2>
+<p>(TODO)</p>
 </div>
 </div>
 

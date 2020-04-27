@@ -1,6 +1,9 @@
 <img align="right" width="100px" src="../_images/Foundation29.png">
 
 # 1. Environments
+
+(TODO)
+
 ## 1.1. Build 
 By running ng build --prod we minimize and compress the code. This command will create a new folder called dist, and it will have the project optimized. This dist folder will be the one uploaded to the root of the node server that manages the API. It will also be used to create the mobile apps, adding it to the www folder of the cordoba project. 
 

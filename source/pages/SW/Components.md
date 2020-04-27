@@ -112,5 +112,5 @@ And access the two that uses the Health29 platform from these links:
 - The [DiagnosisApi](https://portal.azure.com/#@foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/phenotypeBot/providers/Microsoft.Web/sites/DiagnosisApi/appServices) is an App Service of Azure that is used for consulting the symptons of a diagnose. It is an Azure service.
 
 ### 2.4.7. Databases
-************************TODO:
+(TODO)
 (DOC health29_DBs)

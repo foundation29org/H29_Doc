@@ -555,5 +555,9 @@ if(req.url.indexOf('https://genomicservices.azurewebsites.net/api/exomize')!==-1
 ```
 
 ### 2.4.7. Databases
-************************TODO:
+(TODO)
+
+
+### 2.4.8. Multilanguage
+(TODO)
 

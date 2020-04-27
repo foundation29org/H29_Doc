@@ -28,6 +28,10 @@ This document presents a technical description of the Health29 software architec
 
    pages/Environments
    pages/Software architecture
+   pages/SW/SystemContext
+   pages/SW/Containers
+   pages/SW/Components
+   pages/SW/Code
    pages/Superadmin profile
    pages/Technical debt
 

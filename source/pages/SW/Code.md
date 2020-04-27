@@ -1,171 +1,13 @@
-<img align="right" width="100px" src="../../../source/images/All//Foundation29.png">
+<img align="right" width="100px" src="../../../../source/images/All//Foundation29.png">
 
-# 2. Software architecture
-## 2.1. General schema
-
-We will use the C4 model to expose the software architecture. Thus, in the description of this section we will differentiate between:
-
-- Level 1: A **System Context** diagram provides a starting point, showing how the software system in scope fits into the world around it.
-- Level 2: A **Container** diagram zooms into the software system in scope, showing the high-level technical building blocks.
-- Level 3: A **Component** diagram zooms into an individual container, showing the components inside it.
-- Level 4: A **code** (e.g. UML class) diagram can be used to zoom into an individual component, showing how that component is implemented.
-
-![Alt](../images/Architecture/General_schema/H29_C4model.png "H29 C4 model")
-
-----------------------------------------------------------------------------------------------------------------------------------
-## 2.2. Level 1: System Context
-************************TODO: 
-
-For Android and iOS apps, we use the cordova framework. When compiling the Angular project, it generates the dist folder, which is the one to be added to the www folder of the Corova project.  We were evaluating ionic, nativescript and reactscript, they would be good options if we were more people, but at the moment we fit more cordova.
-
-Our idea is to migrate to FHIR, so we would have to modify our API to make calls to [FHIR's API](https://www.hl7.org/fhir/ "Title")
-
-Health29 provides a web API to access the data. Anyone can develop an application to access and modify the data of a Health29 user. OAuth 2.0 is used as an authorization protocol to give an API client limited access to the user's data. 
-
-----------------------------------------------------------------------------------------------------------------------------------
-## 2.3. Level 2: Containers
-
-Health29 consists of several connected containers.
-We have divided them according to their functionality and use within the platform.Thus, we will have:
-
-- Webapp container.
-- External APIs container.
-- Azure cognitive services container.
-- Azure healthbot container.
-- Azure blobs container.
-- Databases container.
-
-<p style="text-align: center;">
-	<img width="500px" src="../../../source/images/Architecture/Containers/containersH29.jpg">
-</p>
-
-These modules are intercommunicated using a [REST](https://restfulapi.net/) interface, that is, the communication is established according to the [HTTP protocol](https://restfulapi.net/http-methods/). 
-
-In this way, it will be necessary to configure the different services you want to use so that communications can be established. To do this, during the implementation of the webapp the keys and the corresponding endpoint will be used to establish communication, and the sending of the REST commands will use specific authorization headers. 
-
-The most common headers we can find are:
-
-| Headers | Description |  
-|---|---|
-| Ocp-Apim-Subscription-Key | Use with Cognitive Services subscription if you pass your secret key. | 
-| Authorization | Use with your Cognitive Services subscription if you pass an authentication token. The value is the bearer token: Bearer token_value |  
-
-The webapp will be the core of the Health29 application, from where the frontend will be developed and the communications with different services to provide functionalities.
-
-Health29 is a clinical history application that will allow users to enter their medical data. Different Azure services will be used to carry out the relevant actions:
-
-- External APIs that will be used as intermediaries between the webapp and Azure's cognitive services. To add different functionalities to the application and thus simplify the development and implementation of the webapp. 
-- Healthbot. The application will have a chatbot to help the user.
-- Azure blobs and databases. To store information.
-
-----------------------------------------------------------------------------------------------------------------------------------
-## 2.4. Level 3: Component
-
-Taking into account the division by containers exposed in the previous point, we are now going to study in detail the internal architecture and the components that make up each one of them.
-
+## 2.4. Level 4: Code
 ### 2.4.1. Webapp
-
-Health29's architecture uses a client-server software design model, so that the architecture of the webapp is like:
-
-![Alt](../images/Architecture/Components/Webapp/Webapp.jpg "Webapp architecture schema")
-
-For the client we use the Angular 5 framework, and for the nodejs - express server, in which we have implemented an API to connect to the CosmoDb databases using mongoose for its management.
-
-![Alt](../images/Architecture/Components/Webapp/Webapp_frameworks_architecture.jpg "Webapp frameworks and connections")
-
-These modules are intercommunicated using a [REST](https://restfulapi.net/) interface, that is, the communication is established according to the [HTTP protocol](https://restfulapi.net/http-methods/). 
-
-This communication between client and server is mainly used for data management, i.e. to obtain, add or modify information from databases.
-For this purpose, an HTTP service will be used to allow, through requests from the client to the server, to carry out these operations. The server will listen to these requests and will perform the appropriate operations to give an answer to the client.
-- Most requests to the API require an access token as authentication. For this, go to Get access_token
-- Once we have the access token, we can make the calls to the api, passing the access token in the header.
-
-All Methods APIs that have the authorization field in the header use Bearer authentication to restrict access to protected resources, , and always be sent next to a token. The bearer token is a cryptic string, generated by the server in response to a login request. Example of the header: Authorization: Bearer "token"
-
-These requests can return some errors, such as the token is invalid, or has expired: { status: 401, message: "Token expired"} or { status: 401, message: "Invalid Token"}
-
-As the client is implemented using the Angular 5 framework, when compiling it ([ng build](https://angular.io/guide/deployment)) you will get a "/dist" folder that must be included in the server for the construction of the platform.
-
-### 2.4.2. External APIs
-We use two External APIs:
-- *[Foundation29 API](https://f29api.northeurope.cloudapp.azure.com/index.html)*, implemented by us to use it as an intermediary between the webapp and the azure qnamaker service.
-- The *[Monarch](https://api.monarchinitiative.org/) API* .
-
-These are used for QNA and diagnostic functions for the different roles of the Health29 platform.
-
-### 2.4.3. Azure cognitive services
-#### 2.4.3.1. Computer Vision
-It is used in the symptoms section. This service converts images into text in order to obtain the symptoms.
-
-You can configure and use this azure service by following the steps in the [Microsoft guide](https://docs.microsoft.com/bs-latn-ba/azure/cognitive-services/computer-vision/). 
-And access the one that uses the Health29 platform from this [link](https://portal.azure.com/#@foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/health29/providers/Microsoft.CognitiveServices/accounts/recognizetexthealth29/overview).
-
-#### 2.4.3.2. Qna maker
-QnA Maker is a cloud-based Natural Language Processing (NLP) service that easily creates a natural conversation layer with the data. 
-
-In Health29 it is used to manage the FAQs in different ways and from different points of the platform:
-
-- To show the list of FAQs to the **users**. From the user profile you can access the FAQ page where you will be shown the results of the service consultation in the form of a list.
-
-- So that the **administrators** of the platform can manage the list of FAQs. From the administrator profile you can add, delete and edit the list of FAQs of the service.
-
-- It is integrated into the **healthbot** to allow users to ask questions or doubts in a more guided and personal way. 
-
-In this case the communication of the webapp with this service is requested from the client through an external API that acts as an intermediary. However, there will also be information that will be stored in the databases, therefore, the client will also establish a communication with the server who will manage the storage of this information.
-
-You can configure and use this azure service by following the steps in the [Microsoft guide](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/).
-And access the one that uses the Health29 platform from this [link](https://portal.azure.com/#@foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/health29/providers/Microsoft.CognitiveServices/accounts/qnamakerhealth29/overview)
-
-In particular for Health29 the following databases have been created in qnamaker: [My knowledge bases](https://www.qnamaker.ai/Home/MyServices). One would be created for each group of patients to contain their specific information and this in turn would be replicated in as many languages as the question-answer pairs are translated on the Health29 platform.
-
-
-#### 2.4.3.3. Translator
-This service is used to be able to make a translation of the different datapoints, to add a new language to the platform (it translates all the tags), and to translate into English the text obtained from the vision service to call the NCR service that extracts the symptoms.
-
-You can configure and use this azure service by following the steps in the [Microsoft guide](https://docs.microsoft.com/bs-cyrl-ba/azure/cognitive-services/translator/).
-
-And access the two that uses the Health29 platform from these links:
-- [health29translateplatform](https://portal.azure.com/#@foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/health29/providers/Microsoft.CognitiveServices/accounts/health29translateplatform/overview)
-- [translatorBotApi](https://portal.azure.com/#@foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/phenotypeBot/providers/Microsoft.CognitiveServices/accounts/translatorBotApi/overview)
-
-
-### 2.4.4. Azure healthbot
-
-Health29 has an assistant to guide the user in the use of the platform.
-For this purpose, the Azure [Healthbot](https://docs.microsoft.com/en-us/healthbot/) service is used.
-
-It guides the user through different configured scenarios where he or she can perform different actions. Initially we can divide the scenarios into three blocks:
-- **New user** scenario or first time in the platform. The chatbot will provide the user with help and guidance in this process and provide he or she with more information if required.
-- Scenario of **pending notifications**. In case the user has any pending notifications, he or she will be informed during the first run of the assistant.
-- **Main** scenario. A series of guided scenarios will appear where the user will be able to make different types of queries.
-
-You can configure and use this azure service by following the steps in the [Microsoft guide](https://docs.microsoft.com/en-us/healthbot/quickstart-createyourhealthcarebot). 
-And access the one that uses the Health29 platform from this [link](https://portal.azure.com/#@foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/testresourcesjavi/providers/Microsoft.Web/sites/HealthBotContainerSamplef666/appServices).
-
-In particular for Health29 the following chatbots have been created (All of them use the previous App Service):
-- [Healthbot](https://us.healthbot.microsoft.com/account/zebrahealthbot/scenarios/manage) of the development environment.
-- [Healthbot](https://eu.healthbot.microsoft.com/account/healthbot-test-tjo3h51/scenarios/manage) of the test environment.
-- [Healthbot](https://eu.healthbot.microsoft.com/account/h29bot-giochop/scenarios/manage) of the production environment.
-
-
-### 2.4.5. Azure blobs
-************************TODO:
--	En los blobs de azure, cada paciente tiene su blob donde se guardan pruebas médicas. 
-Se hace desde el cliente
-
-### 2.4.6. Databases
-************************TODO:
-(DOC health29_DBs)
-
-----------------------------------------------------------------------------------------------------------------------------------
-## 2.5. Level 4: Code
-### 2.5.1. Webapp
 All documentation for the Health29 application code is contained in:
 - For the [development environment](https://health29-dev.azurewebsites.net/APIDOC/)
 - For the [test environment](https://health29-test.azurewebsites.net/APIDOC)
 - For the [production environment](https://health29.org/APIDOC/) 
 
-#### 2.5.1.1. Communication
+#### 2.4.1.1. Communication
 
 For establish the communication:
 - The client will make requests of the type:
@@ -183,19 +25,19 @@ this.http.get(environment.api+'/api/'+<url>)
 api.get(<url>, auth, function)
 ```
 
-#### 2.5.1.2. Code Structure: Client Structure
+#### 2.4.1.2. Code Structure: Client Structure
 
 *NOTE: A template was purchased to have a base: [Template Link](https://themeforest.net/item/apex-angular-4-bootstrap-admin-template/20774875).*
 
 The structure is as follows:
 
 <p style="text-align: center;">
-	<img width="150px" src="../../../source/images/Architecture/Code/Webapp/client/Client_structure.png">
+	<img width="150px" src="../../../../source/images/Architecture/Code/Webapp/client/Client_structure.png">
 </p>
 
 - The **src folder** has the following:
 
-	<img align="right" width="150px" src="../../../source/images/Architecture/Code/Webapp/client/Client_structure_src.png">
+	<img align="right" width="150px" src="../../../../source/images/Architecture/Code/Webapp/client/Client_structure_src.png">
 
 	>- app/app.component.{ts,html,css,spec.ts}: Defines the AppComponent along with an HTML template, CSS stylesheet, and a unit test. It is the root component of what will become a tree of nested components as the application evolves. In this file it is controlling the events of inactivity of a session, loading the language of the app depending on the language of the browser, the title that appears in the browser tab with the change of pages. If it is a mobile app, it also controls the backbutton, pause and resume events.
 	>- app/app.module.ts: Defines AppModule, the root module that tells Angular how to assemble the application. 
@@ -222,7 +64,7 @@ The structure is as follows:
 
 - The **shared folder**, which is the shared code:
 
-	<img align="right" width="150px" src="../../../source/images/Architecture/Code/Webapp/client/Client_structure_shared.png">
+	<img align="right" width="150px" src="../../../../source/images/Architecture/Code/Webapp/client/Client_structure_shared.png">
 
 	>- auth: authorization management (role-guard), authentication (auth-service and auth-guard), http interceptor, oauth.services for external services like fitbit.
 	>- Configs: configuration files, for example configuration for toasts, or parameters for graphs. 
@@ -239,10 +81,10 @@ The structure is as follows:
 The rest of the subroutes that come from full-layout, are controlled if they are logged and authenticated in the routing-module file of each module (each profile has a module) with canActivate: [AuthGuard, RoleGuard].
 
 
-#### 2.5.1.3. Code Structure: Server Structure
+#### 2.4.1.3. Code Structure: Server Structure
 
 <p style="text-align: center;">
-	<img width="150px" src="../../../source/images/Architecture/Code/Webapp/server/Server_structure.png">
+	<img width="150px" src="../../../../source/images/Architecture/Code/Webapp/server/Server_structure.png">
 </p>
 
 - index.js: file where the app.js and config.js file is loaded It listens to requests.
@@ -253,26 +95,62 @@ The rest of the subroutes that come from full-layout, are controlled if they are
 	>2. Server-generated view paths (handlebars)
 	>3. the paths of the Angular client application (dist folder)
 
-#### 2.5.1.4. Build
-By running ng build --prod we minimize and compress the code. This command will create a new folder called dist, and it will have the project optimized. This dist folder will be the one uploaded to the root of the node server that manages the API. It will also be used to create the mobile apps, adding it to the www folder of the cordoba project. 
 
-#### 2.5.1.5. Deploy environments
-Each environment has been created as an independent project, so in order to move from one environment to another you will have to copy the code of one over the new one. 
-In this process it must be taken into account that the environment.prod file in the environments folder has been previously configured for each environment, and therefore it is different in each one of them. Before making any changes you must ensure that it is kept in the environment to be updated and that during the process of copying code from one environment to another the information in this file is not modified. 
+#### 2.4.1.4. External libraries and dependencies
+All the necessary dependencies or libraries that will be used in the implementation of the application can be checked in the "package.json" files of both the client and the server. The installation of all these libraries and dependencies has been done with [npm](https://docs.npmjs.com/using-npm-packages-in-your-projects), which updates the "Node modules" folder with the necessary packages to work with. Therefore, when you want to work with the projects, it is necessary to execute previously the command "npm install".
 
-#### 2.5.1.6. External libraries and dependencies
-************************TODO: LIBRERIAS Y DEPENDENCIAS!!!
+On the one hand, among all those found in this file, we can mainly highlight that the versions are being used:
+- Both client and server: 
+>- v10.16.3 of node.
+>- 0.11.4 of botframework-webchat
 
-### 2.5.2. External APIs
-API Foundation29 has been designed to act as an intermediary between the webapp and Azure Qnamaker's service.
+- For the client: 
+>- 1.7.0 of Angular CLI and 5.2.5 of the node modules angle libraries (Angular 5).
+>- 2.6.2 of TypeScript. 
+>- 1.0.0 of ng-bootstrap
+>- Jquery 3.2.1
+ 
+- For the server:
+>- 1.12.1 of nodemon
+>- 4.16.2 of express and 3.0.0 of express-handlebars
+>- 4.13.1 moongose
+>- 2.6.0 of async
+
+
+On the other hand, specific NPM libraries have been installed for some functionalities:
+- For the client:
+>- For the HTTP requests, the version 1.0.0-beta.2 of the library [@auth0/angular-jwt](https://www.npmjs.com/package/@auth0/angular-jwt) is used
+>- For graphic representations [d3](https://www.npmjs.com/package/d3) has been installed. Version 5.7.1 of @types/d3 and 1.2.2 of @types/d3-shape
+>- Fingerprint2 version 2.0.0 (https://www.npmjs.com/package/fingerprintjs2) is used to obtain the information of the device being used to access the platform.
+>- Version 0.24.1 of [angular-calendar](https://www.npmjs.com/package/angular-calendar) is used to work with the date entries of the platform.
+>- For data encryption, version 0.7.1 of [js-sha512](https://www.npmjs.com/package/js-sha512) is used and for the reverse process, version 2.2.0 of [jwt-decode](https://www.npmjs.com/package/jwt-decode) is used.
+>- Version 7.12.9 of [sweetalert2](https://www.npmjs.com/package/sweetalert2) is used for platform popups.
+- For the server
+>- For emailing tasks: 4.4.0 nodemailer and 2.0.0 nodemailer-express-handlebars.
+>- For communication with Azure: 0.10.6 of azure-sb
+>- To use the Authy application as 2FA: 1.4.0 of authy and 1.1.4 of authy-client
+>- For data encryption, version 0.7.0 of [js-sha512](https://www.npmjs.com/package/js-sha512) is used
+
+In addition to this, Javascript scripts and JSON files have been added as libraries to optimize the programming of different functionalities for the client:
+- Javascript scripts:
+>- [Jquery countdown](http://hilios.github.io/jQuery.countdown/)
+>- [PDF JS](https://www.npmjs.com/package/pdfjs)
+>- [Azure storage](https://www.npmjs.com/package/@azure/storage-blob)
+- JSON Files located in src/assets/jsons:
+>- Some JSON files for managing the users' location information (country, province, cities and phone codes): Countries folder, cities.json, countries.json, countries_nl.json and phone_codes.json
+>- Some JSON files for obtain and manage the symptons: genes_to_phenotype.json, orpha-omim-orpha.json, orphaids.json and phenotypes.json.
+>- A JSON with the languages available in Azure Cognitive Service for translation tasks: cognitive-services-languages.json
+>- A JSON for the management of languages available on the platform: all-languages.json
+>- A JSON for the types of subscription on the platform: subscription-types.json
+
+### 2.4.2. External APIs
+**API Foundation29** has been designed to act as an intermediary between the webapp and Azure Qnamaker's service.
 The functions that have been implemented to perform actions on the Azure service are analogous to those in the [Azure documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/quickstarts/quickstart-rest-curl).
 
 It can be consulted at the following link: [API Foundation29](https://f29api.northeurope.cloudapp.azure.com/index.html).
 And the functionality and methodology of use is described in the qnamaker section of this document (2.5.3.2. Qna maker)
 
-Some functions to use the monarch API from this have also been included in this API. But this is not being used at the moment in health29 and the calls to the monarch API are executed directly, without intermediaries.
-
-Todavía no tenemos desplegado todo lo de monarch, por ello aún hacemos alguna petición a sus servicios,  para obtener la lista de condiciones relacionadas:
+Some functions to use the monarch API from this have also been included in this API. But this is not being used at the moment in health29 and the calls to the **monarch API** are executed directly, without intermediaries.
 
 - Request for list of related conditions
 ```
@@ -291,8 +169,15 @@ href="https://monarchinitiative.org/phenotype/'+res[j].id+'
 href=”https://monarchinitiative.org/disease/{{value.id}}#overview 
 ```
 
-### 2.5.3. Azure cognitive services
-#### 2.5.3.1. Computer Vision
+And with this API, the configuration of the headers (auth.interceptor.ts) to establish the connection with Azure's service are sent are like:
+```
+if(req.url.indexOf('https://api.monarchinitiative.org/api/')!==-1){
+  isExternalReq = true;
+}
+```
+
+### 2.4.3. Azure cognitive services
+#### 2.4.3.1. Computer Vision
 To create it from azure you just have to select the cognitive service in the marketplace: "ComputerVision".
 The configuration has no complexity, just select the Price tier and the resource group.
 
@@ -320,7 +205,7 @@ As it has been said before this is used for the symptom extraction, so the call 
 
 All the commands and settings for establishing this communication are described in the [Microsoft documentation](https://docs.microsoft.com/bs-latn-ba/azure/cognitive-services/computer-vision/vision-api-how-to-topics/howtocallvisionapi).
 
-#### 2.5.3.2. Qna maker
+#### 2.4.3.2. Qna maker
 To create it from azure you just have to select the cognitive service in the marketplace: "Qna maker".
 The configuration has no complexity, just:
 - Enter a name
@@ -349,7 +234,7 @@ if(req.url.indexOf('https://f29api.northeurope.cloudapp.azure.com')!==-1){
  
 All the commands and settings for establishing this communication are described in the [Microsoft documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/quickstarts/quickstart-rest-curl).
 
-#### 2.5.3.3. Translator
+#### 2.4.3.3. Translator
 To create it from azure you just have to select the cognitive service in the marketplace: "Translator text".
 The configuration has no complexity, just select the Price tier and the resource group.
 
@@ -405,7 +290,7 @@ The first of these is used to translate the datapoints and to add a new language
 
 All the commands and settings for establishing this communication are described in the [Microsoft documentation](https://docs.microsoft.com/bs-cyrl-ba/azure/cognitive-services/translator/).
 
-### 2.5.4. Azure Healthbot
+### 2.4.4. Azure Healthbot
 To create it from azure you just have to select the cognitive service in the marketplace: "Healthcare Bot".
 To create and configure it, just follow the steps in the [Microsoft guide](https://docs.microsoft.com/en-us/healthbot/quickstart-createyourhealthcarebot).
 
@@ -428,9 +313,6 @@ It should be noted that this service has a monthly message limit. Depending on t
 *NOTE: if at any time the limit is exceeded, the bot will return error 429 (Too many request).*
 
 The incorporation of this assistant to the webapp is done from the client, in particular, from the customizer component.
-
-(Meter imagen https://docs.microsoft.com/en-us/healthbot/integrations/embed)
-
 This way, it is added to the HTML:
 ```
 <div id="botContainer" style="width:95%"></div>
@@ -439,7 +321,11 @@ And the style is added from the scss file.
 
 As for the functionality of the bot, this is included in the ".ts" file, taking into account:
 
-( Meter imagen: https://docs.microsoft.com/en-us/healthbot/integrations/embed)
+<p style="text-align: center;">
+	<img width="800px" src="../../../../source/images/Architecture/Code/Healthbot/botflow.png">
+</p>
+
+Health Bot uses [Bot Framework](https://dev.botframework.com/) under the hood as a messaging and routing platform to deliver messages to and from the end user.
 
 So, the steps to follow are:
 
@@ -493,6 +379,20 @@ this.subscription.add( botConnection.postActivity({type: "event", value: jsonWeb
 ```
 All the commands and settings for using this Healthbot service ara available in [Microsoft documentation](https://docs.microsoft.com/en-us/healthbot/integrations/embed).
 
+In addition to this, the HTTP headers have to be configured to be able to use this service in the auth.interceptor.ts file:
+
+```
+if(req.url.indexOf('healthbot')!==-1){
+  console.log('epasa');
+  isExternalReq = true;
+  const headers = new HttpHeaders({
+    'Content-Type':  'text/html; charset=utf-8',
+    'Access-Control-Allow-Methods': 'GET'
+  });
+  authReq = req.clone({ headers, responseType: 'text'});//'Content-Type',  'application/json'
+}
+```
+
 As already indicated, once the bot is embedded in the webapp you will have to indicate it to initialize the desired scenarios in each case. These scenarios are designed, implemented and configured in:
 
 - [Healthbot](https://us.healthbot.microsoft.com/account/zebrahealthbot/scenarios/manage) of the development environment.
@@ -501,15 +401,159 @@ As already indicated, once the bot is embedded in the webapp you will have to in
 
 In the microsoft documentation there are [guides](https://docs.microsoft.com/en-us/healthbot/quickstart-createyourfirstscenario) to help you create these scenarios.
 
-************************TODO:
+The general workflow of the Healthbot scenarios defined for Health29 is
 
-(ESQUEMA ACTUAL DE CONEXION DE ESCENARIOS DE H29)
+<p style="text-align: center;">
+	<img width="800px" src="../../../../source/images/Architecture/Code/Healthbot/Scenarios.jpg">
+</p>
 
-(Explicar que ahora mismo se triplica cada escenario de acuerdo con el idioma del usuario de H29, a futuro habría que modificar todo para utilziar la localizacion del bot para conseguir estas traducciones pero en ese caso tener en cuenta que tambien tienen 
-que traducirse los mensajes de error que manda el bot "Oops..." que estan contemplados en la app H29 ahora mismo: se tratan desde la aplicacion y se modifica el texto para el idioma correspondiente)
+Except for the control scenarios that do not send messages to the user, the rest are replicated: one is created per user language available in Health29 (as can be seen in the previous diagram, the nomenclature "scenarioName_lang" has been used). 
+In this way, the scenarios that will be executed depend on the language selected by the user on the Health29 platform.
 
-### 2.5.5. Azure blobs
-************************TODO:
-### 2.5.6. Databases
+A modification of this was started to use the Healthbot localization service to avoid scenario replications. However, there is still work to be done since this translation could not be managed for some messages sent by the bot to notify of problems or errors. This has been solved so far from the Health29 client code. 
+For example:
+
+```
+ if((activity.text ==="I didn't understand. Please choose an option from the list.")){
+  var x = document.getElementsByClassName("format-markdown");
+  for (var element=0;element<x.length;element++){
+    var stringElement=x[element].firstElementChild.childNodes[0].textContent;
+    if((stringElement =="I didn’t understand. Please choose an option from the list.")||
+    (stringElement=="No se pudo reconocer su respuesta. Por favor seleccione una opción de la lista.")){
+      var tempElement=x[element].firstElementChild.childNodes[0];
+      tempElement.textContent = this.translate.instant("generics.Understand");
+      $(x[element].firstElementChild.childNodes[0]).replaceWith(tempElement.textContent);
+    }
+  }
+```
+In this case, the messages shown by the bot are read and translated using the translation system used in Health29 that is explained in the "Multilanguage" section of this document.
+
+Finally, it should also be noted that an action flow has been defined for the task of closing or minimizing the platform's assistant, taking into account that
+- This will be displayed whenever a user logs in.
+- The user will be given the option to end the conversation, so previous messages will be deleted and the wizard will be minimized.
+- The behavior of the buttons to maximize/minimize and open/close the assistant in Health29 is maintained.
+
+### 2.4.5. Azure blobs
+To create it from azure you just have to select the cognitive service in the marketplace: "Storage account".
+The configuration has no complexity, 
+- Fill project details: subscription and resource group
+- Fill instance details: 
+>- Storage account name
+>- Localization
+>- Performance (default standard)
+>- Account kind (blobstorage)
+>- Replication
+>- Access tier (hot)
+
+It is used in the webapp client establishing a REST communication. 
+In this project, the Javascript library Azure storage is used. In this way, some services have been created in the client project of Angular that will allow working with the reading and writing functions of the Azure blob. 
+Thus, the following services have been defined:
+- blob-storage-medical-care.service.ts
+- blob-storage-support.service.ts
+- blob-storage.service.ts
+
+In all cases, an interface to work with blobs like this will be exported:
+
+```
+export interface IBlobAccessToken {
+  blobAccountUrl: string;
+  sasToken: string;
+  containerName: string;
+  patientId: string; (optional)
+}
+```
+
+and a class will be defined with the possible functions that can be performed with the blob:
+
+```
+@Injectable()
+export class BlobStorage<name>{...}
+```
+
+With this, from the different sections of Health29 it will be possible to create the containers in the blob and store the relevant information.
+An example of use would be:
+
+```
+constructor ... (...,private blob: BlobStorageMedicalCareService,...)
+...
+this.blob.uploadToBlobStorage(this.accessToken, <files>, filename, index1, index2);
+```
+
+In addition to this, the HTTP headers have to be configured to be able to use this service in the auth.interceptor.ts file:
+
+```
+ if(req.url.indexOf('https://blobgenomics.blob.core.windows.net/')!==-1){
+  isExternalReq = true;
+  const headers = new HttpHeaders({
+    'Access-Control-Allow-Origin':'*',
+    'Ocp-Apim-Subscription-Key': 'lXaW8+GnmQuHYVku3GWEjZnRhi9hv5u7v2kGvRiUQR6/PTlJuIZT+hyf+nUgLGTSpIToheyZ7oXyX34+q3s63g=='
+  });
+  authReq = req.clone({ headers});//'Content-Type',  'application/json'
+}
+
+if(req.url.indexOf('https://health29support.blob.core.windows.net/')!==-1){
+  isExternalReq = true;
+  const headers = new HttpHeaders({
+    'Access-Control-Allow-Origin':'*',
+    'Ocp-Apim-Subscription-Key': 'g/KX0iFgXuPQMHDDLWYDXJDihvPTMv9/Uyp2lsWGu81azji7i0oPh21R3vjnn1oDGIHjsYsRIEEuR5F8PFrbAw=='
+  });
+  authReq = req.clone({ headers});//'Content-Type',  'application/json'
+}
+
+```
+### 2.4.6. Other services
+The **[DiagnosisApi](https://portal.azure.com/#@foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/phenotypeBot/providers/Microsoft.Web/sites/DiagnosisApi/appServices)** is an App Service of Azure that is used for consulting the symptons of a diagnose.
+To create it from azure you must create an [App service of Azure](https://docs.microsoft.com/en-US/azure/app-service/).
+
+It is used in the webapp client establishing a REST communication:
+```
+
+let httpParams = new HttpParams();
+hposStrins.forEach(id => {
+  httpParams = httpParams.append('symtomCodes', id);
+});
+[...]
+this.subscription.add( this.http.get('https://diagnosisapi.azurewebsites.net/api/Consulting/GetSymptomsFromCodes',{params: httpParams})
+  .subscribe( (res : any) => {
+  	 // Get the symptoms codes OK
+  }, (err) => {
+	// Do something when error
+}));
+```
+And the configuration of the headers (auth.interceptor.ts) to use this service is:
+```
+if(req.url.indexOf('https://diagnosisapi.azurewebsites.net/api/Consulting')!==-1){
+  isExternalReq = true;
+  const headers = new HttpHeaders({
+    'Access-Control-Allow-Origin':'*'
+  });
+  authReq = req.clone({ headers});//'Content-Type',  'application/json'
+}
+```
+
+In the same way, we can access and use the **Genomics Functions apps**.
+It is used in the webapp client establishing a REST communication:
+```
+this.subscription.add( this.http.post('https://genomicservices.azurewebsites.net/api/exomize?code=p/aGykMRV8KiTfo8AXO8yDjHYdImgRjjasrGu8eaBVn7U75jf1DtmQ==',jsonfile)
+      .subscribe( (res : any) => {
+  .subscribe( (res : any) => {
+  	// Result of exomize function OK
+  }, (err) => {
+	// Do something when error
+}));
+```
+
+And the configuration of the headers (auth.interceptor.ts) to use this functions is:
+```
+if(req.url.indexOf('https://genomicservices.azurewebsites.net/api/exomize')!==-1){
+  isExternalReq = true;
+  const headers = new HttpHeaders({
+    'Access-Control-Allow-Origin':'*'
+  });
+  authReq = req.clone({ headers});//'Content-Type',  'application/json'
+}
+```
+
+### 2.4.7. Databases
 ************************TODO:
 

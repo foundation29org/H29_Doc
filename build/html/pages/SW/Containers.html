@@ -1,0 +1,238 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2.2. Level 2: Containers &mdash; H29 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="2.3. Level 3: Component" href="Components.html" />
+    <link rel="prev" title="2.1. Level 1: System Context" href="SystemContext.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> H29
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">H29</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Environments.html">1. Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Software architecture.html">2. Software architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SystemContext.html">2.1. Level 1: System Context</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2.2. Level 2: Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Components.html">2.3. Level 3: Component</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Code.html">2.4. Level 4: Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Superadmin profile.html">3. Superadmin profile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Technical debt.html">4. Technical debt</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">H29</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>2.2. Level 2: Containers</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/pages/SW/Containers.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <img align="right" width="100px" src="../../../../source/images/All//Foundation29.png"><div class="section" id="level-2-containers">
+<h1>2.2. Level 2: Containers<a class="headerlink" href="#level-2-containers" title="Permalink to this headline">¶</a></h1>
+<p>Health29 consists of several connected containers.
+We have divided them according to their functionality and use within the platform.Thus, we will have:</p>
+<ul class="simple">
+<li><p>Webapp container.</p></li>
+<li><p>External APIs</p></li>
+<li><p>Azure cognitive services container.</p></li>
+<li><p>Azure healthbot container.</p></li>
+<li><p>Azure blobs container.</p></li>
+<li><p>Other services container.</p></li>
+<li><p>Databases container.</p></li>
+</ul>
+<p style="text-align: center;">
+	<img width="500px" src="../../../../source/images/Architecture/Containers/containersH29.jpg">
+</p><p>These modules are intercommunicated using a <a class="reference external" href="https://restfulapi.net/">REST</a> interface, that is, the communication is established according to the <a class="reference external" href="https://restfulapi.net/http-methods/">HTTP protocol</a>.</p>
+<p>In this way, it will be necessary to configure the different services you want to use so that communications can be established. To do this, during the implementation of the webapp the keys and the corresponding endpoint will be used to establish communication, and the sending of the REST commands will use specific authorization headers.</p>
+<p>The most common headers we can find are:</p>
+<ul class="simple">
+<li><p>Ocp-Apim-Subscription-Key. Use with Cognitive Services subscription if you pass your secret key.</p></li>
+<li><p>Authorization. Use with your Cognitive Services subscription if you pass an authentication token. The value is the bearer token: Bearer token_value</p></li>
+</ul>
+<p>The webapp will be the core of the Health29 application, from where the frontend will be developed and the communications with different services to provide functionalities.</p>
+<p>Health29 is a clinical history application that will allow users to enter their medical data. Different Azure services will be used to carry out the relevant actions:</p>
+<ul class="simple">
+<li><p>External APIs that will be used as intermediaries between the webapp and Azure’s cognitive services. To add different functionalities to the application and thus simplify the development and implementation of the webapp.</p></li>
+<li><p>Healthbot. The application will have a chatbot to help the user.</p></li>
+<li><p>Azure blobs and databases. To store information.</p></li>
+<li><p>Other services that add additional functionalities. (<em>NOTE: In this section we will add services from Azure</em>)</p></li>
+</ul>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Components.html" class="btn btn-neutral float-right" title="2.3. Level 3: Component" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="SystemContext.html" class="btn btn-neutral float-left" title="2.1. Level 1: System Context" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Foundation29
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

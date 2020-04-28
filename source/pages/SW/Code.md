@@ -89,7 +89,7 @@ The rest of the subroutes that come from full-layout, are controlled if they are
 #### 2.4.1.3. Code Structure: Server Structure
 
 <p style="text-align: center;">
-	<img width="150px" src="../../_images/Server_structure.png">
+  <img width="800px" src="../../_images/H29_server_code.jpg">
 </p>
 
 - index.js: file where the app.js and config.js file is loaded It listens to requests.

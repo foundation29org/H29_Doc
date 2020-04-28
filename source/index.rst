@@ -29,7 +29,7 @@
 .. image:: images/Architecture/Code/Webapp/client/Health29_client_code_app.jpg
    :width: 0px
 
-.. image:: images/Architecture/Code/Webapp/server/Server_structure.png
+.. image:: images/Architecture/Code/Webapp/server/H29_server_code.jpg
    :width: 0px
 
 .. image:: images/Architecture/Code/DDBB/DDBB_Division.jpg

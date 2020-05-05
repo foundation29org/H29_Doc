@@ -89,9 +89,10 @@
 <li class="toctree-l1"><a class="reference internal" href="Components.html">2.3. Level 3: Component</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">2.4. Level 4: Code</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#webapp">2.4.1. Webapp</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#communication">2.4.1.1. Communication</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#code-structure-client-structure">2.4.1.2. Code Structure: Client Structure</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#code-structure-server-structure">2.4.1.3. Code Structure: Server Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#azure-app-service">2.4.1.1. Azure App service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modules-communication">2.4.1.2. Modules communication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-structure-client-structure">2.4.1.3. Code Structure: Client Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-structure-server-structure">2.4.1.4. Code Structure: Server Structure</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#external-libraries-and-dependencies">2.4.1.4. External libraries and dependencies</a></li>
 </ul>
 </li>
@@ -194,8 +195,21 @@
 <li><p>For the <a class="reference external" href="https://health29-test.azurewebsites.net/APIDOC">test environment</a></p></li>
 <li><p>For the <a class="reference external" href="https://health29.org/APIDOC/">production environment</a></p></li>
 </ul>
-<div class="section" id="communication">
-<h3>2.4.1.1. Communication<a class="headerlink" href="#communication" title="Permalink to this headline">¶</a></h3>
+<p>For Android and iOS apps, we use the cordova framework. When compiling the Angular project, it generates the dist folder, which is the one to be added to the www folder of the Corova project.  We were evaluating ionic, nativescript and reactscript, they would be good options if we were more people, but at the moment we fit more cordova.</p>
+<p>Our idea is to migrate to FHIR, so we would have to modify our API to make calls to <a class="reference external" href="https://www.hl7.org/fhir/">FHIR’s API</a></p>
+<p>Health29 provides a web API to access the data. Anyone can develop an application to access and modify the data of a Health29 user. OAuth 2.0 is used as an authorization protocol to give an API client limited access to the user’s data.</p>
+<div class="section" id="azure-app-service">
+<h3>2.4.1.1. Azure App service<a class="headerlink" href="#azure-app-service" title="Permalink to this headline">¶</a></h3>
+<p>A <strong><a class="reference external" href="https://docs.microsoft.com/en-US/azure/app-service/">WebApp App Service</a></strong> has been created in Azure. The steps to follow would be:</p>
+<ol class="simple">
+<li><p>Login to Azure’s portal</p></li>
+<li><p>Select App services and click on add.</p></li>
+<li><p>Select Webapp and configure: Application Name, Subscription Type, Resource Group, OS Type, Publish Type, App Service Plan/Location and Application Insights</p></li>
+</ol>
+<p>Then, it has been taken into account that several environments have been created to work on the platform, that is, there will be different slots and the deployment of the code will be done in the corresponding one. All this has been explained in section 1 of this document.</p>
+</div>
+<div class="section" id="modules-communication">
+<h3>2.4.1.2. Modules communication<a class="headerlink" href="#modules-communication" title="Permalink to this headline">¶</a></h3>
 <p>For establish the communication:</p>
 <ul class="simple">
 <li><p>The client will make requests of the type:</p></li>
@@ -214,9 +228,16 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="o">&lt;</span><span class="n">url</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">auth</span><span class="p">,</span> <span class="n">function</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>This communication between components is done in a secure way, that is, several tools or techniques have been implemented so that the information is encrypted and the communication is reliable.
+For this purpose, crypto libraries (aes-256-ecb) are used for data encryption and decryption, and jwt-simple for encoding the authentication token for API calls.</p>
+<ul class="simple">
+<li><p>Encryption: When a user tries to create an account, the pw is sha512 before it is sent to the server. On the server a jump is created using the bcrypt library and a hash is applied to it before it is stored. This password will never be returned as described in the database model (password: { type: String, select: false,…). On the other hand, in the login process, it is the data model itself that checks that the pw is valid (bcrypt.compare). If it exceeds a maximum of 5 attempts, the account is blocked for 2 hours.</p></li>
+<li><p>Authentication token. All Methods APIs that have the authorization field in the header use Bearer authentication to restrict access to protected resources, , and always be sent next to a token. The bearer token is a cryptic string, generated by the server in response to a login request. Example of the header: Authorization: Bearer (token).<br />These requests can return some errors, such as the token is invalid, or has expired: { status: 401, message: “Token expired”} or { status: 401, message: “Invalid Token”}</p></li>
+</ul>
+<p>Health29 provides a Web API for accessing data. Anyone can develop an application to access and modify a Health29 user’s data. OAuth 2.0 (Implicit Grant) is used as an authorization protocol to give an API client limited access to user data.</p>
 </div>
 <div class="section" id="code-structure-client-structure">
-<h3>2.4.1.2. Code Structure: Client Structure<a class="headerlink" href="#code-structure-client-structure" title="Permalink to this headline">¶</a></h3>
+<h3>2.4.1.3. Code Structure: Client Structure<a class="headerlink" href="#code-structure-client-structure" title="Permalink to this headline">¶</a></h3>
 <p><em>NOTE: A template was purchased to have a base: <a class="reference external" href="https://themeforest.net/item/apex-angular-4-bootstrap-admin-template/20774875">Template Link</a>.</em></p>
 <p>The structure is as follows:</p>
 <p style="text-align: center;">
@@ -254,13 +275,14 @@ Add cordova:  “script src=”cordova.js”</p></li>
 </p><ul class="simple">
 <li><p><strong>Layouts</strong>: the different layouts that there are, at the moment two subfolders, for the logged ones (full) and for the ones that are not (content).</p></li>
 <li><p><strong>Pages</strong>: It has two subfolders, content-pages (corresponds to the logged out pages like login page, registration, etc) and full-pages (common pages for all logged out roles, like the user-profile page).</p></li>
+<li><p><strong>Role pages</strong></p></li>
 </ul>
 <blockquote>
 <div><ul class="simple">
-<li><p><strong>admin</strong>: contains all pages for the admin role</p></li>
-<li><p><strong>superadmin</strong>: contains all pages for the superadmin role</p></li>
-<li><p><strong>clinical</strong>: contains all pages for the clinical role</p></li>
-<li><p><strong>user</strong>: contains all the pages for the user role.
+<li><p><em>admin</em>: contains all pages for the admin role</p></li>
+<li><p><em>superadmin</em>: contains all pages for the superadmin role</p></li>
+<li><p><em>clinical</em>: contains all pages for the clinical role</p></li>
+<li><p><em>user</em>: contains all the pages for the user role.
 Each folder of these roles has a module file (it loads the needed modules), and a route file to manage the routes and control the authentication and authorization (auth-guard and role-guard)</p></li>
 </ul>
 </div></blockquote>
@@ -269,15 +291,16 @@ Each folder of these roles has a module file (it loads the needed modules), and 
 </ul>
 <blockquote>
 <div><ul class="simple">
-<li><p>auth: authorization management (role-guard), authentication (auth-service and auth-guard), http interceptor, oauth.services for external services like fitbit.</p></li>
+<li><p>auth: The Auth folder includes the services that will handle the platform’s authentication and authorization tasks. Thus, this folder will contain: authorization management (role-guard), authentication (auth-service and auth-guard), control of headers in the application’s http communications
+(http interceptor),page routing control(canDeactivate) and oauth.services for external services like fitbit.</p></li>
 <li><p>Configs: configuration files, for example configuration for toasts, or parameters for graphs.</p></li>
-<li><p>Customizer: right side slide (not used at the moment)</p></li>
-<li><p>Directives: correspond to the angle directives</p></li>
-<li><p>Footer: app footer</p></li>
-<li><p>Models: data models</p></li>
+<li><p>Customizer: This is the customizer or chatbot component of the platform. At the moment it’s only implemented for the user profile, but it’s exposed as a shared module in case you want to include this functionality in some other profile in the future.</p></li>
+<li><p>Directives: correspond to the Angular directives</p></li>
+<li><p>Footer: It’s the footer component of the platform.</p></li>
+<li><p>Models: Here you can add the data models you want to use on the platform that are common to all profiles. At the moment only the FAQ template is added.</p></li>
 <li><p>Navbar and navbar-nolog: It corresponds to the top bar. Navbar-nolog is for when you are not logged in.</p></li>
 <li><p>Routes: route management. It has two files, one for the paths of the unlogged pages, and another for the rest.</p></li>
-<li><p>Services: corresponds to the angle services. Several have been developed as faq.service or lang.service</p></li>
+<li><p>Services: corresponds to the Angular services. Several have been developed as faq.service or lang.service</p></li>
 <li><p>Sidebar: side menu, depending on the role, loads one menu or another.</p></li>
 </ul>
 </div></blockquote>
@@ -285,23 +308,30 @@ Each folder of these roles has a module file (it loads the needed modules), and 
 The rest of the subroutes that come from full-layout, are controlled if they are logged and authenticated in the routing-module file of each module (each profile has a module) with canActivate: [AuthGuard, RoleGuard].</p>
 </div>
 <div class="section" id="code-structure-server-structure">
-<h3>2.4.1.3. Code Structure: Server Structure<a class="headerlink" href="#code-structure-server-structure" title="Permalink to this headline">¶</a></h3>
+<h3>2.4.1.4. Code Structure: Server Structure<a class="headerlink" href="#code-structure-server-structure" title="Permalink to this headline">¶</a></h3>
 <p style="text-align: center;">
   <img width="800px" src="../../_images/H29_server_code.jpg">
-</p><ul>
+</p><ul class="simple">
+<li><p>The <strong>dist folder</strong> contains the compilation of the client code.</p></li>
+<li><p>In the <strong>models folder</strong>, the different templates for working with the platform’s database collections are defined.</p></li>
+<li><p>The <strong>controllers folder</strong> contains the functionality to work with the previous collections. It is organized according to the actions that each role of the health29 platform can perform.</p></li>
+<li><p>In the <strong>routes folder</strong>, all the routes of the api appear. It contains the file index.js that links the models with the controllers, defining the requests that will be available to the Health29 client. Those that have auth means that they need authorization to be used.</p></li>
+<li><p><strong>Middlewares</strong> has the file auth.js which is in charge of checking if the token is valid, so that you know if you have permission to make the request to the API call.</p></li>
+<li><p>In <strong>views</strong> we have the views generated by the server and the templates for the emails.</p></li>
+<li><p>Analogous to the client structure we have the <strong>services folder</strong>. Here, we have the following services: Auth.js creates and decodes token, crypt.js encrypts and decrypts data and email.js is the emailing service. There are also other services for exomizer and phenolizer functions.</p></li>
+<li><p><strong>Some files</strong>:</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
 <li><p>index.js: file where the app.js and config.js file is loaded It listens to requests.</p></li>
 <li><p>Config.js: configuration file. The server url, port, connection with the data bases are passed to it through environment variables. The credentials of the mail that send email, the secret token of jwt, and the secret of crypto are not passed through environment variables.</p></li>
 <li><p>Db_connect.js: will be in charge of creating the connection with the databases.</p></li>
-<li><p>App.js: the crossdomain is established, and other node configurations. It manages the requests, and these can be of 3 types:</p>
-<blockquote>
-<div><ol class="simple">
-<li><p>API routes managed by routes folder.</p></li>
-<li><p>Server-generated view paths (handlebars)</p></li>
-<li><p>the paths of the Angular client application (dist folder)</p></li>
-</ol>
-</div></blockquote>
-</li>
+<li><p>App.js: the crossdomain is established, and other node configurations. It manages the requests, and these can be of 3 types:
+&gt;1. API routes managed by routes folder.
+&gt;2. Server-generated view paths (handlebars)
+&gt;3. the paths of the Angular client application (dist folder)</p></li>
 </ul>
+</div></blockquote>
 </div>
 <div class="section" id="external-libraries-and-dependencies">
 <h3>2.4.1.4. External libraries and dependencies<a class="headerlink" href="#external-libraries-and-dependencies" title="Permalink to this headline">¶</a></h3>
@@ -321,7 +351,7 @@ The rest of the subroutes that come from full-layout, are controlled if they are
 </ul>
 <blockquote>
 <div><ul class="simple">
-<li><p>1.7.0 of Angular CLI and 5.2.5 of the node modules angle libraries (Angular 5).</p></li>
+<li><p>1.7.0 of Angular CLI and 5.2.5 of the node modules Angular libraries (Angular 5).</p></li>
 <li><p>2.6.2 of TypeScript.</p></li>
 <li><p>1.0.0 of ng-bootstrap</p></li>
 <li><p>Jquery 3.2.1</p></li>
@@ -393,7 +423,7 @@ The rest of the subroutes that come from full-layout, are controlled if they are
 <p><strong>API Foundation29</strong> has been designed to act as an intermediary between the webapp and Azure Qnamaker’s service.
 The functions that have been implemented to perform actions on the Azure service are analogous to those in the <a class="reference external" href="https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/quickstarts/quickstart-rest-curl">Azure documentation</a>.</p>
 <p>It can be consulted at the following link: <a class="reference external" href="https://f29api.northeurope.cloudapp.azure.com/index.html">API Foundation29</a>.
-And the functionality and methodology of use is described in the qnamaker section of this document (2.5.3.2. Qna maker)</p>
+And the functionality and methodology of use is described in the qnamaker section of this document (2.4.3.2. Qna maker)</p>
 <p>Some functions to use the monarch API from this have also been included in this API. But this is not being used at the moment in health29 and the calls to the <strong>monarch API</strong> are executed directly, without intermediaries.</p>
 <ul class="simple">
 <li><p>Request for list of related conditions</p></li>
@@ -461,7 +491,12 @@ The configuration has no complexity, just:</p>
 <li><p>Select subscription of Azure, the Price tier, the resource group adn the localization.</p></li>
 <li><p>Enter an application name for establish the url: “app_name.azurewebsites.net”</p></li>
 </ul>
-<p>As previously stated, in Health29 it is used to manage the FAQs in different ways and from different points of the platform. To work with the data of this azure service, an external API will be used as an intermediary: f29API, described in the previous section, so that all calls will be made to it. However, the same format has been used as if the calls were made directly to Azure’s service, as an example:</p>
+<p>As previously stated, in Health29 it is used to manage the FAQs in different ways and from different points of the platform. To work with the data of this azure service, an external API will be used as an intermediary: f29API, described in the previous section, so that all calls will be made to it.</p>
+<p style="text-align: center;">
+	<img width="400px" src="../../_images/F29API_code.jpg">
+</p><p>First, the Qna Maker Knowledge base ID, which the webapp wants to access (according to patient group and language), is queried in the qna collection.
+With this ID it is possible to make requests to F29 API to obtain, modify or delete elements from the database.</p>
+<p>However, the same format has been used as if the calls were made directly to Azure’s service, as an example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">this</span><span class="o">.</span><span class="n">http</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://f29api.northeurope.cloudapp.azure.com/api/knowledgebases/&#39;</span><span class="o">+</span><span class="n">knowledgeBaseID</span><span class="o">+</span><span class="s1">&#39;/Prod/qna&#39;</span><span class="p">)</span>
     <span class="o">.</span><span class="n">map</span><span class="p">(</span> <span class="p">(</span><span class="n">res</span> <span class="p">:</span> <span class="nb">any</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
       <span class="o">//</span> <span class="n">Do</span> <span class="n">something</span> <span class="n">when</span> <span class="n">get</span> <span class="n">the</span> <span class="n">Knoledbase</span> <span class="n">information</span>
@@ -647,6 +682,9 @@ BotChat.App({
 <p>The general workflow of the Healthbot scenarios defined for Health29 is</p>
 <p style="text-align: center;">
 	<img width="800px" src="../../_images/Scenarios.jpg">
+</p><p>Different scenarios could be designed for each patient group. Thus, for example, the flow of the main scenario of the Health29 assistant for the Duchenne group can be schematized as:</p>
+<p style="text-align: center;">
+	<img width="800px" src="../../_images/botscenarios.jpg">
 </p><p>Except for the control scenarios that do not send messages to the user, the rest are replicated: one is created per user language available in Health29 (as can be seen in the previous diagram, the nomenclature “scenarioName_lang” has been used).
 In this way, the scenarios that will be executed depend on the language selected by the user on the Health29 platform.</p>
 <p>A modification of this was started to use the Healthbot localization service to avoid scenario replications. However, there is still work to be done since this translation could not be managed for some messages sent by the bot to notify of problems or errors. This has been solved so far from the Health29 client code.

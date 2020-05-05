@@ -8,6 +8,12 @@
 .. image:: images/Architecture/General_schema/H29_c4model.png
    :width: 0px
 
+.. image:: images/Architecture/System_context/SystemContext_intro.jpg
+   :width: 0px
+
+.. image:: images/Architecture/System_context/funcionalities_H29.jpg
+   :width: 0px
+
 .. image:: images/Architecture/Containers/containersH29.jpg
    :width: 0px
 
@@ -17,10 +23,31 @@
 .. image:: images/Architecture/Components/Webapp/Webapp_frameworks_architecture.jpg
    :width: 0px
 
+.. image:: images/Architecture/Components/External_API/F29API_component.jpg
+   :width: 0px
+
+.. image:: images/Architecture/Components/External_API/monarchAPI_component.jpg
+   :width: 0px
+
+.. image:: images/Architecture/Components/Azure_cognitive_services/cognitiveServices_component.jpg
+   :width: 0px
+
+.. image:: images/Architecture/Components/Healthbot/healthbot_component.jpg
+   :width: 0px
+
+.. image:: images/Architecture/Components/Blobs/blobs_component.jpg
+   :width: 0px
+
+.. image:: images/Architecture/Components/ddbb/ddbb_component.jpg
+   :width: 0px
+
 .. image:: images/Architecture/Code/Healthbot/Scenarios.jpg
    :width: 0px
 
 .. image:: images/Architecture/Code/Healthbot/botflow.png
+   :width: 0px
+
+.. image:: images/Architecture/Code/Healthbot/botscenarios.jpg
    :width: 0px
 
 .. image:: images/Architecture/Code/Webapp/client/H29_client_code.jpg
@@ -30,6 +57,9 @@
    :width: 0px
 
 .. image:: images/Architecture/Code/Webapp/server/H29_server_code.jpg
+   :width: 0px
+
+.. image:: images/Architecture/Code/External_API/F29API_code.jpg
    :width: 0px
 
 .. image:: images/Architecture/Code/DDBB/DDBB_Division.jpg

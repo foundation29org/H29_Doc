@@ -5,10 +5,12 @@
 .. image:: images/All/Foundation29.png
    :width: 0px
 
-.. image:: images/Architecture/General_schema/H29_c4model.png
-   :width: 0px
+
 
 .. image:: images/Architecture/System_context/SystemContext_intro.jpg
+   :width: 0px
+
+.. image:: images/Architecture/General_schema/H29_c4model.png
    :width: 0px
 
 .. image:: images/Architecture/System_context/funcionalities_H29.jpg

@@ -87,18 +87,18 @@
 <li class="toctree-l1"><a class="reference internal" href="SystemContext.html">2.1. Level 1: System Context</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Containers.html">2.2. Level 2: Containers</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">2.3. Level 3: Component</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#webapp">2.4.1. Webapp</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#external-apis">2.4.2. External APIs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#azure-cognitive-services">2.4.3. Azure cognitive services</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#computer-vision">2.4.3.1. Computer Vision</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#qna-maker">2.4.3.2. Qna maker</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#translator">2.4.3.3. Translator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#webapp">2.3.1. Webapp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#external-apis">2.3.2. External APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#azure-cognitive-services">2.3.3. Azure cognitive services</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#computer-vision">2.3.3.1. Computer Vision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qna-maker">2.3.3.2. Qna maker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#translator">2.3.3.3. Translator</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#azure-healthbot">2.4.4. Azure healthbot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#azure-blobs">2.4.5. Azure blobs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#other-services">2.4.6. Other services</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#databases">2.4.7. Databases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#azure-healthbot">2.3.4. Azure healthbot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#azure-blobs">2.3.5. Azure blobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#other-services">2.3.6. Other services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#databases">2.3.7. Databases</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Code.html">2.4. Level 4: Code</a></li>
@@ -172,7 +172,7 @@
 <h1>2.3. Level 3: Component<a class="headerlink" href="#level-3-component" title="Permalink to this headline">¶</a></h1>
 <p>Taking into account the division by containers exposed in the previous point, we are now going to study in detail the internal architecture and the components that make up each one of them.</p>
 <div class="section" id="webapp">
-<h2>2.4.1. Webapp<a class="headerlink" href="#webapp" title="Permalink to this headline">¶</a></h2>
+<h2>2.3.1. Webapp<a class="headerlink" href="#webapp" title="Permalink to this headline">¶</a></h2>
 <p>Health29’s architecture uses a client-server software design model, so that the architecture of the webapp is like:</p>
 <img width="800px" src="../../_images/Webapp.jpg"><p>For the client we use the Angular 5 framework, and for the nodejs - express server, in which we have implemented an API to connect to the CosmoDb databases using mongoose for its management.</p>
 <img width="800px" src="../../_images/Webapp_frameworks_architecture.jpg"><p>These modules are intercommunicated using a <a class="reference external" href="https://restfulapi.net/">REST</a> interface, that is, the communication is established according to the <a class="reference external" href="https://restfulapi.net/http-methods/">HTTP protocol</a>.</p>
@@ -187,20 +187,20 @@ For this purpose, an HTTP service will be used to allow, through requests from t
 <p>As the client is implemented using the Angular 5 framework, when compiling it (<a class="reference external" href="https://angular.io/guide/deployment">ng build</a>) you will get a “/dist” folder that must be included in the server for the construction of the platform. This is further detailed in the Environments section of this document, in the build section of the project.</p>
 </div>
 <div class="section" id="external-apis">
-<h2>2.4.2. External APIs<a class="headerlink" href="#external-apis" title="Permalink to this headline">¶</a></h2>
+<h2>2.3.2. External APIs<a class="headerlink" href="#external-apis" title="Permalink to this headline">¶</a></h2>
 <p><strong><a class="reference external" href="https://f29api.northeurope.cloudapp.azure.com/index.html">Foundation29 API</a></strong>, implemented by Foundation29 to use it as an intermediary between the webapp and the azure qnamaker service. It is used for QNA functions for the different roles of Health29 platform.</p>
 <p><strong>The <a class="reference external" href="https://api.monarchinitiative.org/">Monarch</a> API</strong>, is an external API that is used for the diagnostic functions for the different roles of the Health29 platform.</p>
 </div>
 <div class="section" id="azure-cognitive-services">
-<h2>2.4.3. Azure cognitive services<a class="headerlink" href="#azure-cognitive-services" title="Permalink to this headline">¶</a></h2>
+<h2>2.3.3. Azure cognitive services<a class="headerlink" href="#azure-cognitive-services" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="computer-vision">
-<h3>2.4.3.1. Computer Vision<a class="headerlink" href="#computer-vision" title="Permalink to this headline">¶</a></h3>
+<h3>2.3.3.1. Computer Vision<a class="headerlink" href="#computer-vision" title="Permalink to this headline">¶</a></h3>
 <p>It is used in the symptoms section. This service converts images into text in order to obtain the symptoms.</p>
 <p>You can configure and use this azure service by following the steps in the <a class="reference external" href="https://docs.microsoft.com/bs-latn-ba/azure/cognitive-services/computer-vision/">Microsoft guide</a>.
 And access the one that uses the Health29 platform from this <a class="reference external" href="https://portal.azure.com/#&#64;foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/health29/providers/Microsoft.CognitiveServices/accounts/recognizetexthealth29/overview">link</a>.</p>
 </div>
 <div class="section" id="qna-maker">
-<h3>2.4.3.2. Qna maker<a class="headerlink" href="#qna-maker" title="Permalink to this headline">¶</a></h3>
+<h3>2.3.3.2. Qna maker<a class="headerlink" href="#qna-maker" title="Permalink to this headline">¶</a></h3>
 <p>QnA Maker is a cloud-based Natural Language Processing (NLP) service that easily creates a natural conversation layer with the data.</p>
 <p>In Health29 it is used to manage the FAQs in different ways and from different points of the platform:</p>
 <ul class="simple">
@@ -214,7 +214,7 @@ And access the one that uses the Health29 platform from this <a class="reference
 <p>In particular for Health29 the following databases have been created in qnamaker: <a class="reference external" href="https://www.qnamaker.ai/Home/MyServices">My knowledge bases</a>. One would be created for each group of patients to contain their specific information and this in turn would be replicated in as many languages as the question-answer pairs are translated on the Health29 platform.</p>
 </div>
 <div class="section" id="translator">
-<h3>2.4.3.3. Translator<a class="headerlink" href="#translator" title="Permalink to this headline">¶</a></h3>
+<h3>2.3.3.3. Translator<a class="headerlink" href="#translator" title="Permalink to this headline">¶</a></h3>
 <p>This service is used to be able to make a translation of the different datapoints, to add a new language to the platform (it translates all the tags), and to translate into English the text obtained from the vision service to call the NCR service that extracts the symptoms.</p>
 <p>You can configure and use this azure service by following the steps in the <a class="reference external" href="https://docs.microsoft.com/bs-cyrl-ba/azure/cognitive-services/translator/">Microsoft guide</a>.</p>
 <p>And access the two that uses the Health29 platform from these links:</p>
@@ -225,7 +225,7 @@ And access the one that uses the Health29 platform from this <a class="reference
 </div>
 </div>
 <div class="section" id="azure-healthbot">
-<h2>2.4.4. Azure healthbot<a class="headerlink" href="#azure-healthbot" title="Permalink to this headline">¶</a></h2>
+<h2>2.3.4. Azure healthbot<a class="headerlink" href="#azure-healthbot" title="Permalink to this headline">¶</a></h2>
 <p>Health29 has an assistant to guide the user in the use of the platform.
 For this purpose, the Azure <a class="reference external" href="https://docs.microsoft.com/en-us/healthbot/">Healthbot</a> service is used.</p>
 <p>It guides the user through different configured scenarios where he or she can perform different actions. Initially we can divide the scenarios into three blocks:</p>
@@ -244,7 +244,7 @@ And access the one that uses the Health29 platform from this <a class="reference
 </ul>
 </div>
 <div class="section" id="azure-blobs">
-<h2>2.4.5. Azure blobs<a class="headerlink" href="#azure-blobs" title="Permalink to this headline">¶</a></h2>
+<h2>2.3.5. Azure blobs<a class="headerlink" href="#azure-blobs" title="Permalink to this headline">¶</a></h2>
 <p>Azure Blob storage is Microsoft’s object storage solution for the cloud. Blob storage is optimized for storing massive amounts of unstructured data. Unstructured data is data that doesn’t adhere to a particular data model or definition, such as text or binary data.</p>
 <p>Two “Storage accounts (classic)” container called “blobgenomics” adn “health29support” has been created to store information from various sections of Health29.
 For the first one:</p>
@@ -264,14 +264,14 @@ And access the two that uses the Health29 platform from these links:</p>
 </ul>
 </div>
 <div class="section" id="other-services">
-<h2>2.4.6. Other services<a class="headerlink" href="#other-services" title="Permalink to this headline">¶</a></h2>
+<h2>2.3.6. Other services<a class="headerlink" href="#other-services" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>The <a class="reference external" href="https://portal.azure.com/#blade/WebsitesExtension/FunctionsIFrameBlade/id/%2Fsubscriptions%2F53348303-e009-4241-9ac7-a8e4465ece27%2FresourceGroups%2Fhealth29%2Fproviders%2FMicrosoft.Web%2Fsites%2FGenomicServices">Genomics Functions apps</a> for phenolyze and exomize tasks. It is an Azure service.</p></li>
 <li><p>The <a class="reference external" href="https://portal.azure.com/#&#64;foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/phenotypeBot/providers/Microsoft.Web/sites/DiagnosisApi/appServices">DiagnosisApi</a> is an App Service of Azure that is used for consulting the symptons of a diagnose. It is an Azure service.</p></li>
 </ul>
 </div>
 <div class="section" id="databases">
-<h2>2.4.7. Databases<a class="headerlink" href="#databases" title="Permalink to this headline">¶</a></h2>
+<h2>2.3.7. Databases<a class="headerlink" href="#databases" title="Permalink to this headline">¶</a></h2>
 <p>We have several separate collections in two databases, one for accounts and general things, and one for patient data.</p>
 <p>The development and test environments share the same databases, while the production ones do not. So, in total we have 4 databases:</p>
 <ul class="simple">

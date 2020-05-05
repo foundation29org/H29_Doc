@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 .. image:: images/All/Foundation29.png
    :width: 0px
-   
+
 .. image:: images/Architecture/General_schema/H29_c4model.png
    :width: 0px
 
@@ -33,6 +33,9 @@
    :width: 0px
 
 .. image:: images/Architecture/Code/DDBB/DDBB_Division.jpg
+   :width: 0px
+
+.. image:: images/Architecture/Code/Multilanguage/Multilanguage_assets.png
    :width: 0px
 
 .. image:: images/All/Foundation29.png

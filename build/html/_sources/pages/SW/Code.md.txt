@@ -1061,5 +1061,99 @@ const WeightSchema = Schema({
 
 
 ### 2.4.8. Multilanguage
-(TODO)
+The Health29 platform has the option of being displayed in several languages for the user. In particular, it is implemented for English, Spanish and Dutch.
+
+To achieve this different implementations will be made in the client and the server of the webapp.
+
+#### 2.4.8.1. Multilanguage in client
+On the one hand, the client uses the **[ngx-translate](https://www.npmjs.com/package/@ngx-translate/core) library**.
+For that, version 9.0.2 of the core has been installed in the project:
+```
+npm install @ngx-translate/core@^9.0.2 --save
+```
+
+And, in addition, version 2.0.1 of the http-loader is used:
+```
+npm install @ngx-translate/http-loader --save 
+```
+
+To use it, you should configure app.module.ts:
+```
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+```
+```
+export function createTranslateLoader(http: HttpClient) {
+    return new TranslateHttpLoader(http, environment.api+'/assets/i18n/', '.json');
+}
+```
+```
+@NgModule({
+   [...]
+   imports: [
+         ...
+       TranslateModule.forRoot({
+               loader: {
+                   provide: TranslateLoader,
+                   useFactory: (createTranslateLoader),
+                   deps: [HttpClient]
+                 }
+           }),
+         ...
+   ]
+   [...]
+})
+```
+
+Furthermore, it is included in shared.module.ts:
+```
+import { TranslateModule } from '@ngx-translate/core';
+[...]
+@NgModule({
+    exports: [
+        ...
+        TranslateModule,
+        ...
+    ],
+    imports: [
+        ...
+        TranslateModule
+
+    ],
+    [...]
+})
+[...]
+```
+
+And it will also be included in the module file of each component that is going to use this service in the same way, and in the .ts file of the component the translation service will be included:
+```
+[...]
+import { TranslateService } from '@ngx-translate/core';
+[...]
+constructor(...,public translate: TranslateService,...){...}
+```
+```
+this.translate.instant("JSON_key1.JSON_key2")
+```
+
+Finally, the service lang.service.ts has been created to implement the load function of the different languages available in the platform: "loadDataJson(lang:string)"
+
+```
+this.http.get(environment.api+'/assets/i18n/'+lang+'.json')
+```
+This function will be in charge of obtaining the information of the different JSON files for each language, located in scr/assets/i18n:
+
+<p style="text-align: center;">
+  <img width="400px" src="../../_images/Multilanguage_assets.png">
+</p>
+
+This function will be called when the user changes the language of the platform.
+
+On the other hand, it has already been commented throughout this document that an Azure translation service is used for certain functions: **the cognitive service Translator text**. This has been explained in section 2.4.3.3. of this document at code level and in section 2.3.3.3. at component level.
+
+
+#### 2.4.8.2. Multilanguage in server
+On the server, on the one hand you use **[google-translate-api](https://www.npmjs.com/package/@k3rn31p4nic/google-translate-api)**. It will be used in the superadmin language controller (controllers/superadmin/langs.js) to manage new languages.
+
+On the other hand, **different views** have been implemented (one for each language in which we want to use the health29 platform) which will be selected according to the language information provided by the customer in their requests.
 

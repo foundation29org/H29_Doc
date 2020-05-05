@@ -4,7 +4,7 @@
 
 Taking into account the division by containers exposed in the previous point, we are now going to study in detail the internal architecture and the components that make up each one of them.
 
-### 2.4.1. Webapp
+### 2.3.1. Webapp
 
 Health29's architecture uses a client-server software design model, so that the architecture of the webapp is like:
 
@@ -27,20 +27,20 @@ These requests can return some errors, such as the token is invalid, or has expi
 
 As the client is implemented using the Angular 5 framework, when compiling it ([ng build](https://angular.io/guide/deployment)) you will get a "/dist" folder that must be included in the server for the construction of the platform. This is further detailed in the Environments section of this document, in the build section of the project.
 
-### 2.4.2. External APIs
+### 2.3.2. External APIs
 **[Foundation29 API](https://f29api.northeurope.cloudapp.azure.com/index.html)**, implemented by Foundation29 to use it as an intermediary between the webapp and the azure qnamaker service. It is used for QNA functions for the different roles of Health29 platform.
 
 **The [Monarch](https://api.monarchinitiative.org/) API**, is an external API that is used for the diagnostic functions for the different roles of the Health29 platform. 
 
 
-### 2.4.3. Azure cognitive services
-#### 2.4.3.1. Computer Vision
+### 2.3.3. Azure cognitive services
+#### 2.3.3.1. Computer Vision
 It is used in the symptoms section. This service converts images into text in order to obtain the symptoms.
 
 You can configure and use this azure service by following the steps in the [Microsoft guide](https://docs.microsoft.com/bs-latn-ba/azure/cognitive-services/computer-vision/). 
 And access the one that uses the Health29 platform from this [link](https://portal.azure.com/#@foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/health29/providers/Microsoft.CognitiveServices/accounts/recognizetexthealth29/overview).
 
-#### 2.4.3.2. Qna maker
+#### 2.3.3.2. Qna maker
 QnA Maker is a cloud-based Natural Language Processing (NLP) service that easily creates a natural conversation layer with the data. 
 
 In Health29 it is used to manage the FAQs in different ways and from different points of the platform:
@@ -59,7 +59,7 @@ And access the one that uses the Health29 platform from this [link](https://port
 In particular for Health29 the following databases have been created in qnamaker: [My knowledge bases](https://www.qnamaker.ai/Home/MyServices). One would be created for each group of patients to contain their specific information and this in turn would be replicated in as many languages as the question-answer pairs are translated on the Health29 platform.
 
 
-#### 2.4.3.3. Translator
+#### 2.3.3.3. Translator
 This service is used to be able to make a translation of the different datapoints, to add a new language to the platform (it translates all the tags), and to translate into English the text obtained from the vision service to call the NCR service that extracts the symptoms.
 
 You can configure and use this azure service by following the steps in the [Microsoft guide](https://docs.microsoft.com/bs-cyrl-ba/azure/cognitive-services/translator/).
@@ -69,7 +69,7 @@ And access the two that uses the Health29 platform from these links:
 - [translatorBotApi](https://portal.azure.com/#@foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/phenotypeBot/providers/Microsoft.CognitiveServices/accounts/translatorBotApi/overview)
 
 
-### 2.4.4. Azure healthbot
+### 2.3.4. Azure healthbot
 
 Health29 has an assistant to guide the user in the use of the platform.
 For this purpose, the Azure [Healthbot](https://docs.microsoft.com/en-us/healthbot/) service is used.
@@ -88,7 +88,7 @@ In particular for Health29 the following chatbots have been created (All of them
 - [Healthbot](https://eu.healthbot.microsoft.com/account/h29bot-giochop/scenarios/manage) of the production environment.
 
 
-### 2.4.5. Azure blobs
+### 2.3.5. Azure blobs
 Azure Blob storage is Microsoft's object storage solution for the cloud. Blob storage is optimized for storing massive amounts of unstructured data. Unstructured data is data that doesn't adhere to a particular data model or definition, such as text or binary data.
 
 Two "Storage accounts (classic)" container called "blobgenomics" adn "health29support" has been created to store information from various sections of Health29.
@@ -107,11 +107,11 @@ And access the two that uses the Health29 platform from these links:
 - [blobgenomics](https://portal.azure.com/#@foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/health29/providers/Microsoft.Storage/storageAccounts/blobgenomics/containersList).
 - [health29support](https://portal.azure.com/#@foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/health29/providers/Microsoft.Storage/storageAccounts/health29support/overview)
 
-### 2.4.6. Other services
+### 2.3.6. Other services
 - The [Genomics Functions apps](https://portal.azure.com/#blade/WebsitesExtension/FunctionsIFrameBlade/id/%2Fsubscriptions%2F53348303-e009-4241-9ac7-a8e4465ece27%2FresourceGroups%2Fhealth29%2Fproviders%2FMicrosoft.Web%2Fsites%2FGenomicServices) for phenolyze and exomize tasks. It is an Azure service.
 - The [DiagnosisApi](https://portal.azure.com/#@foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/phenotypeBot/providers/Microsoft.Web/sites/DiagnosisApi/appServices) is an App Service of Azure that is used for consulting the symptons of a diagnose. It is an Azure service.
 
-### 2.4.7. Databases
+### 2.3.7. Databases
 We have several separate collections in two databases, one for accounts and general things, and one for patient data. 
  
 The development and test environments share the same databases, while the production ones do not. So, in total we have 4 databases:

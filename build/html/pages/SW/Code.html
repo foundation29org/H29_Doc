@@ -111,7 +111,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#ddbb-data">2.4.7.3. DDBB: Data</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#multilanguage">2.4.8. Multilanguage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#multilanguage">2.4.8. Multilanguage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#multilanguage-in-client">2.4.8.1. Multilanguage in client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multilanguage-in-server">2.4.8.2. Multilanguage in server</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../Superadmin profile.html">3. Superadmin profile</a></li>
@@ -1251,7 +1255,90 @@ const UserSchema = Schema({
 </div>
 <div class="section" id="multilanguage">
 <h2>2.4.8. Multilanguage<a class="headerlink" href="#multilanguage" title="Permalink to this headline">¶</a></h2>
-<p>(TODO)</p>
+<p>The Health29 platform has the option of being displayed in several languages for the user. In particular, it is implemented for English, Spanish and Dutch.</p>
+<p>To achieve this different implementations will be made in the client and the server of the webapp.</p>
+<div class="section" id="multilanguage-in-client">
+<h3>2.4.8.1. Multilanguage in client<a class="headerlink" href="#multilanguage-in-client" title="Permalink to this headline">¶</a></h3>
+<p>On the one hand, the client uses the <strong><a class="reference external" href="https://www.npmjs.com/package/&#64;ngx-translate/core">ngx-translate</a> library</strong>.
+For that, version 9.0.2 of the core has been installed in the project:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">npm</span> <span class="n">install</span> <span class="nd">@ngx</span><span class="o">-</span><span class="n">translate</span><span class="o">/</span><span class="n">core</span><span class="o">@^</span><span class="mf">9.0</span><span class="o">.</span><span class="mi">2</span> <span class="o">--</span><span class="n">save</span>
+</pre></div>
+</div>
+<p>And, in addition, version 2.0.1 of the http-loader is used:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">npm</span> <span class="n">install</span> <span class="nd">@ngx</span><span class="o">-</span><span class="n">translate</span><span class="o">/</span><span class="n">http</span><span class="o">-</span><span class="n">loader</span> <span class="o">--</span><span class="n">save</span> 
+</pre></div>
+</div>
+<p>To use it, you should configure app.module.ts:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="p">{</span> <span class="n">TranslateModule</span><span class="p">,</span> <span class="n">TranslateLoader</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@ngx-translate/core&#39;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="p">{</span> <span class="n">TranslateHttpLoader</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@ngx-translate/http-loader&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">function</span> <span class="n">createTranslateLoader</span><span class="p">(</span><span class="n">http</span><span class="p">:</span> <span class="n">HttpClient</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">new</span> <span class="n">TranslateHttpLoader</span><span class="p">(</span><span class="n">http</span><span class="p">,</span> <span class="n">environment</span><span class="o">.</span><span class="n">api</span><span class="o">+</span><span class="s1">&#39;/assets/i18n/&#39;</span><span class="p">,</span> <span class="s1">&#39;.json&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@NgModule</span><span class="p">({</span>
+   <span class="p">[</span><span class="o">...</span><span class="p">]</span>
+   <span class="n">imports</span><span class="p">:</span> <span class="p">[</span>
+         <span class="o">...</span>
+       <span class="n">TranslateModule</span><span class="o">.</span><span class="n">forRoot</span><span class="p">({</span>
+               <span class="n">loader</span><span class="p">:</span> <span class="p">{</span>
+                   <span class="n">provide</span><span class="p">:</span> <span class="n">TranslateLoader</span><span class="p">,</span>
+                   <span class="n">useFactory</span><span class="p">:</span> <span class="p">(</span><span class="n">createTranslateLoader</span><span class="p">),</span>
+                   <span class="n">deps</span><span class="p">:</span> <span class="p">[</span><span class="n">HttpClient</span><span class="p">]</span>
+                 <span class="p">}</span>
+           <span class="p">}),</span>
+         <span class="o">...</span>
+   <span class="p">]</span>
+   <span class="p">[</span><span class="o">...</span><span class="p">]</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Furthermore, it is included in shared.module.ts:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="p">{</span> <span class="n">TranslateModule</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@ngx-translate/core&#39;</span><span class="p">;</span>
+<span class="p">[</span><span class="o">...</span><span class="p">]</span>
+<span class="nd">@NgModule</span><span class="p">({</span>
+    <span class="n">exports</span><span class="p">:</span> <span class="p">[</span>
+        <span class="o">...</span>
+        <span class="n">TranslateModule</span><span class="p">,</span>
+        <span class="o">...</span>
+    <span class="p">],</span>
+    <span class="n">imports</span><span class="p">:</span> <span class="p">[</span>
+        <span class="o">...</span>
+        <span class="n">TranslateModule</span>
+
+    <span class="p">],</span>
+    <span class="p">[</span><span class="o">...</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="p">[</span><span class="o">...</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>And it will also be included in the module file of each component that is going to use this service in the same way, and in the .ts file of the component the translation service will be included:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="o">...</span><span class="p">]</span>
+<span class="kn">import</span> <span class="p">{</span> <span class="n">TranslateService</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;@ngx-translate/core&#39;</span><span class="p">;</span>
+<span class="p">[</span><span class="o">...</span><span class="p">]</span>
+<span class="n">constructor</span><span class="p">(</span><span class="o">...</span><span class="p">,</span><span class="n">public</span> <span class="n">translate</span><span class="p">:</span> <span class="n">TranslateService</span><span class="p">,</span><span class="o">...</span><span class="p">){</span><span class="o">...</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">this</span><span class="o">.</span><span class="n">translate</span><span class="o">.</span><span class="n">instant</span><span class="p">(</span><span class="s2">&quot;JSON_key1.JSON_key2&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, the service lang.service.ts has been created to implement the load function of the different languages available in the platform: “loadDataJson(lang:string)”</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">this</span><span class="o">.</span><span class="n">http</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">environment</span><span class="o">.</span><span class="n">api</span><span class="o">+</span><span class="s1">&#39;/assets/i18n/&#39;</span><span class="o">+</span><span class="n">lang</span><span class="o">+</span><span class="s1">&#39;.json&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This function will be in charge of obtaining the information of the different JSON files for each language, located in scr/assets/i18n:</p>
+<p style="text-align: center;">
+  <img width="400px" src="../../_images/Multilanguage_assets.png">
+</p><p>This function will be called when the user changes the language of the platform.</p>
+<p>On the other hand, it has already been commented throughout this document that an Azure translation service is used for certain functions: <strong>the cognitive service Translator text</strong>. This has been explained in section 2.4.3.3. of this document at code level and in section 2.3.3.3. at component level.</p>
+</div>
+<div class="section" id="multilanguage-in-server">
+<h3>2.4.8.2. Multilanguage in server<a class="headerlink" href="#multilanguage-in-server" title="Permalink to this headline">¶</a></h3>
+<p>On the server, on the one hand you use <strong><a class="reference external" href="https://www.npmjs.com/package/&#64;k3rn31p4nic/google-translate-api">google-translate-api</a></strong>. It will be used in the superadmin language controller (controllers/superadmin/langs.js) to manage new languages.</p>
+<p>On the other hand, <strong>different views</strong> have been implemented (one for each language in which we want to use the health29 platform) which will be selected according to the language information provided by the customer in their requests.</p>
+</div>
 </div>
 </div>
 

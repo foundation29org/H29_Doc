@@ -83,7 +83,7 @@
               <p class="caption"><span class="caption-text">H29</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../Environments.html">1. Environments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Environments/Azure_App_Services.html">1.1. Azure App service: health29</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Environments/Azure_App_Services.html">1.1. Azure App service: Health29</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Environments/Code_repository.html">1.2. Code repositories</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Environments/Build_deploy.html">1.3. Build and deploy environments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Software architecture.html">2. Software architecture</a></li>
@@ -120,6 +120,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#multilanguage-in-server">2.4.8.2. Multilanguage in server</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#second-factor-autenthication">2.4.9. Second factor autenthication</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../Superadmin profile.html">3. Superadmin profile</a></li>
@@ -1380,6 +1381,35 @@ For that, version 9.0.2 of the core has been installed in the project:</p>
 <p>On the server, on the one hand you use <strong><a class="reference external" href="https://www.npmjs.com/package/&#64;k3rn31p4nic/google-translate-api">google-translate-api</a></strong>. It will be used in the superadmin language controller (controllers/superadmin/langs.js) to manage new languages.</p>
 <p>On the other hand, <strong>different views</strong> have been implemented (one for each language in which we want to use the health29 platform) which will be selected according to the language information provided by the customer in their requests.</p>
 </div>
+</div>
+<div class="section" id="second-factor-autenthication">
+<h2>2.4.9. Second factor autenthication<a class="headerlink" href="#second-factor-autenthication" title="Permalink to this headline">¶</a></h2>
+<p>The 2FA was incorporated in Health29 for the login on the platform of certain groups of patients.</p>
+<p>Initially, an analysis was made of the different options that could be used for implementation, concluding in Authy.
+Authy has the best combination of compatibility, usability, security and reliability. platforms including iOS, Android, Windows, Mac and Chrome, and has PIN and biometric protection for the application. Authy includes a secure cloud backup option, which makes it easy to use on multiple devices and makes your tokens easy to restore if you lose or replace your phone.</p>
+<p>If you lose your phone, you lose access to your authentication application. To solve this problem, most authentication applications offer cloud-based backups (although security experts tend to recommend against using this feature), and some authentication application manufacturers are better at explaining how (or if) they encrypt these backups. Authy is the only application we tested that offers two security features that assist in account recovery: an encrypted cloud backup and support for a secondary device.</p>
+<p>You can also install Authy on a secondary device, such as a computer or tablet, and use that device along with backups to recover your account in case you lose your phone. Authy calls this feature “multi-device”. Once you add the second device, Authy recommends that you disable the feature so that another person cannot add another device to take control of your account (Authy will continue to work on both devices). With backups and multi-device enabled, your tokens are synchronized across all devices where Authy is installed.</p>
+<p>You can block the Authy application behind a PIN or biometric identification, such as a fingerprint or facial scan. If your phone is already blocked in this way (and it should be), this additional step is not necessary, but it’s a good touch if you want to use a different PIN for added security.</p>
+<p>In particular, the Authy service we are using is accessed from <a class="reference external" href="https://www.twilio.com/login">the Twilio console</a>. The project was created: 2FA Project and the application Health29-Duchenne. From this portal it is possible to configure the screen to be shown to the users, the options to be worked with, and also to manage the current users.</p>
+<p>For the implementation the version 1.4.0 of <a class="reference external" href="https://www.npmjs.com/package/authy">authy</a> has been used and is added to the code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">authy</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;authy&#39;</span><span class="p">)(</span><span class="n">APIKEY</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>As mentioned above, the user’s model and controller have been modified:</p>
+<ul class="simple">
+<li><p>In the user model, the fields were added:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">authyId</span><span class="p">:{</span><span class="nb">type</span><span class="p">:</span><span class="n">String</span><span class="p">,</span><span class="n">default</span><span class="p">:</span><span class="n">null</span><span class="p">},</span>
+	<span class="n">authyDeviceId</span><span class="p">:{</span><span class="nb">type</span><span class="p">:</span><span class="n">Object</span><span class="p">,</span><span class="n">default</span><span class="p">:[]},</span>
+	<span class="n">phone</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+</pre></div>
+</div>
+<p>To store the information on each user required for interaction with Authy.</p>
+<ul class="simple">
+<li><p>In the user’s controller, the registration and user login functions were updated, and a new one was created to update those that existed before the addition of the functionality.
+In all the functions the group of patients to which the user belongs is checked in order to apply or not the authentication conditions.
+For these tasks the Authy functions will be used: register_user, send_approval_request and check_approval_status.</p></li>
+</ul>
 </div>
 </div>
 

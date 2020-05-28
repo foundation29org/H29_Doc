@@ -1206,3 +1206,32 @@ On the server, on the one hand you use **[google-translate-api](https://www.npmj
 
 On the other hand, **different views** have been implemented (one for each language in which we want to use the health29 platform) which will be selected according to the language information provided by the customer in their requests.
 
+### 2.4.9. Second factor autenthication
+The 2FA was incorporated in Health29 for the login on the platform of certain groups of patients.
+
+Initially, an analysis was made of the different options that could be used for implementation, concluding in Authy.
+Authy has the best combination of compatibility, usability, security and reliability. platforms including iOS, Android, Windows, Mac and Chrome, and has PIN and biometric protection for the application. Authy includes a secure cloud backup option, which makes it easy to use on multiple devices and makes your tokens easy to restore if you lose or replace your phone.
+
+If you lose your phone, you lose access to your authentication application. To solve this problem, most authentication applications offer cloud-based backups (although security experts tend to recommend against using this feature), and some authentication application manufacturers are better at explaining how (or if) they encrypt these backups. Authy is the only application we tested that offers two security features that assist in account recovery: an encrypted cloud backup and support for a secondary device.
+
+You can also install Authy on a secondary device, such as a computer or tablet, and use that device along with backups to recover your account in case you lose your phone. Authy calls this feature "multi-device". Once you add the second device, Authy recommends that you disable the feature so that another person cannot add another device to take control of your account (Authy will continue to work on both devices). With backups and multi-device enabled, your tokens are synchronized across all devices where Authy is installed.
+
+You can block the Authy application behind a PIN or biometric identification, such as a fingerprint or facial scan. If your phone is already blocked in this way (and it should be), this additional step is not necessary, but it's a good touch if you want to use a different PIN for added security.
+
+In particular, the Authy service we are using is accessed from [the Twilio console](https://www.twilio.com/login). The project was created: 2FA Project and the application Health29-Duchenne. From this portal it is possible to configure the screen to be shown to the users, the options to be worked with, and also to manage the current users.
+
+For the implementation the version 1.4.0 of [authy](https://www.npmjs.com/package/authy) has been used and is added to the code:
+```
+const authy = require('authy')(APIKEY);
+```
+As mentioned above, the user's model and controller have been modified:
+- In the user model, the fields were added:
+```
+authyId:{type:String,default:null},
+	authyDeviceId:{type:Object,default:[]},
+	phone: String,
+```
+To store the information on each user required for interaction with Authy.
+- In the user's controller, the registration and user login functions were updated, and a new one was created to update those that existed before the addition of the functionality.
+In all the functions the group of patients to which the user belongs is checked in order to apply or not the authentication conditions.
+For these tasks the Authy functions will be used: register_user, send_approval_request and check_approval_status.

@@ -51,27 +51,56 @@ The output folder is dist/project-name/ by default. To output to a different fol
 
 As we saw in the diagram shown at the beginning of this section, by running ng build --prod we minimize and compress the code. This command will create a new folder called dist, and it will have the project optimized. This dist folder will be the one uploaded to the root of the node server that manages the API. It will also be used to create the mobile apps, adding it to the www folder of the cordoba project. 
 
-### 1.3.3. Deployment and semi-automation of processes: Azure Pipelines.
+### 1.3.3. Deploy.
 
-To deploy one of the environments, we could do it through command line. However, as this is a critical task, [Azure Pipelines](https://f29.visualstudio.com/Health29/_build) have been designed to facilitate the process.
+The deploy tasks can be executed according to the interactions in the master branch of each project. That is, you can configure the listening of the push or commits in the master branch of the project server of a specific environment to automate the deploy of this environment.
+
+As our server is created in node.js we can use Azure's [continuous deployment](https://docs.microsoft.com/en-us/azure/app-service/deploy-continuous-deployment) service for our App Service. In particular, we are going to use the integrated Kudu App Service compilation server for continuous deployments.
+This configuration is explained in the next subsection.
+
+However, it should be noted that what has been explained so far is not the best option. That is to say, to carry out the tasks of build and deploy of the environments, as it will be explained in the following section, there are better mechanisms that facilitate the work and with which the process is assured avoiding errors.
+
+#### 1.3.3.1. Kudu App Service.
+
+Access Azure/ App Service/app service name/Deployment slots:
+
+<p style="text-align: center;">
+    <img width="800px" src="../../_images/pipelines_server_1.jpg">
+</p>
+
+Select the slot you are going to work on. Go to App Service build service (if the slot was already deployed, click on disconnect):
+
+<p style="text-align: center;">
+    <img width="800px" src="../../_images/pipelines_server_2.jpg">
+</p>
+
+On the Configure page, select the Azure DevOps Organization, Project, Repository, and Branch you want to deploy continuously.
+After you configure the build provider, review the settings on the Summary page, and then select Finish.
+New commits in the selected repository and branch now deploy continuously into your App Service app. You can track the commits and deployments on the Deployment Center page.
+
+### 1.3.4. Semi-automation of processes: Azure Pipelines.
+
+To deploy one of the environments, we could use [Azure Pipelines](https://f29.visualstudio.com/Health29/_build).
 
 The architecture proposed consists of the construction of CI/CD pipelines which helps you automate steps in your software delivery process, such as initiating code builds, running automated tests, and deploying to a staging or production environment. Automated pipelines remove manual errors, provide standardized development feedback loops and enable fast product iterations.
 
-Thus, once the client's build has been executed and the node server root has been updated with the corresponding information, the corresponding pipelines for the environment to be deployed with the changes made should be executed manually. That is, we have 4 pipelines available in the project: one for the client and one for the server, of develop and test environments.
+Thus, the corresponding pipelines for build and deploy the environment with the changes made should be executed manually. That is, we have 4 pipelines available in the project: one for the client and one for the server, of develop and test environments.
 
 - Develop environment pipelines: [Health29-dev-cli-CI](https://f29.visualstudio.com/Health29/_apps/hub/ms.vss-ciworkflow.build-ci-hub?_a=edit-build-definition&id=14) and [Health29-dev-server-CI](https://f29.visualstudio.com/Health29/_apps/hub/ms.vss-ciworkflow.build-ci-hub?_a=edit-build-definition&id=16)
 - Test environment pipelines: [Health29-test-cli-CI](https://f29.visualstudio.com/Health29/_apps/hub/ms.vss-ciworkflow.build-ci-hub?_a=edit-build-definition&id=18) and [Health29-test-server-CI](https://f29.visualstudio.com/Health29/_apps/hub/ms.vss-ciworkflow.build-ci-hub?_a=edit-build-definition&id=17)
 
-For convenience, build tasks have been added to these pipelines in addition to the deploy of the environments. In this way, when you want to update any of the environments, you only need to execute the client and server pipelines, in that order. It is important to respect the order since when the build tasks are included, as indicated in the previous section, it will be necessary to update the node server root with the content of the last client compilation.
+The pipelines of the production environment were not implemented but it is recommendable since deploy is a critical task.
+
+For convenience, both build and deploy tasks have been added to these pipelines. In this way, when you want to update any of the environments, you only need to execute the client and server pipelines, in that order. It is important to respect the order since when the build tasks are included, as indicated in the previous sections, it will be necessary to update the node server root with the content of the last client compilation.
 
 It is important to emphasize here that the title of the section indicated that we make a semiautomation of the processes, this is due to the fact that the execution of the pipelines is manual.
 
-### 1.3.3.1. Setup Azure Pipelines.
+#### 1.3.4.1. Setup Azure Pipelines.
 
 Starting from an azure app service and an azure devops project created, the pipelines are implemented as explained in this [document](https://www.c-sharpcorner.com/article/hosting-angular-application-on-azure-with-cicd/) with some modifications since, as we have said, the execution of the pipelines will be manual. 
 
 
-### 1.3.3.1.1. Pipeline for Server code
+##### 1.3.4.1.1. Pipeline for Server code
 Access Azure/ App Service/app service name/Deployment slots:
 
 <p style="text-align: center;">
@@ -101,7 +130,7 @@ Now go to azure devops/pipelines. A new pipeline should be created and we must r
 	<img width="800px" src="../../_images/pipelines_server_5.jpg">
 </p>
 
-### 1.3.3.1.2. Pipeline for Client code
+##### 1.3.4.1.2. Pipeline for Client code
 
 Go to Azure DevOps. In the left navigation, select ‘Pipelines’. Then click ‘Builds’. Now you can see, ‘+ New’ drop down. Click it and in the list, select ‘New build pipeline’.
 

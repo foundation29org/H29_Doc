@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="2. Software architecture" href="Software architecture.html" />
+    <link rel="next" title="1.1. Azure App service: Health29" href="Environments/Azure_App_Services.html" />
     <link rel="prev" title="Health29" href="../index.html" /> 
 </head>
 
@@ -82,11 +82,10 @@
             
               <p class="caption"><span class="caption-text">H29</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">1. Environments</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#build">1.1. Build</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#deploy-environments">1.2. Deploy environments</a></li>
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Environments/Azure_App_Services.html">1.1. Azure App service: Health29</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Environments/Code_repository.html">1.2. Code repositories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Environments/Build_deploy.html">1.3. Build and deploy environments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Software architecture.html">2. Software architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SW/SystemContext.html">2.1. Level 1: System Context</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SW/Containers.html">2.2. Level 2: Containers</a></li>
@@ -160,16 +159,40 @@
             
   <img align="right" width="100px" src="../_images/Foundation29.png"><div class="section" id="environments">
 <h1>1. Environments<a class="headerlink" href="#environments" title="Permalink to this headline">¶</a></h1>
-<p>(TODO)</p>
-<div class="section" id="build">
-<h2>1.1. Build<a class="headerlink" href="#build" title="Permalink to this headline">¶</a></h2>
-<p>By running ng build –prod we minimize and compress the code. This command will create a new folder called dist, and it will have the project optimized. This dist folder will be the one uploaded to the root of the node server that manages the API. It will also be used to create the mobile apps, adding it to the www folder of the cordoba project.</p>
-</div>
-<div class="section" id="deploy-environments">
-<h2>1.2. Deploy environments<a class="headerlink" href="#deploy-environments" title="Permalink to this headline">¶</a></h2>
-<p>Each environment has been created as an independent project, so in order to move from one environment to another you will have to copy the code of one over the new one.
-In this process it must be taken into account that the environment.prod file in the environments folder has been previously configured for each environment, and therefore it is different in each one of them. Before making any changes you must ensure that it is kept in the environment to be updated and that during the process of copying code from one environment to another the information in this file is not modified.</p>
-</div>
+<p>The different phases defined for software development are followed:</p>
+<p style="text-align: center;">
+	<img width="400px" src="../_images/applicationPhases.jpg">
+</p><p>In the development phase, it will be achieved:</p>
+<ul class="simple">
+<li><p>Integrate the work of different developers in a central repository, resulting in an updated and consolidated version of the code.</p></li>
+<li><p>Automate the integration tests and their validation before being moved to the next environment.</p></li>
+<li><p>Send the code to the next environment if the tests have been passed successfully.</p></li>
+</ul>
+<p>Once the integration tests in the development environment have been passed, the code will be moved to the pre-production (test) environment. Here the validation tests will be performed to the whole software, with the objective of locating any error before reaching the production environment and thus avoid problems arising from them. This environment can also be used as a demo environment, where the final customer can test the new application or the modifications or corrections made to the existing application. From here, the customer’s impressions will be extracted and possible deficiencies in the initial requirements, in the design or in its implementation will be located early on.
+Finally, the version will be moved into the production environment.</p>
+<p>So, the Health29 platform is divided into three environments:</p>
+<ul class="simple">
+<li><p>The <strong>development</strong> environment, for programmers.</p></li>
+<li><p>The <strong>test</strong> environment for the pre-production phase.</p></li>
+<li><p>The <strong>production</strong> environment for users.</p></li>
+</ul>
+<img width="800px" src="../_images/Environments.jpg"><p>On the one hand, These environments are created as <a class="reference external" href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-deployment-slots">slots of an Azure App Service</a>. Deployment slots are live apps with their own hostnames.
+In particular, you can access the <strong>Health29’s Azure App Service</strong> through the following <a class="reference external" href="https://portal.azure.com/#&#64;foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/health29/providers/Microsoft.Web/sites/health29/appServices">link</a>.</p>
+<p>On the other hand, each environment will use specific or common resources or containers for all. Thus:</p>
+<ul class="simple">
+<li><p>The client-server webapp will be located in a different repository for each environment.</p></li>
+<li><p>The healthbot will also be specific to each environment</p></li>
+<li><p>There will be two database containers: the test and development environments will share the resource while production will have its own.</p></li>
+<li><p>The rest of the resources will be shared by all the environments.</p></li>
+</ul>
+<p>We will not go into more detail on this since the functionality, architecture and usability of each of these containers will be explained in section 2 of this document.</p>
+<p>In this section we will only explain the architecture of the platform environments, the distribution of the webapp repositories and the steps to follow for the build and the deploy of the platform.</p>
+<p>Therefore, the section will be divided into different sections:</p>
+<ul class="simple">
+<li><p>Design and implementation of the Azure App Service architecture.</p></li>
+<li><p>Division of the code repositories for each environment</p></li>
+<li><p>Build and deploy of each environment</p></li>
+</ul>
 </div>
 
 
@@ -180,7 +203,7 @@ In this process it must be taken into account that the environment.prod file in 
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="Software architecture.html" class="btn btn-neutral float-right" title="2. Software architecture" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="Environments/Azure_App_Services.html" class="btn btn-neutral float-right" title="1.1. Azure App service: Health29" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../index.html" class="btn btn-neutral float-left" title="Health29" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

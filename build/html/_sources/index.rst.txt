@@ -5,6 +5,48 @@
 .. image:: images/All/Foundation29.png
    :width: 0px
 
+.. image:: images/Environments/General/Environments.jpg
+   :width: 0px
+
+.. image:: images/Environments/General/AzureSlots.jpg
+   :width: 0px
+
+.. image:: images/Environments/Azure_App_Services/applicationPhases.jpg
+   :width: 0px
+
+.. image:: images/Environments/Code_repositories/Repositories.jpg
+   :width: 0px
+
+.. image:: images/Environments/Build_Deploy/Build_deploy.jpg
+   :width: 0px
+
+.. image:: images/Environments/Build_Deploy/pipelines_server_1.jpg
+   :width: 0px
+
+.. image:: images/Environments/Build_Deploy/pipelines_server_2.jpg
+   :width: 0px
+
+.. image:: images/Environments/Build_Deploy/pipelines_server_3.jpg
+   :width: 0px
+
+.. image:: images/Environments/Build_Deploy/pipelines_server_4.jpg
+   :width: 0px
+
+.. image:: images/Environments/Build_Deploy/pipelines_server_5.jpg
+   :width: 0px
+
+.. image:: images/Environments/Build_Deploy/pipelines_client_1.jpg
+   :width: 0px
+
+.. image:: images/Environments/Build_Deploy/pipelines_client_2.jpg
+   :width: 0px
+
+.. image:: images/Environments/Build_Deploy/pipelines_client_3.jpg
+   :width: 0px
+
+.. image:: images/Environments/Build_Deploy/pipelines_client_4.jpg
+   :width: 0px
+
 .. image:: images/Architecture/GeneralSchema/H29C4model.png
    :width: 0px
 
@@ -93,6 +135,9 @@ This document presents a technical description of the Health29 software architec
    :caption: H29
 
    pages/Environments
+   pages/Environments/Azure_App_Services
+   pages/Environments/Code_repository
+   pages/Environments/Build_deploy
    pages/Software architecture
    pages/SW/SystemContext
    pages/SW/Containers

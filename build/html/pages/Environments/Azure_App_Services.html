@@ -1,0 +1,254 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1.1. Azure App service: Health29 &mdash; H29 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="1.2. Code repositories" href="Code_repository.html" />
+    <link rel="prev" title="1. Environments" href="../Environments.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> H29
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">H29</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Environments.html">1. Environments</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1.1. Azure App service: Health29</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Code_repository.html">1.2. Code repositories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Build_deploy.html">1.3. Build and deploy environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Software architecture.html">2. Software architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SW/SystemContext.html">2.1. Level 1: System Context</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SW/Containers.html">2.2. Level 2: Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SW/Components.html">2.3. Level 3: Component</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SW/Code.html">2.4. Level 4: Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Superadmin profile.html">3. Superadmin profile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Technical debt.html">4. Technical debt</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">H29</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>1.1. Azure App service: Health29</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/pages/Environments/Azure_App_Services.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <img align="right" width="100px" src="../../_images/Foundation29.png"><div class="section" id="azure-app-service-health29">
+<h1>1.1. Azure App service: Health29<a class="headerlink" href="#azure-app-service-health29" title="Permalink to this headline">¶</a></h1>
+<p>As already mentioned, Health29 is implemented as an Azure App Service divided into slots.</p>
+<p>First we have to create an Azure App service to locate our webapp, and then we will make the division into slots to create and configure the different environments.</p>
+<p>In particular, for the Health29 platform we have created a Web application type App service: <a class="reference external" href="https://portal.azure.com/#&#64;foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/health29/providers/Microsoft.Web/sites/health29/appServices">health29</a></p>
+<p>The steps to follow would be:</p>
+<ol class="simple">
+<li><p>Enter the Azure portal with the account you have active, go to the option “All services”, look for the section “Web and mobile”, select the service “App Service”.
+We will see a list of services in case you have done any previously, otherwise we have an empty panel, click on the option “Add” and Azure shows us a catalog of all services available for web and mobile.</p></li>
+<li><p>Select the web application without SQL as a database.</p></li>
+<li><p>We have a small summary of the functions of the service, the options for implementation with other technologies from Microsoft and third parties, we click on “Create”.</p></li>
+<li><p>It is necessary to add a name to the service that is unique, because we are using a shared service (.azurewebsites.net) We can select the operating system of the server, filling in the fields we select “Create”.</p></li>
+</ol>
+<p>Once we have the App service created, we proceed to divide it to configure the different work environments. For this, as we have already said, we are going to use the slots:</p>
+<blockquote>
+<div><blockquote>
+<div><p>Deployment slots let you deploy different versions of your web app to different URLs. You can test a certain version and then swap content and configuration between slots.</p>
+</div></blockquote>
+</div></blockquote>
+<p>In general,</p>
+<ul class="simple">
+<li><p>Each deployment slot is like a full-fledged App Service instance.</p></li>
+<li><p>The original App Service deployment slot is also called the production slot.</p></li>
+<li><p>Deployment slots can copy the configuration (AppSettings and Connectionstrings) of the original App Service or other deployment slots.</p></li>
+<li><p>When you scale a deployment slot (up or out), you also scale all the other slots of the App Service. This is because all slots share the same App Service Plan.</p></li>
+<li><p>Because all deployments lots run within the same App Service and its App Service Plan, deployment slots are free to use if you are using the Standard pricing tier or higher.</p></li>
+<li><p>If you have installed any site extensions, you need to do that again in a deployment slot, as it is a new App Service instance.</p></li>
+<li><p>Deployment slots have a different URL than the original App Service. This URL is based on the name you give the deployment slot.</p></li>
+</ul>
+<p>The slots that have been created and configured in Health29 are:</p>
+<img width="800px" src="../../_images/AzureSlots.jpg"><p>Each of these slots will correspond to a platform environment, with the aim of achieving an orderly workflow between teams:</p>
+<ul class="simple">
+<li><p>Developers or programmers will be able to work on environment to incorporate the new functionalities or correct errors without this directly affecting the users.</p></li>
+<li><p>There will be a pre-production environment to be able to validate the tasks performed or even make demos to clients to collect feedback and establish future lines on which to work.</p></li>
+<li><p>Finally, this will ensure that the production environment or the one used by customers/users is stable.</p></li>
+</ul>
+<p>The steps to follow to create and configure slots are summarized in the official <a class="reference external" href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-deployment-slots">Microsoft document</a>.It is a simple task, just select in the App Service “Deployment slots” and click on add a new one. It opens the Add Slot dialog, to the right of the screen where you need to enter a name, and choose if you want to copy the configuration from another slot, or not at all. Choosing to copy the configuration is important because your the application does things like connect to the databases and has specific connection strings in these settings.</p>
+<p>In addition, the following domains have been configured as indicated in the following <a class="reference external" href="https://docs.microsoft.com/en-us/azure/app-service/manage-custom-dns-buy-domain">link</a>:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.health29.org/login">www.health29.org</a></p></li>
+<li><p><a class="reference external" href="https://health29-dev.azurewebsites.net/login">health29-dev.azurewebsites.net</a></p></li>
+<li><p><a class="reference external" href="https://health29-test.azurewebsites.net/login">health29-test.azurewebsites.net</a></p></li>
+</ul>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Code_repository.html" class="btn btn-neutral float-right" title="1.2. Code repositories" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../Environments.html" class="btn btn-neutral float-left" title="1. Environments" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Foundation29
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

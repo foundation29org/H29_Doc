@@ -83,7 +83,7 @@
               <p class="caption"><span class="caption-text">H29</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="Environments.html">1. Environments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Environments/Azure_App_Services.html">1.1. Azure App service: health29</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Environments/Azure_App_Services.html">1.1. Azure App service: Health29</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Environments/Code_repository.html">1.2. Code repositories</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Environments/Build_deploy.html">1.3. Build and deploy environments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Software architecture.html">2. Software architecture</a></li>
@@ -91,7 +91,24 @@
 <li class="toctree-l1"><a class="reference internal" href="SW/Containers.html">2.2. Level 2: Containers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SW/Components.html">2.3. Level 3: Component</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SW/Code.html">2.4. Level 4: Code</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">3. Superadmin profile</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. Superadmin profile</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#manage-groups">3.1. Manage groups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#manage-symptoms">3.2. Manage symptoms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#manage-languages">3.3. Manage languages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#manage-frequently-asked-questions">3.4. Manage Frequently asked questions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#add-new-faq">3.4.1. Add new FAQ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#edit-a-faq">3.4.2. Edit a FAQ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#delete-a-faq">3.4.3. Delete a FAQ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#manage-datapoints-proms">3.5. Manage datapoints/proms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#manage-translations">3.6. Manage translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#manage-information-about-clinical-history">3.7. Manage information about clinical history</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#manage-diagnosis">3.8. Manage diagnosis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#manage-notifications">3.9. Manage notifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#support">3.10. Support</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="Technical debt.html">4. Technical debt</a></li>
 </ul>
 
@@ -159,7 +176,142 @@
             
   <img align="right" width="100px" src="../_images/Foundation29.png"><div class="section" id="superadmin-profile">
 <h1>3. Superadmin profile<a class="headerlink" href="#superadmin-profile" title="Permalink to this headline">¶</a></h1>
+<p>A super-administrator profile for the platform has been implemented. With this profile, some aspects of the platform can be managed visually or through a graphic environment so as not to depend on programmers directly.</p>
+<p>With this profile it is possible to control and manage the needs that arise in the platform to incorporate new elements or to modify an existing one, without requiring programming. Therefore, when implementing new functions it is important to evaluate if what is being added will be configurable or modifiable, and in that case it is important to define the functionality in the most generic way possible and to add the control of this in the super-administrator role.</p>
+<p>This profile will have control over all patient groups that have been incorporated into Healht29.</p>
+<p>In order to better understand what has been explained here, the current list of actions that can be performed from this profile on the platform will be presented in this section. With this, we can already get an idea of the usefulness of this profile and the possibilities within the tool.</p>
+<p>Next, this section will be subdivided into different sections to develop in depth each of the functionalities available for this profile in Health29.</p>
+<p>These functionalities will be present in the navigation menu of the left panel of the platform for the superadmin role.</p>
+<div class="section" id="manage-groups">
+<h2>3.1. Manage groups<a class="headerlink" href="#manage-groups" title="Permalink to this headline">¶</a></h2>
+<p>The first menu option of this profile is: “Groups”.</p>
+<img width="800px" src="../_images/groups_section.jpg"><p>This page shows a table with the information:</p>
+<ul class="simple">
+<li><p>Name of the patient group included in Health29</p></li>
+<li><p>Patient Group Manager</p></li>
+<li><p>Type of subscription.</p></li>
+</ul>
+<p>Here, you can change any of the above fields or delete groups.</p>
+</div>
+<div class="section" id="manage-symptoms">
+<h2>3.2. Manage symptoms<a class="headerlink" href="#manage-symptoms" title="Permalink to this headline">¶</a></h2>
+<p>This page manages the symptoms of each patient group.</p>
+<img width="800px" src="../_images/mySymptoms_section1.jpg"><p>By selecting a particular patient group, the associated symptoms are shown:</p>
+<img width="800px" src="../_images/mySymptoms_section2.jpg"><p>You can add new or remove existing ones.</p>
+</div>
+<div class="section" id="manage-languages">
+<h2>3.3. Manage languages<a class="headerlink" href="#manage-languages" title="Permalink to this headline">¶</a></h2>
+<p>The list of languages in which the platform is available is shown and allows you to add new</p>
+<img width="800px" src="../_images/languages_section.jpg"></div>
+<div class="section" id="manage-frequently-asked-questions">
+<h2>3.4. Manage Frequently asked questions<a class="headerlink" href="#manage-frequently-asked-questions" title="Permalink to this headline">¶</a></h2>
+<p>On this page you can manage the platform’s frequently asked questions, visible to users from the FAQs section or those that the healthbot works with.
+This page allows you to interact directly with the knowledge bases created in Qna maker, so that you can add, delete or update frequently asked questions.</p>
+<img width="800px" src="../_images/manageFAQ_section.jpg"><p>As already explained in the architecture section of this document, each group of patients will have a knowledge base for each available language. So, first you have to select the patient group you want to modify or add this to:</p>
+<img width="800px" src="../_images/manageFAQ_section2.jpg"><p>There are several actions that can be performed on each available FAQ collection:</p>
+<ul class="simple">
+<li><p>Download logs</p></li>
+<li><p>Publish changes. For each update or modification made on the FAQs of a collection it will be necessary to publish the changes so that this is visible to the users of the patient group.</p></li>
+<li><p>Delete. To delete a complete collection.</p></li>
+</ul>
+<p>In addition, each question-answer pair is encapsulated within a category.Thus, multiple question-answer  pairs  can  belong  to  one  category.In  addition,  each  question-answer pair can belong to several categories.Thus, the general structure of a FAQ would consist of:</p>
+<ul class="simple">
+<li><p>A set of questions</p></li>
+<li><p>Only oneanswer</p></li>
+<li><p>One or more categories</p></li>
+</ul>
+<p>Each collection of FAQs will have a list of available categories that can be expanded. These categories can beviewed by clicking on the “Categories” button.
+Then, a popup will then be shown with the list of available categories and from here you can delete these categories by pressing the “X” button that appears next to each one of them.</p>
+<p>Within a collection you can perform the following actions for the FAQs it contains:create a new FAQ, edit an existing FAQand delete a FAQ.But in any case, all these changes will not be visible to users until the changes to the collection are published.We will now explain how to perform each of these actions.</p>
+<div class="section" id="add-new-faq">
+<h3>3.4.1. Add new FAQ<a class="headerlink" href="#add-new-faq" title="Permalink to this headline">¶</a></h3>
+<p>Click on “New frequently asked question” button and a new page will appear:</p>
+<img width="800px" src="../_images/manageFAQ_section3.jpg"><p>Write the question and the answerand associate this FAQ to a categoryand click “Save”.If you want to add more questions for the same answer (recommended), click on“Add alternative question” button and write it in the text box.</p>
+<p>To  associate  the  FAQ  with  a  category,  type  the name  of  the  category  in  the corresponding text field. As long as you enter this name, the existing categories in the FAQ collection of the particular language will appear as suggestions.
+You can select the suggested category by clicking on it to associate it with the new FAQand remove the association between this category and this FAQusing the “X” next to it.
+If the category you want to add is not yet included in the FAQ collection you are working on, it will be indicated as “Click to add the new category: category_name”. By clicking on this button, this new category will be added to the collection you are working on and will be associated with the FAQ you are creating. As before, you can remove this association with the new FAQ with the “X”next to it.</p>
+</div>
+<div class="section" id="edit-a-faq">
+<h3>3.4.2. Edit a FAQ<a class="headerlink" href="#edit-a-faq" title="Permalink to this headline">¶</a></h3>
+<p>Press the edit button of one of the existing FAQs in a collection and a page like the one to create a new FAQ will be shown, but with the content of the FAQ selected to be edited.</p>
+<img width="800px" src="../_images/manageFAQ_section4.jpg"><p>The data can be modified in the same way as when creating a new FAQ.</p>
+</div>
+<div class="section" id="delete-a-faq">
+<h3>3.4.3. Delete a FAQ<a class="headerlink" href="#delete-a-faq" title="Permalink to this headline">¶</a></h3>
+<p>Press the deletebutton of one of the existing FAQs in a collection and a required confirmation popup will appear.</p>
+<ul class="simple">
+<li><p>Selecting “Delete” will remove the FAQ from the collection</p></li>
+<li><p>Selecting “No,cancel” will cancel the operation and will not remove the FAQ from the collection.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="manage-datapoints-proms">
+<h2>3.5. Manage datapoints/proms<a class="headerlink" href="#manage-datapoints-proms" title="Permalink to this headline">¶</a></h2>
+<img width="800px" src="../_images/proms_section1.jpg"><p>In this section you can manage the datapoints of each group of patients of the platform, that is, the content of the Course of the disease (CoD) section of the user profile.</p>
+<p>As in the previous sections, the first thing to do is to choose the group of patients you want to work with</p>
+<img width="800px" src="../_images/proms_section2.jpg"><p>Initially, the table on the right will appear, indicating the sections of the CoD page that will be presented to the user. This is the internal navigation menu of this section or the contents that make it up.</p>
+<p>From here we can manage these sections: add new, edit or delete existing ones.</p>
+<ul class="simple">
+<li><p>The action of deleting requires confirmation, so when pressing the X button of a section a popup will appear to be able to cancel the operation or continue with it.</p></li>
+<li><p>The actions of adding or editing will open a popup showing the configurable fields: the name, a description, the order in which it will appear for the users regarding the rest of the sections and “enabled section”, that is, if it will be visible or not.</p></li>
+</ul>
+<p>Besides this, for each section there is an icon in the “Proms” column. What this does is to show the table on the right, that is, the datapoints that will be included in each section.</p>
+<p>Here again you can add, edit or remove datapoints from a section. And these will also be assigned an order of appearance within the section they belong to.</p>
+<p>For the definition of a new datapoint you will have to indicate at least:</p>
+<ul class="simple">
+<li><p>The name or an identifier</p></li>
+<li><p>The question field that will be the label or the content that will accompany the datapoint</p></li>
+<li><p>The order</p></li>
+<li><p>The size: small, normal, medium or large, with which it will be represented on the screen.</p></li>
+</ul>
+<p>There is a requirement in the form of implementation used in Health29: the first datapoint will correspond to a question that will be asked initially to the user in each section. This is important for the calculation of statistics: it is not the same as a patient not answering or indicating that he or she does not have something.</p>
+<p>According to what you have answered in this question, several things will happen in the presentation in the user profile:</p>
+<ul class="simple">
+<li><p>If you have not answered or the answer is negative, the rest of the section content will not be shown (the rest of the datapoints will be hidden)</p></li>
+<li><p>If you have answered yes, then the rest of the datapoints will be visible.</p></li>
+</ul>
+<p>This behavior is achieved as follows:</p>
+<ol class="simple">
+<li><p>The first datapoint must always be assigned the name: “Question” or “Options” and must always correspond to the question explained in the previous paragraph.</p></li>
+<li><p>The rest of the datapoints must have the field “Related to” assigned to the first datapoint.</p></li>
+</ol>
+<p>In the following image there is a list of the different types of datapoints that have been implemented so far in Health29, or what is the same, the different types of fillable fields can be used in the users’ CoD section. On the one hand we have specific types such as “Title” or “Date”, and on the other hand we have designed combinations between them.</p>
+<img width="800px" src="../_images/proms_section3.jpg"><p>Finally, you can define the translations of these fields by pressing the “Translations” button where, by choosing the group of patients and one of the languages available on the platform, you can modify the text corresponding to each datapoint or section.</p>
+<img width="800px" src="../_images/proms_section4.jpg"></div>
+<div class="section" id="manage-translations">
+<h2>3.6. Manage translations<a class="headerlink" href="#manage-translations" title="Permalink to this headline">¶</a></h2>
+<p>In this section you can modify the translations of the texts present in the Health29 platform.
+You can choose the language in which the original text will be shown, and the language in which you want to modify the translation.</p>
+<img width="800px" src="../_images/translations_section.jpg"></div>
+<div class="section" id="manage-information-about-clinical-history">
+<h2>3.7. Manage information about clinical history<a class="headerlink" href="#manage-information-about-clinical-history" title="Permalink to this headline">¶</a></h2>
+<p>In this section you can manage the relevant aspects of the clinical information of the patient groups. It is currently under construction and has not been fully implemented.</p>
+<p>At the moment it consists of a single section: Medication.</p>
+<img width="800px" src="../_images/myclinicalhistory_section.jpg"><p>It includes for each patient group the medicines associated with their diagnosis.</p>
+<img width="800px" src="../_images/myclinicalhistory_section2.jpg"><p>Here you can add, edit or delete individual medications.</p>
+</div>
+<div class="section" id="manage-diagnosis">
+<h2>3.8. Manage diagnosis<a class="headerlink" href="#manage-diagnosis" title="Permalink to this headline">¶</a></h2>
 <p>(TODO)</p>
+</div>
+<div class="section" id="manage-notifications">
+<h2>3.9. Manage notifications<a class="headerlink" href="#manage-notifications" title="Permalink to this headline">¶</a></h2>
+<img width="800px" src="../_images/notifications_section.jpg"><p>From this page the superadministrator will be able to create notifications to be sent to all users of a selected patient group.</p>
+<img width="800px" src="../_images/notifications_section2.jpg"><p>Here you can add, edit or delete notifications.</p>
+<p>Deleting will require confirmation, and creating or editing one will open a new page where the specified fields will have to be filled in:</p>
+<img width="800px" src="../_images/notifications_section3.jpg"><p>The general architecture of a notification will be:</p>
+<ul class="simple">
+<li><p>Type: Notifications of the administrator type or patient group or periodical (6 or 12 months).</p></li>
+<li><p>Launch date: The date from which the notification will be launched</p></li>
+<li><p>Identifier: a number, word or short text to identify the notification.</p></li>
+<li><p>Title and text: By selecting add translations and the languages in which you want to display the notification, these fields appear for each language. The title is a brief description to identify the notification in the subscriptions view, and the text is what will appear in the user notification window.</p></li>
+<li><p>URL. This field is not mandatory, it allows to add an external URL to appear in the notification to the users or an internar URL with “#” and name of the section. It will be composed by the URL and a title that will appear in the button that the users will see next to the notification.</p></li>
+</ul>
+</div>
+<div class="section" id="support">
+<h2>3.10. Support<a class="headerlink" href="#support" title="Permalink to this headline">¶</a></h2>
+<img width="800px" src="../_images/support_section.jpg">
+(TODO)</div>
 </div>
 
 

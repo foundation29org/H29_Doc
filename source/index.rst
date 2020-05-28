@@ -110,6 +110,63 @@
 .. image:: images/Architecture/Code/Multilanguage/Multilanguage_assets.png
    :width: 0px
 
+.. image:: images/Superadmin/groups_section.jpg
+   :width: 0px
+
+.. image:: images/Superadmin/mySymptoms_section1.jpg
+   :width: 0px
+
+.. image:: images/Superadmin/mySymptoms_section2.jpg
+   :width: 0px
+
+.. image:: images/Superadmin/languages_section.jpg
+   :width: 0px
+
+.. image:: images/Superadmin/manageFAQ_section.jpg
+   :width: 0px
+
+.. image:: images/Superadmin/manageFAQ_section2.jpg
+   :width: 0px
+
+.. image:: images/Superadmin/manageFAQ_section3.jpg
+   :width: 0px
+
+.. image:: images/Superadmin/manageFAQ_section4.jpg
+   :width: 0px
+
+.. image:: images/Superadmin/proms_section1.jpg
+   :width: 0px
+
+.. image:: images/Superadmin/proms_section2.jpg
+   :width: 0px
+
+.. image:: images/Superadmin/proms_section3.jpg
+   :width: 0px
+
+.. image:: images/Superadmin/proms_section4.jpg
+   :width: 0px
+
+.. image:: images/Superadmin/translations_section.jpg
+   :width: 0px
+
+.. image:: images/Superadmin/myclinicalhistory_section.jpg
+   :width: 0px
+
+.. image:: images/Superadmin/myclinicalhistory_section2.jpg
+   :width: 0px
+
+.. image:: images/Superadmin/notifications_section.jpg
+   :width: 0px
+
+.. image:: images/Superadmin/notifications_section2.jpg
+   :width: 0px
+
+.. image:: images/Superadmin/notifications_section3.jpg
+   :width: 0px
+
+.. image:: images/Superadmin/support_section.jpg
+   :width: 0px
+
 .. image:: images/All/Foundation29.png
    :width: 100px
    :align: right

@@ -1108,6 +1108,13 @@ const WeightSchema = Schema({
 })
 ```
 
+#### 2.4.7.4. Collections relationship
+
+The following diagram shows a summary of the relationships between the different database collections for each environment:
+
+<p style="text-align: center;">
+	<img width="800px" src="../../_images/ddbb_relationship.jpg">
+</p>
 
 ### 2.4.8. Multilanguage
 The Health29 platform has the option of being displayed in several languages for the user. In particular, it is implemented for English, Spanish and Dutch.

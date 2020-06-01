@@ -104,9 +104,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#manage-datapoints-proms">3.5. Manage datapoints/proms</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#manage-translations">3.6. Manage translations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#manage-information-about-clinical-history">3.7. Manage information about clinical history</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#manage-diagnosis">3.8. Manage diagnosis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#manage-notifications">3.9. Manage notifications</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#support">3.10. Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#manage-notifications">3.8. Manage notifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#support">3.9. Support</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Technical debt.html">4. Technical debt</a></li>
@@ -182,6 +181,7 @@
 <p>In order to better understand what has been explained here, the current list of actions that can be performed from this profile on the platform will be presented in this section. With this, we can already get an idea of the usefulness of this profile and the possibilities within the tool.</p>
 <p>Next, this section will be subdivided into different sections to develop in depth each of the functionalities available for this profile in Health29.</p>
 <p>These functionalities will be present in the navigation menu of the left panel of the platform for the superadmin role.</p>
+<p>The implementation of the code for the functionalities of this profile is done in the same way as explained in section 2.4 of this document.</p>
 <div class="section" id="manage-groups">
 <h2>3.1. Manage groups<a class="headerlink" href="#manage-groups" title="Permalink to this headline">¶</a></h2>
 <p>The first menu option of this profile is: “Groups”.</p>
@@ -285,17 +285,24 @@ You can choose the language in which the original text will be shown, and the la
 <img width="800px" src="../_images/translations_section.jpg"></div>
 <div class="section" id="manage-information-about-clinical-history">
 <h2>3.7. Manage information about clinical history<a class="headerlink" href="#manage-information-about-clinical-history" title="Permalink to this headline">¶</a></h2>
-<p>In this section you can manage the relevant aspects of the clinical information of the patient groups. It is currently under construction and has not been fully implemented.</p>
+<p>In this section you can manage the relevant aspects of the clinical information of the patient groups.</p>
 <p>At the moment it consists of a single section: Medication.</p>
-<img width="800px" src="../_images/myclinicalhistory_section.jpg"><p>It includes for each patient group the medicines associated with their diagnosis.</p>
-<img width="800px" src="../_images/myclinicalhistory_section2.jpg"><p>Here you can add, edit or delete individual medications.</p>
-</div>
-<div class="section" id="manage-diagnosis">
-<h2>3.8. Manage diagnosis<a class="headerlink" href="#manage-diagnosis" title="Permalink to this headline">¶</a></h2>
-<p>(TODO)</p>
+<img width="800px" src="../_images/myclinicalhistory_section.jpg"><p>It includes for each patient group the medicines, the side effects and the adverse effects associated with their diagnosis.
+What is included in this section is the content that will appear on the Drugs page of the users of a patient group.</p>
+<img width="800px" src="../_images/myclinicalhistory_section2.jpg"><img width="800px" src="../_images/myclinicalhistory_section3.jpg"><img width="800px" src="../_images/myclinicalhistory_section4.jpg"><p>Here you can add, edit or delete individual medications and side/adverse effects.</p>
+<p>The deletion of any element requires confirmation, that is, when you press the “X” of a drug, a side effect or an adverse effect a popup is displayed indicating that the element is going to be deleted and whether you want to confirm or cancel the operation.
+In addition, a button has been included in drugs and side effects to remove all items that also require confirmation.</p>
+<p>The first time you access it, a field appears on the right to add new elements: drugs, side effects or adverse effects.</p>
+<p>Thus, when you want to add a drug, the section on the right shows the fields to be filled in:</p>
+<ul class="simple">
+<li><p>First name or identifier and other text fields for translations in the different languages available on the platform.</p></li>
+<li><p>A selectable field to choose the side effects related to this drug.</p></li>
+</ul>
+<p>For the side effects and adverse effects you only have to fill in the text fields related to the identifier and the languages.</p>
+<p>When you select the edition of a drug, a side effect or an adverse effect, these fields appear in an analogous way for each case in the section on the right but with the information of the selected element. The fields can be modified and by pressing the “Update” button the values will be updated. Once the changes have been confirmed, you will return to the screen to add new element.</p>
 </div>
 <div class="section" id="manage-notifications">
-<h2>3.9. Manage notifications<a class="headerlink" href="#manage-notifications" title="Permalink to this headline">¶</a></h2>
+<h2>3.8. Manage notifications<a class="headerlink" href="#manage-notifications" title="Permalink to this headline">¶</a></h2>
 <img width="800px" src="../_images/notifications_section.jpg"><p>From this page the superadministrator will be able to create notifications to be sent to all users of a selected patient group.</p>
 <img width="800px" src="../_images/notifications_section2.jpg"><p>Here you can add, edit or delete notifications.</p>
 <p>Deleting will require confirmation, and creating or editing one will open a new page where the specified fields will have to be filled in:</p>
@@ -309,9 +316,21 @@ You can choose the language in which the original text will be shown, and the la
 </ul>
 </div>
 <div class="section" id="support">
-<h2>3.10. Support<a class="headerlink" href="#support" title="Permalink to this headline">¶</a></h2>
-<img width="800px" src="../_images/support_section.jpg">
-(TODO)</div>
+<h2>3.9. Support<a class="headerlink" href="#support" title="Permalink to this headline">¶</a></h2>
+<p>When users or administrators of a patient group send a message to support, it will be displayed on this page.</p>
+<img width="800px" src="../_images/support_section.jpg"><p>The information is displayed in table format:</p>
+<ul class="simple">
+<li><p>The email address of the user or administrator who sent the message</p></li>
+<li><p>A message subject</p></li>
+<li><p>The content or text</p></li>
+<li><p>The files in the case of any attachments</p></li>
+<li><p>The date of the message</p></li>
+<li><p>The state: unread, read and solved.</p></li>
+<li><p>The status update date</p></li>
+<li><p>The type of issue, if applicable.</p></li>
+<li><p>The language</p></li>
+</ul>
+</div>
 </div>
 
 

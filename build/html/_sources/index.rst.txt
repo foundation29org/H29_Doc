@@ -107,6 +107,9 @@
 .. image:: images/Architecture/Code/DDBB/DDBB_Division.jpg
    :width: 0px
 
+.. image:: images/Architecture/Code/DDBB/ddbb_relationship.jpg
+   :width: 0px
+
 .. image:: images/Architecture/Code/Multilanguage/Multilanguage_assets.png
    :width: 0px
 
@@ -153,6 +156,12 @@
    :width: 0px
 
 .. image:: images/Superadmin/myclinicalhistory_section2.jpg
+   :width: 0px
+
+.. image:: images/Superadmin/myclinicalhistory_section3.jpg
+   :width: 0px
+
+.. image:: images/Superadmin/myclinicalhistory_section4.jpg
    :width: 0px
 
 .. image:: images/Superadmin/notifications_section.jpg

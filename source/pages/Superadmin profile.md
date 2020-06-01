@@ -14,6 +14,8 @@ Next, this section will be subdivided into different sections to develop in dept
 
 These functionalities will be present in the navigation menu of the left panel of the platform for the superadmin role.
 
+The implementation of the code for the functionalities of this profile is done in the same way as explained in section 2.4 of this document.
+
 ## 3.1. Manage groups
 
 The first menu option of this profile is: "Groups".
@@ -153,22 +155,38 @@ You can choose the language in which the original text will be shown, and the la
 
 ## 3.7. Manage information about clinical history
 
-In this section you can manage the relevant aspects of the clinical information of the patient groups. It is currently under construction and has not been fully implemented.
+In this section you can manage the relevant aspects of the clinical information of the patient groups. 
 
 At the moment it consists of a single section: Medication.
 
 <img width="800px" src="../_images/myclinicalhistory_section.jpg">
 
-It includes for each patient group the medicines associated with their diagnosis.
+It includes for each patient group the medicines, the side effects and the adverse effects associated with their diagnosis.
+What is included in this section is the content that will appear on the Drugs page of the users of a patient group.
 
 <img width="800px" src="../_images/myclinicalhistory_section2.jpg">
 
-Here you can add, edit or delete individual medications.
+<img width="800px" src="../_images/myclinicalhistory_section3.jpg">
 
-## 3.8. Manage diagnosis
-(TODO)
+<img width="800px" src="../_images/myclinicalhistory_section4.jpg">
 
-## 3.9. Manage notifications
+Here you can add, edit or delete individual medications and side/adverse effects.
+
+The deletion of any element requires confirmation, that is, when you press the "X" of a drug, a side effect or an adverse effect a popup is displayed indicating that the element is going to be deleted and whether you want to confirm or cancel the operation.
+In addition, a button has been included in drugs and side effects to remove all items that also require confirmation.
+
+The first time you access it, a field appears on the right to add new elements: drugs, side effects or adverse effects.
+
+Thus, when you want to add a drug, the section on the right shows the fields to be filled in:
+- First name or identifier and other text fields for translations in the different languages available on the platform.
+- A selectable field to choose the side effects related to this drug.
+
+For the side effects and adverse effects you only have to fill in the text fields related to the identifier and the languages.
+
+When you select the edition of a drug, a side effect or an adverse effect, these fields appear in an analogous way for each case in the section on the right but with the information of the selected element. The fields can be modified and by pressing the "Update" button the values will be updated. Once the changes have been confirmed, you will return to the screen to add new element.
+
+
+## 3.8. Manage notifications
 
 <img width="800px" src="../_images/notifications_section.jpg">
 
@@ -189,7 +207,19 @@ The general architecture of a notification will be:
 -  Title and text: By selecting add translations and the languages in which you want to display the notification, these fields appear for each language. The title is a brief description to identify the notification in the subscriptions view, and the text is what will appear in the user notification window.
 - URL. This field is not mandatory, it allows to add an external URL to appear in the notification to the users or an internar URL with "#" and name of the section. It will be composed by the URL and a title that will appear in the button that the users will see next to the notification.
 
-## 3.10. Support
+## 3.9. Support
+
+When users or administrators of a patient group send a message to support, it will be displayed on this page.
 
 <img width="800px" src="../_images/support_section.jpg">
-(TODO)
+
+The information is displayed in table format:
+- The email address of the user or administrator who sent the message
+- A message subject
+- The content or text
+- The files in the case of any attachments
+- The date of the message
+- The state: unread, read and solved.
+- The status update date
+- The type of issue, if applicable.
+- The language

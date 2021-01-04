@@ -144,16 +144,16 @@ On the one hand, among all those found in this file, we can mainly highlight tha
 >- 0.11.4 of [botframework-webchat](https://www.npmjs.com/package/botframework-webchat). License: [MIT](https://opensource.org/licenses/MIT)
 
 - For the client: 
->- 1.7.0 of Angular CLI and 5.2.5 of the node modules Angular libraries (Angular 5).
->- 2.6.2 of TypeScript. 
->- 1.0.0 of ng-bootstrap
->- Jquery 3.2.1
+>- 1.7.0 of Angular CLI and 5.2.5 of the node modules Angular libraries (Angular 5). [Angular](https://www.npmjs.com/package/@angular/cli). License: [MIT](https://opensource.org/licenses/MIT)
+>- 2.6.2 of [TypeScript](https://www.npmjs.com/package/typescript). License: [Apache-2.0](https://opensource.org/licenses/Apache-2.0). 
+>- 1.0.0 of [ng-bootstrap](https://www.npmjs.com/package/@ng-bootstrap/ng-bootstrap). License: [MIT](https://opensource.org/licenses/)
+>- [Jquery 3.2.1](https://www.npmjs.com/package/jquery). License: [MIT](https://opensource.org/licenses/)
  
 - For the server:
->- 1.12.1 of nodemon
->- 4.16.2 of express and 3.0.0 of express-handlebars
->- 4.13.1 moongose
->- 2.6.0 of async
+>- 1.12.1 of [nodemon](https://www.npmjs.com/package/nodemon). License: [MIT](https://opensource.org/licenses/)
+>- 4.16.2 of [express](https://www.npmjs.com/package/express). License: [MIT](https://opensource.org/licenses/) and 3.0.0 of [express-handlebars](https://www.npmjs.com/package/express-handlebars). License: [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
+>- 4.13.1 [moongose](https://www.npmjs.com/package/mongoose). License: [MIT](https://opensource.org/licenses/)
+>- 2.6.0 of [async](https://www.npmjs.com/package/async). License: [MIT](https://opensource.org/licenses/)
 
 
 On the other hand, specific NPM libraries have been installed for some functionalities:

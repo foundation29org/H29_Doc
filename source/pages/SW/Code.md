@@ -140,8 +140,8 @@ All the necessary dependencies or libraries that will be used in the implementat
 
 On the one hand, among all those found in this file, we can mainly highlight that the versions are being used:
 - Both client and server: 
->- v10.16.3 of node.
->- 0.11.4 of botframework-webchat
+>- v10.16.3 of [node](https://www.npmjs.com/package/node). License: [ISC](https://opensource.org/licenses/ISC)
+>- 0.11.4 of [botframework-webchat](https://www.npmjs.com/package/botframework-webchat). License: [MIT](https://opensource.org/licenses/MIT)
 
 - For the client: 
 >- 1.7.0 of Angular CLI and 5.2.5 of the node modules Angular libraries (Angular 5).

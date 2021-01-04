@@ -146,28 +146,53 @@ On the one hand, among all those found in this file, we can mainly highlight tha
 - For the client: 
 >- 1.7.0 of Angular CLI and 5.2.5 of the node modules Angular libraries (Angular 5). [Angular](https://www.npmjs.com/package/@angular/cli). License: [MIT](https://opensource.org/licenses/MIT)
 >- 2.6.2 of [TypeScript](https://www.npmjs.com/package/typescript). License: [Apache-2.0](https://opensource.org/licenses/Apache-2.0). 
->- 1.0.0 of [ng-bootstrap](https://www.npmjs.com/package/@ng-bootstrap/ng-bootstrap). License: [MIT](https://opensource.org/licenses/)
->- [Jquery 3.2.1](https://www.npmjs.com/package/jquery). License: [MIT](https://opensource.org/licenses/)
+>- 1.0.0 of [ng-bootstrap](https://www.npmjs.com/package/@ng-bootstrap/ng-bootstrap). License: [MIT](https://opensource.org/licenses/MIT)
+>- 4.0.0 of [bootstrap](https://www.npmjs.com/package/bootstrap). License: [MIT](https://opensource.org/licenses/MIT)
+>- 3.2.1 of [Jquery](https://www.npmjs.com/package/jquery). License: [MIT](https://opensource.org/licenses/MIT)
+>- 9.0.2 of [ngx-translate/core](https://www.npmjs.com/package/@ngx-translate/core). License: [MIT](https://opensource.org/licenses/MIT)
+>- 2.0.1 of [ngx-translate/http-loader](https://www.npmjs.com/package/@ngx-translate/http-loader). License: [MIT](https://opensource.org/licenses/MIT)
+>- 11.1.7 of [ngx-datatable](https://www.npmjs.com/package/@swimlane/ngx-datatable). License: [MIT](https://opensource.org/licenses/MIT)
+>- 5.1.0 of [ngrx/store](https://www.npmjs.com/package/@ngrx/store). License: [MIT](https://opensource.org/licenses/MIT)
+>- 4.3.4 of [bourbon](https://www.npmjs.com/package/bourbon). License: [MIT](https://opensource.org/licenses/MIT)
+>- 4.6.3 of [angulartics2](https://www.npmjs.com/package/angulartics2). License: [MIT](https://opensource.org/licenses/MIT)
+>- 2.5.3 of [core-js](https://www.npmjs.com/package/core-js). License: [MIT](https://opensource.org/licenses/MIT)
+>- 1.5.3 of [jspdf](https://www.npmjs.com/package/jspdf). License: [MIT](https://opensource.org/licenses/MIT)
+>- 0.8.0 of [marked](https://www.npmjs.com/package/marked). License: [MIT](https://opensource.org/licenses/MIT)
+>- 5.5.6 of [rxjs](https://www.npmjs.com/package/rxjs). License: [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
+>- 3.3.1 of [screenfull](https://www.npmjs.com/package/screenfull). License: [MIT](https://opensource.org/licenses/MIT)
+>- 0.4.19 of [xml2js](https://www.npmjs.com/package/xml2js). License: [MIT](https://opensource.org/licenses/MIT)
+>- 1.2.2 of [ng2-smart-table](https://www.npmjs.com/package/ng2-smart-table). License: [MIT](https://opensource.org/licenses/MIT)
+>- 4.1.2 of [ng2-toastr](https://www.npmjs.com/package/ng2-toastr). License: [ISC](https://opensource.org/licenses/ISC)
+>- 1.4.9 of [ngx-ui-switch](https://www.npmjs.com/package/ngx-ui-switch). License: [MIT](https://opensource.org/licenses/MIT)
+>- 4.2.0 of [ng2-validation](https://www.npmjs.com/package/ng2-validation). License: [MIT](https://opensource.org/licenses/MIT)
+>- 0.8.18 of [zone.js](https://www.npmjs.com/package/zone.js?activeTab=readme). License: [MIT](https://opensource.org/licenses/MIT)
+>- 2.2.5 of [web-animations-js](https://www.npmjs.com/package/web-animations-js). License: [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
  
 - For the server:
->- 1.12.1 of [nodemon](https://www.npmjs.com/package/nodemon). License: [MIT](https://opensource.org/licenses/)
->- 4.16.2 of [express](https://www.npmjs.com/package/express). License: [MIT](https://opensource.org/licenses/) and 3.0.0 of [express-handlebars](https://www.npmjs.com/package/express-handlebars). License: [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
->- 4.13.1 [moongose](https://www.npmjs.com/package/mongoose). License: [MIT](https://opensource.org/licenses/)
->- 2.6.0 of [async](https://www.npmjs.com/package/async). License: [MIT](https://opensource.org/licenses/)
-
+>- 1.0.5 of [k3rn31p4nic/google-translate-api](https://www.npmjs.com/package/@k3rn31p4nic/google-translate-api). License: [GPL-3.0](https://www.gnu.org/licenses/gpl-3.0.html)
+>- 1.12.1 of [nodemon](https://www.npmjs.com/package/nodemon). License: [MIT](https://opensource.org/licenses/MIT)
+>- 4.16.2 of [express](https://www.npmjs.com/package/express). License: [MIT](https://opensource.org/licenses/MIT) and 3.0.0 of [express-handlebars](https://www.npmjs.com/package/express-handlebars). License: [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
+>- 4.13.1 [moongose](https://www.npmjs.com/package/mongoose). License: [MIT](https://opensource.org/licenses/MIT)
+>- 2.6.0 of [async](https://www.npmjs.com/package/async). License: [MIT](https://opensource.org/licenses/MIT)
+>- 0.0.3 of [bcrypt-nodejs](https://www.npmjs.com/package/bcrypt-nodejs). License: [MIT](https://opensource.org/licenses/MIT)
+>- 1.18.2 of [body-parser](https://www.npmjs.com/package/body-parser). License: [MIT](https://opensource.org/licenses/MIT)
+>- 5.0.0 of [fs-extra](https://www.npmjs.com/package/fs-extra). License: [MIT](https://opensource.org/licenses/MIT)
+>- 0.5.1 of [jwt-simple](https://www.npmjs.com/package/jwt-simple). License: [MIT](https://opensource.org/licenses/MIT)
+>- 2.19.1 of [moment](https://www.npmjs.com/package/moment). License: [MIT](https://opensource.org/licenses/MIT)
+>- 2.87.0 of [request](https://www.npmjs.com/package/request). License: [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
 On the other hand, specific NPM libraries have been installed for some functionalities:
 - For the client:
 >- For the HTTP requests, the version 1.0.0-beta.2 of the library [@auth0/angular-jwt](https://www.npmjs.com/package/@auth0/angular-jwt) is used
->- For graphic representations [d3](https://www.npmjs.com/package/d3) has been installed. Version 5.7.1 of @types/d3 and 1.2.2 of @types/d3-shape
->- Fingerprint2 version 2.0.0 (https://www.npmjs.com/package/fingerprintjs2) is used to obtain the information of the device being used to access the platform.
+>- For graphic representations [d3](https://www.npmjs.com/package/d3). License: [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause) has been installed. Version 5.7.1 of @types/d3 and 1.2.2 of @types/d3-shape
+>- version 2.0.0 of [Fingerprint2](https://www.npmjs.com/package/fingerprintjs2). License: [MIT](https://opensource.org/licenses/MIT) is used to obtain the information of the device being used to access the platform.
 >- Version 0.24.1 of [angular-calendar](https://www.npmjs.com/package/angular-calendar) is used to work with the date entries of the platform.
 >- For data encryption, version 0.7.1 of [js-sha512](https://www.npmjs.com/package/js-sha512) is used and for the reverse process, version 2.2.0 of [jwt-decode](https://www.npmjs.com/package/jwt-decode) is used.
 >- Version 7.12.9 of [sweetalert2](https://www.npmjs.com/package/sweetalert2) is used for platform popups.
 - For the server
->- For emailing tasks: 4.4.0 nodemailer and 2.0.0 nodemailer-express-handlebars.
->- For communication with Azure: 0.10.6 of azure-sb
->- To use the Authy application as 2FA: 1.4.0 of authy and 1.1.4 of authy-client
+>- For emailing tasks: 4.4.0 [nodemailer](https://www.npmjs.com/package/nodemailer). License: [MIT](https://opensource.org/licenses/MIT) and 2.0.0 [nodemailer-express-handlebars](https://www.npmjs.com/package/nodemailer-express-handlebars). License: [MIT](https://opensource.org/licenses/MIT).
+>- For communication with Azure: 0.10.6 of [azure-sb](https://www.npmjs.com/package/azure-sb). License: [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
+>- To use the Authy application as 2FA: 1.4.0 of [authy](https://www.npmjs.com/package/authy). License: [MIT](https://opensource.org/licenses/MIT) and 1.1.4 of [authy-client](https://www.npmjs.com/package/authy-client). License: [MIT](https://opensource.org/licenses/MIT)
 >- For data encryption, version 0.7.0 of [js-sha512](https://www.npmjs.com/package/js-sha512) is used
 
 In addition to this, Javascript scripts and JSON files have been added as libraries to optimize the programming of different functionalities for the client:

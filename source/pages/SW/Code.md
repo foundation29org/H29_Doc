@@ -195,6 +195,8 @@ On the other hand, specific NPM libraries have been installed for some functiona
 >- For communication with Azure: 0.10.6 of [azure-sb](https://www.npmjs.com/package/azure-sb). License: [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 >- To use the Authy application as 2FA: 1.4.0 of [authy](https://www.npmjs.com/package/authy). License: [MIT](https://opensource.org/licenses/MIT) and 1.1.4 of [authy-client](https://www.npmjs.com/package/authy-client). License: [MIT](https://opensource.org/licenses/MIT)
 >- For data encryption, version 0.7.0 of [js-sha512](https://www.npmjs.com/package/js-sha512) is used. License: [MIT](https://opensource.org/licenses/MIT)
+>- For storage, version 12.3.0 of [azure/storage-blob](https://www.npmjs.com/package/@azure/storage-blob) is used. License: [MIT](https://opensource.org/licenses/MIT)
+>- For storage, version 2.10.3 of [azure-storage](https://www.npmjs.com/package/azure-storage) is used. License: [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
 In addition to this, Javascript scripts and JSON files have been added as libraries to optimize the programming of different functionalities for the client:
 - Javascript scripts:

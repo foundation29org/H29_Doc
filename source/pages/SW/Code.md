@@ -183,17 +183,18 @@ On the one hand, among all those found in this file, we can mainly highlight tha
 
 On the other hand, specific NPM libraries have been installed for some functionalities:
 - For the client:
->- For the HTTP requests, the version 1.0.0-beta.2 of the library [@auth0/angular-jwt](https://www.npmjs.com/package/@auth0/angular-jwt) is used
->- For graphic representations [d3](https://www.npmjs.com/package/d3). License: [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause) has been installed. Version 5.7.1 of @types/d3 and 1.2.2 of @types/d3-shape
->- version 2.0.0 of [Fingerprint2](https://www.npmjs.com/package/fingerprintjs2). License: [MIT](https://opensource.org/licenses/MIT) is used to obtain the information of the device being used to access the platform.
->- Version 0.24.1 of [angular-calendar](https://www.npmjs.com/package/angular-calendar) is used to work with the date entries of the platform.
->- For data encryption, version 0.7.1 of [js-sha512](https://www.npmjs.com/package/js-sha512) is used and for the reverse process, version 2.2.0 of [jwt-decode](https://www.npmjs.com/package/jwt-decode) is used.
->- Version 7.12.9 of [sweetalert2](https://www.npmjs.com/package/sweetalert2) is used for platform popups.
+>- For the HTTP requests, the version 1.0.0-beta.2 of the library [@auth0/angular-jwt](https://www.npmjs.com/package/@auth0/angular-jwt) is used. License: [MIT](https://opensource.org/licenses/MIT)
+>- For graphic representations [d3](https://www.npmjs.com/package/d3) has been installed. License: [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause) Version 5.7.1 of @types/d3 and 1.2.2 of @types/d3-shape
+>- version 2.0.0 of [Fingerprint2](https://www.npmjs.com/package/fingerprintjs2) is used to obtain the information of the device being used to access the platform. License: [MIT](https://opensource.org/licenses/MIT)
+>- Version 0.24.1 of [angular-calendar](https://www.npmjs.com/package/angular-calendar) is used to work with the date entries of the platform. License: [MIT](https://opensource.org/licenses/MIT)
+>- For data encryption, version 0.7.1 of [js-sha512](https://www.npmjs.com/package/js-sha512) is used and for the reverse process, version 2.2.0 of [jwt-decode](https://www.npmjs.com/package/jwt-decode) is used. License: [MIT](https://opensource.org/licenses/MIT)
+>- Version 7.12.9 of [sweetalert2](https://www.npmjs.com/package/sweetalert2) is used for platform popups. License: [MIT](https://opensource.org/licenses/MIT)
+
 - For the server
 >- For emailing tasks: 4.4.0 [nodemailer](https://www.npmjs.com/package/nodemailer). License: [MIT](https://opensource.org/licenses/MIT) and 2.0.0 [nodemailer-express-handlebars](https://www.npmjs.com/package/nodemailer-express-handlebars). License: [MIT](https://opensource.org/licenses/MIT).
 >- For communication with Azure: 0.10.6 of [azure-sb](https://www.npmjs.com/package/azure-sb). License: [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 >- To use the Authy application as 2FA: 1.4.0 of [authy](https://www.npmjs.com/package/authy). License: [MIT](https://opensource.org/licenses/MIT) and 1.1.4 of [authy-client](https://www.npmjs.com/package/authy-client). License: [MIT](https://opensource.org/licenses/MIT)
->- For data encryption, version 0.7.0 of [js-sha512](https://www.npmjs.com/package/js-sha512) is used
+>- For data encryption, version 0.7.0 of [js-sha512](https://www.npmjs.com/package/js-sha512) is used. License: [MIT](https://opensource.org/licenses/MIT)
 
 In addition to this, Javascript scripts and JSON files have been added as libraries to optimize the programming of different functionalities for the client:
 - Javascript scripts:

@@ -29,7 +29,7 @@ The Health29 platform has been developed as a Platform as a Service (PaaS) in Az
 	<img width="400px" src="../../_images/F29API_component.jpg">
 </p>
 
-**The [Monarch](https://api.monarchinitiative.org/) API**, is an external API that is used for the diagnostic functions for the different roles of the Health29 platform. 
+**The [Monarch](https://api.monarchinitiative.org/) API**, is an external API that is used to obtain symptom information. 
 
 <p style="text-align: center;">
 	<img width="300px" src="../../_images/monarchAPI_component.jpg">
@@ -131,10 +131,6 @@ And access the two that uses the Health29 platform from these links:
 <p style="text-align: center;">
 	<img width="400px" src="../../_images/blobs_component.jpg">
 </p>
-
-### 2.3.6. Other services
-- The [Genomics Functions apps](https://portal.azure.com/#blade/WebsitesExtension/FunctionsIFrameBlade/id/%2Fsubscriptions%2F53348303-e009-4241-9ac7-a8e4465ece27%2FresourceGroups%2Fhealth29%2Fproviders%2FMicrosoft.Web%2Fsites%2FGenomicServices) for phenolyze and exomize tasks. It is an Azure service.
-- The [DiagnosisApi](https://portal.azure.com/#@foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/phenotypeBot/providers/Microsoft.Web/sites/DiagnosisApi/appServices) is an App Service of Azure that is used for consulting the symptons of a diagnose. It is an Azure service.
 
 ### 2.3.7. Databases
 We have several separate collections in two databases, one for accounts and general things, and one for patient data. 

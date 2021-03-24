@@ -531,82 +531,47 @@ constructor ... (...,private blob: BlobStorageMedicalCareService,...)
 this.blob.uploadToBlobStorage(this.accessToken, <files>, filename, index1, index2);
 ```
 
-In addition to this, the HTTP headers have to be configured to be able to use this service in the auth.interceptor.ts file:
+In addition to this, In order to perform operations with the Blobs, we need the sasToken. src\app\shared\services\api-dx29-server.service.ts file on the client:
 
 ```
- if(req.url.indexOf('https://blobgenomics.blob.core.windows.net/')!==-1){
-  isExternalReq = true;
-  const headers = new HttpHeaders({
-    'Access-Control-Allow-Origin':'*',
-    'Ocp-Apim-Subscription-Key': 'lXaW8+GnmQuHYVku3GWEjZnRhi9hv5u7v2kGvRiUQR6/PTlJuIZT+hyf+nUgLGTSpIToheyZ7oXyX34+q3s63g=='
-  });
-  authReq = req.clone({ headers});//'Content-Type',  'application/json'
+getAzureBlobSasToken(containerName){
+        return this.http.get(environment.api+'/api/getAzureBlobSasTokenWithContainer/'+containerName)
+        .map( (res : any) => {
+            return res.containerSAS;
+        }, (err) => {
+            console.log(err);
+            return err;
+        })
+    }
+
+```
+
+On the server:
+
+```
+function getAzureBlobSasTokenWithContainer (req, res){
+  var containerName = req.params.containerName;
+
+  var startDate = new Date();
+  var expiryDate = new Date();
+  startDate.setTime(startDate.getTime() - 5*60*1000);
+  expiryDate.setTime(expiryDate.getTime() + 24*60*60*1000);
+
+  var containerSAS = storage.generateBlobSASQueryParameters({
+      expiresOn : expiryDate,
+      permissions: storage.ContainerSASPermissions.parse("rwdlac"),
+      protocol: storage.SASProtocol.Https,
+      containerName: containerName,
+      startsOn: startDate,
+      version:"2017-11-09"
+
+    },sharedKeyCredentialGenomics).toString();
+  res.status(200).send({containerSAS: containerSAS})
 }
 
-if(req.url.indexOf('https://health29support.blob.core.windows.net/')!==-1){
-  isExternalReq = true;
-  const headers = new HttpHeaders({
-    'Access-Control-Allow-Origin':'*',
-    'Ocp-Apim-Subscription-Key': 'g/KX0iFgXuPQMHDDLWYDXJDihvPTMv9/Uyp2lsWGu81azji7i0oPh21R3vjnn1oDGIHjsYsRIEEuR5F8PFrbAw=='
-  });
-  authReq = req.clone({ headers});//'Content-Type',  'application/json'
-}
-
-```
-### 2.4.6. Other services
-The **[DiagnosisApi](https://portal.azure.com/#@foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/phenotypeBot/providers/Microsoft.Web/sites/DiagnosisApi/appServices)** is an App Service of Azure that is used for consulting the symptons of a diagnose.
-To create it from azure you must create an [App service of Azure](https://docs.microsoft.com/en-US/azure/app-service/).
-
-It is used in the webapp client establishing a REST communication:
 ```
 
-let httpParams = new HttpParams();
-hposStrins.forEach(id => {
-  httpParams = httpParams.append('symtomCodes', id);
-});
-[...]
-this.subscription.add( this.http.get('https://diagnosisapi.azurewebsites.net/api/Consulting/GetSymptomsFromCodes',{params: httpParams})
-  .subscribe( (res : any) => {
-  	 // Get the symptoms codes OK
-  }, (err) => {
-	// Do something when error
-}));
-```
-And the configuration of the headers (auth.interceptor.ts) to use this service is:
-```
-if(req.url.indexOf('https://diagnosisapi.azurewebsites.net/api/Consulting')!==-1){
-  isExternalReq = true;
-  const headers = new HttpHeaders({
-    'Access-Control-Allow-Origin':'*'
-  });
-  authReq = req.clone({ headers});//'Content-Type',  'application/json'
-}
-```
-
-In the same way, we can access and use the **Genomics Functions apps**.
-It is used in the webapp client establishing a REST communication:
-```
-this.subscription.add( this.http.post('https://genomicservices.azurewebsites.net/api/exomize?code=p/aGykMRV8KiTfo8AXO8yDjHYdImgRjjasrGu8eaBVn7U75jf1DtmQ==',jsonfile)
-      .subscribe( (res : any) => {
-  .subscribe( (res : any) => {
-  	// Result of exomize function OK
-  }, (err) => {
-	// Do something when error
-}));
-```
-
-And the configuration of the headers (auth.interceptor.ts) to use this functions is:
-```
-if(req.url.indexOf('https://genomicservices.azurewebsites.net/api/exomize')!==-1){
-  isExternalReq = true;
-  const headers = new HttpHeaders({
-    'Access-Control-Allow-Origin':'*'
-  });
-  authReq = req.clone({ headers});//'Content-Type',  'application/json'
-}
-```
-
-### 2.4.7. Databases
+### 2.4.6. Databases
 The databases are created in Azure as [Azure Cosmos DB account](https://docs.microsoft.com/en-US/azure/cosmos-db/).To create it you just have to select in the marketplace: "Azure Cosmo db" and configure it.
 
 As mentioned throughout the development of this document, there will be 4 databases: two for the test and development environments, and two for the production environment.
@@ -620,7 +585,7 @@ Each database will be composed of some collections that will be accessed from th
 
 In the following sections we will explain how this connection between Health29 and Azure's databases is made, and we will go deeper into each of them by explaining the structure and layout of the collections they contain in each case.
 
-#### 2.4.7.1. Databases and health29 communication
+#### 2.4.6.1. Databases and health29 communication
 
 As indicated above, the communication is established using mongoose, so for each model or scheme in a database collection, we will have
 ```
@@ -633,7 +598,7 @@ module.exports = conndbaccounts.model(<Collection name>,<schema name>)
 
 ```
 
-#### 2.4.7.2. DDBB: Accounts
+#### 2.4.6.2. DDBB: Accounts
 **Alerts**
 In this collection are saved the notifications or alerts created by the administrator or super administrator profiles, indicating the group of users (receivers) to which they will be sent/displayed. It also includes fields to manage the language of the notification.
 ```
@@ -886,7 +851,7 @@ const UserSchema = Schema({
 ```
 
 
-#### 2.4.7.3. DDBB: Data
+#### 2.4.6.3. DDBB: Data
 
 In all the collections of this database, the information entered by the patient in the Health29 platform will be saved. Thus, for each of the sections that appear in it, the information relating to it will be saved in the corresponding collection of this database.
 
@@ -1106,7 +1071,7 @@ const WeightSchema = Schema({
 })
 ```
 
-#### 2.4.7.4. Collections relationship
+#### 2.4.6.4. Collections relationship
 
 The following diagram shows a summary of the relationships between the different database collections for each environment:
 
@@ -1114,12 +1079,12 @@ The following diagram shows a summary of the relationships between the different
 	<img width="800px" src="../../_images/ddbb_relationship.jpg">
 </p>
 
-### 2.4.8. Multilanguage
+### 2.4.7. Multilanguage
 The Health29 platform has the option of being displayed in several languages for the user. In particular, it is implemented for English, Spanish and Dutch.
 
 To achieve this different implementations will be made in the client and the server of the webapp.
 
-#### 2.4.8.1. Multilanguage in client
+#### 2.4.7.1. Multilanguage in client
 On the one hand, the client uses the **[ngx-translate](https://www.npmjs.com/package/@ngx-translate/core) library**.
 For that, version 9.0.2 of the core has been installed in the project:
 ```
@@ -1206,12 +1171,12 @@ This function will be called when the user changes the language of the platform.
 On the other hand, it has already been commented throughout this document that an Azure translation service is used for certain functions: **the cognitive service Translator text**. This has been explained in section 2.4.3.3. of this document at code level and in section 2.3.3.3. at component level.
 
 
-#### 2.4.8.2. Multilanguage in server
+#### 2.4.7.2. Multilanguage in server
 On the server, in the superadmin language controller (controllers/superadmin/langs.js) you can manage new languages.
 
 On the other hand, **different views** have been implemented (one for each language in which we want to use the health29 platform) which will be selected according to the language information provided by the customer in their requests.
 
-### 2.4.9. Second factor autenthication
+### 2.4.8. Second factor autenthication
 The 2FA was incorporated in Health29 for the login on the platform of certain groups of patients.
 
 Initially, an analysis was made of the different options that could be used for implementation, concluding in Authy.

@@ -66,7 +66,20 @@ The src folder has the following:
 
 - The **assets folder**: It contains all the information that will be accessible from any url. Css files, js, images, language files, jsons listing countries, types of subscriptions, frequently asked questions for each group of patients, etc. It will be the only visible folder when a build is made for production.
 
-- The **environments folder**. This folder contains one file for each of your destination environments, each exporting simple configuration variables to use in your application. The files are replaced on-the-fly when you build your app. You might use a different API endpoint for development than you do for production or maybe different analytics tokens. You might even use some mock services. Either way, the CLI has you covered. At the moment url of the api, and fitbit credentials
+- The **environments folder**. This folder contains one file for each of your destination environments, each exporting simple configuration variables to use in your application. The files are replaced on-the-fly when you build your app. You might use a different API endpoint for development than you do for production or maybe different analytics tokens. You might even use some mock services. Either way, the CLI has you covered.
+
+```
+export const environment = {
+  production: true,
+  api: undefined, //Server URL: 'http://<direction>:<port>'
+  blobAccessToken:undefined, // Blob access information: {sasToken:null,blobAccountUrl: 'https://<blob_name>.blob.core.windows.net'}
+  keyCognitiveMicrosoft:undefined, // key Microsoft Cognitive Services
+  keyF29api:undefined, // f29Bio sevice URL
+  f29api: 'undefined', // f29api service URL
+  healthbot: 'undefined' // Azure healthbot service
+};
+
+```
 
 - **Some files**:
 >- favicon.ico: Every site wants to look good on the bookmark bar. Get started with your very own Angular icon
@@ -215,32 +228,6 @@ The functions that have been implemented to perform actions on the Azure service
 
 It can be consulted at the following link: [API Foundation29](https://f29api.northeurope.cloudapp.azure.com/index.html).
 And the functionality and methodology of use is described in the qnamaker section of this document (2.4.3.2. Qna maker)
-
-Some functions to use the monarch API from this have also been included in this API. But this is not being used at the moment in health29 and the calls to the **monarch API** are executed directly, without intermediaries.
-
-- Request for list of related conditions
-```
-request({
-url: https://api.monarchinitiative.org/api/sim/search?is_feature_set=true&metric=phenodigm&id=HP:0001250&id=HP:0002133&limit=100&taxon=9606’,
-json: true
-}
-```
-- To open a new link for information on a symptom
-```
-href="https://monarchinitiative.org/phenotype/'+res[j].id+'
-```
-
-- To obtain information about a disease:
-```
-href=”https://monarchinitiative.org/disease/{{value.id}}#overview 
-```
-
-And with this API, the configuration of the headers (auth.interceptor.ts) to establish the connection with Azure's service are sent are like:
-```
-if(req.url.indexOf('https://api.monarchinitiative.org/api/')!==-1){
-  isExternalReq = true;
-}
-```
 
 ### 2.4.3. Azure cognitive services
 #### 2.4.3.1. Qna maker
@@ -411,7 +398,7 @@ BotChat.App({
     botConnection: botConnection,
     user: user,
     locale: this.user.lang,
-    bot: {id: ''},//id: 'h29bot-giochop' //id: 'zebrahealthbot'
+    bot: {id: ''},
     resize: 'detect'
     // sendTyping: true,    // defaults to false. set to true to send 'typing' activities to bot (and other users) when user is typing
 }, botContainer);
@@ -439,11 +426,7 @@ if(req.url.indexOf('healthbot')!==-1){
 }
 ```
 
-As already indicated, once the bot is embedded in the webapp you will have to indicate it to initialize the desired scenarios in each case. These scenarios are designed, implemented and configured in:
-
-- [Healthbot](https://us.healthbot.microsoft.com/account/zebrahealthbot/scenarios/manage) of the development environment.
-- [Healthbot](https://eu.healthbot.microsoft.com/account/healthbot-test-tjo3h51/scenarios/manage) of the test environment.
-- [Healthbot](https://eu.healthbot.microsoft.com/account/h29bot-giochop/scenarios/manage) of the production environment.
+As already indicated, once the bot is embedded in the webapp you will have to indicate it to initialize the desired scenarios in each case.
 
 In the microsoft documentation there are [guides](https://docs.microsoft.com/en-us/healthbot/quickstart-createyourfirstscenario) to help you create these scenarios.
 

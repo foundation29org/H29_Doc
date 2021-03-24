@@ -2,11 +2,14 @@
 
 ## 1.2. Code repositories
 
-Each environment has been created as an independent project, 
-- [Develop client](https://f29.visualstudio.com/Health29/_git/dev-client) and [develop server](https://f29.visualstudio.com/Health29/_git/dev-server)
-- [Test client](https://f29.visualstudio.com/Health29/_git/test-client) and [test server](https://f29.visualstudio.com/Health29/_git/test-server)
-- [Production client](https://f29.visualstudio.com/Health29/_git/pro-client) and [production server](https://f29.visualstudio.com/Health29/_git/pro-server)
+The code is open source, and is public on GitHub. 
+- [Client](https://github.com/foundation29org/H29_Client) and [Server](https://github.com/foundation29org/H29_Server)
 
+For the development and versioning of the code we will follow the GitFlow defined in: [GitFlow](https://blog.axosoft.com/gitflow/) 
+
+<p style="text-align: center;">
+	<img width="500px" src="../../_images/gitflow.jpg">
+</p>
 
 Each environment will be composed of two projects: client and server, using a REST architecture.
 Therefore, it will have the characteristics of this type of implementation. Among them, we can mainly highlight:

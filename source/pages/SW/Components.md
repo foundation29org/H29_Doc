@@ -116,17 +116,16 @@ Two "Storage accounts (classic)" container called "blobgenomics" adn "health29su
 For the first one:
 - Medical care section. Here, one container per patient is created to store their medical information.
 - Diagnosis section. As in the previous point, one container per patient is created to store the diagnostic information.
-- User profile section. Used to export patient data in PDF or JSON format. A container per patient is also created.
 - Genotype section. One container per patient is created to store the genotype data of the patient.
 - Phenotype section. Same as above but for saving the phenotype data.
 
 The second has been created to manage the data of support section. Unlike the previous ones, only a container named "filessupport" is created for this data to store the data related to the Health29 platform support.
 
 You can configure and use this azure service by following the steps in the [Microsoft guide](https://docs.microsoft.com/es-es/azure/storage/blobs/storage-blobs-introduction). 
-And access the two that uses the Health29 platform from these links:
+We use two different blobs:
 
-- [blobgenomics](https://portal.azure.com/#@foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/health29/providers/Microsoft.Storage/storageAccounts/blobgenomics/containersList).
-- [health29support](https://portal.azure.com/#@foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/health29/providers/Microsoft.Storage/storageAccounts/health29support/overview)
+- blobgenomics
+- health29support
 
 <p style="text-align: center;">
 	<img width="400px" src="../../_images/blobs_component.jpg">
@@ -137,11 +136,11 @@ We have several separate collections in two databases, one for accounts and gene
  
 The development and test environments share the same databases, while the production ones do not. So, in total we have 4 databases:
 - Two for accounts
->- Development and testing: [health29-accounts-test](https://portal.azure.com/#@foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/health29/providers/Microsoft.DocumentDb/databaseAccounts/health29-accounts-test/overview)
->- Production: [health29-accounts-final](https://portal.azure.com/#@foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/health29/providers/Microsoft.DocumentDb/databaseAccounts/health29-accounts-final/overview)
+>- Development and testing
+>- Production
 - Two for patient data
->- Development and testing: [health29-data-test](https://portal.azure.com/#@foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/health29/providers/Microsoft.DocumentDb/databaseAccounts/health29-data-test/overview)
->- Production: [health29-data-final](https://portal.azure.com/#@foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/health29/providers/Microsoft.DocumentDb/databaseAccounts/health29-data-final/overview)
+>- Development and testing
+>- Production
 
 
 <p style="text-align: center;">

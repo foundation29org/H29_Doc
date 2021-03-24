@@ -243,35 +243,7 @@ if(req.url.indexOf('https://api.monarchinitiative.org/api/')!==-1){
 ```
 
 ### 2.4.3. Azure cognitive services
-#### 2.4.3.1. Computer Vision
-To create it from azure you just have to select the cognitive service in the marketplace: "ComputerVision".
-The configuration has no complexity, just select the Price tier and the resource group.
-
-It is used in the webapp client, as it has been indicated until now, establishing a REST communication:
-```
-this.subscription.add( this.http.post('https://westeurope.api.cognitive.microsoft.com/vision/v1.0/ocr?language='+this.cognitiveServicesLanguage +'&detectOrientation=true', data)
-    .subscribe( (res : any) => {
-    	// Do something when result OK
-	}, (err) => {
-     // Do something when error
-}));
-```
-And the configuration of the headers (auth.interceptor.ts) to use this service is:
-```
-if(req.url.indexOf('api.cognitive.microsoft.com/vision')!==-1){
-  isExternalReq = true;
-  const headers = new HttpHeaders({
-    'Ocp-Apim-Subscription-Key': '992ab4c1c5ff4412a052b0d170feeab8',
-    'Content-Type': 'application/octet-stream'
-  });
-  authReq = req.clone({ headers});//'Content-Type',  'application/json'
-}
-```
-As it has been said before this is used for the symptom extraction, so the call is made in phenotypes.component.ts.
-
-All the commands and settings for establishing this communication are described in the [Microsoft documentation](https://docs.microsoft.com/bs-latn-ba/azure/cognitive-services/computer-vision/vision-api-how-to-topics/howtocallvisionapi).
-
-#### 2.4.3.2. Qna maker
+#### 2.4.3.1. Qna maker
 To create it from azure you just have to select the cognitive service in the marketplace: "Qna maker".
 The configuration has no complexity, just:
 - Enter a name
@@ -301,7 +273,7 @@ And with the configuration of the headers (auth.interceptor.ts) to use this serv
 if(req.url.indexOf('https://f29api.northeurope.cloudapp.azure.com')!==-1){
   isExternalReq = true;
   const headers = new HttpHeaders({
-    'Ocp-Apim-Subscription-Key': '8d7bca89da4e42c1bf79b292207c9635'
+    'Ocp-Apim-Subscription-Key': environment.keyF29api
   });
   authReq = req.clone({ headers});
 }
@@ -309,7 +281,7 @@ if(req.url.indexOf('https://f29api.northeurope.cloudapp.azure.com')!==-1){
  
 All the commands and settings for establishing this communication are described in the [Microsoft documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/quickstarts/quickstart-rest-curl).
 
-#### 2.4.3.3. Translator
+#### 2.4.3.2. Translator
 To create it from azure you just have to select the cognitive service in the marketplace: "Translator text".
 The configuration has no complexity, just select the Price tier and the resource group.
 
@@ -348,7 +320,7 @@ And the configuration of the headers (auth.interceptor.ts) to use this service i
 ```
 if(req.url.indexOf('https://api.cognitive.microsoft.com/sts/v1.0/issueToken')!==-1){
   isExternalReq = true;
-  authReq = req.clone({ headers: req.headers.set('Ocp-Apim-Subscription-Key',  '7174b790ef59409280f77dd94c34a9d2' ), responseType: 'text'});
+  authReq = req.clone({ headers: req.headers.set('Ocp-Apim-Subscription-Key',  environment.keyCognitiveMicrosoft ), responseType: 'text'});
 }
 
 if(req.url.indexOf('https://api.microsofttranslator.com')!==-1){
@@ -357,7 +329,7 @@ if(req.url.indexOf('https://api.microsofttranslator.com')!==-1){
 }
 if(req.url.indexOf('https://api.cognitive.microsofttranslator.com')!==-1){
   isExternalReq = true;
-  authReq = req.clone({ headers: req.headers.set('Ocp-Apim-Subscription-Key',  '7174b790ef59409280f77dd94c34a9d2' ) });
+  authReq = req.clone({ headers: req.headers.set('Ocp-Apim-Subscription-Key',  environment.keyCognitiveMicrosoft ) });
 }
 ```
 
@@ -458,7 +430,6 @@ In addition to this, the HTTP headers have to be configured to be able to use th
 
 ```
 if(req.url.indexOf('healthbot')!==-1){
-  console.log('epasa');
   isExternalReq = true;
   const headers = new HttpHeaders({
     'Content-Type':  'text/html; charset=utf-8',

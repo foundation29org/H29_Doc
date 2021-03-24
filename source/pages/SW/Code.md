@@ -610,25 +610,26 @@ const AlertsSchema = Schema({
     launchDate: {type: Date, default: Date.now},
     endDate: {type: Date},
     url: {type:Object, default:[]},
-	role: { type: String, enum: ['SuperAdmin', 'Admin', 'User', 'Clinical', 'Lab'], default: 'User'},
+    role: { type: String, enum: ['SuperAdmin', 'Admin', 'User'], default: 'User'},
     color: {type:String, default:""},
     logo: {type:String, default:""},
     importance: {type:String, default:""},
     receiver: {type:Object, default:[]},
-	createdBy: { type: Schema.Types.ObjectId, ref: "Group"}
+    createdBy: { type: Schema.Types.ObjectId, ref: "Group"}
 })
+
 ```
 
 **Bot**
 This collection stores the information exchanged between the bot and a user when using the Healthbot direct question scenario.
 ```
 const BotSchema = Schema({
-	lang: {type:String, default:""},
+    lang: {type:String, default:""},
     data: {type: Object, default: []},
-	date: {type: Date, default: Date.now},
-	curatedBy: {type:String, default:""},
-	type: String,
-	createdBy: { type: Schema.Types.ObjectId, ref: "Group"}
+    date: {type: Date, default: Date.now},
+    curatedBy: {type:String, default:""},
+    type: String,
+    createdBy: { type: Schema.Types.ObjectId, ref: "Group"}
 })
 
 ```
@@ -648,27 +649,15 @@ const GroupSchema = Schema({
 })
 ```
 
-**Lab**
-Same as the last one but with the labs.
-```
-const LabSchema = Schema({
-	name: {
-		type: String,
-		index: true,
-		unique: true
-  	}
-})
-```
-
 **Lang**
 There will be one entry in this collection for each language you want to use on the Health29 platform
 ```
 const LangSchema = Schema({
-	name: {	type: String,	unique: true,	required: true },
-	code: {	type: String,	index: true,	unique: true,	required: true }
-}, 
-{ versionKey: false // You should be aware of the outcome after set to false
+    name: {type: String, unique: true, required: true },
+    code: { type: String,	index: true, unique: true, required: true }
+}, { versionKey: false // You should be aware of the outcome after set to false
 })
+
 ```
 **Patient**
 In this collection the data of the patients registered in the platform are stored.
@@ -686,28 +675,29 @@ const ParentSchema = Schema({
 })
 
 const PatientSchema = Schema({
-	patientName: String,
-	surname: String,
-	birthDate: Date,
-	citybirth: String,
-	provincebirth: String,
-	countrybirth: String,
-	street: String,
-	postalCode: String,
-	city: String,
-	province: String,
-	country: String,
-	phone1: String,
-	phone2: String,
-	gender: String,
-	siblings: [SiblingSchema],
-	parents: [ParentSchema],
-	createdBy: { type: Schema.Types.ObjectId, ref: "User"},
-	death: Date,
-	notes: {type: String, default: ''},
-	answers: {type: Object, default: []},
-	subscriptionToGroupAlerts:{type:Boolean,default:true}
+    patientName: String,
+    surname: String,
+    birthDate: Date,
+    citybirth: String,
+    provincebirth: String,
+    countrybirth: String,
+    street: String,
+    postalCode: String,
+    city: String,
+    province: String,
+    country: String,
+    phone1: String,
+    phone2: String,
+    gender: String,
+    siblings: [SiblingSchema],
+    parents: [ParentSchema],
+    createdBy: { type: Schema.Types.ObjectId, ref: "User"},
+    death: Date,
+    notes: {type: String, default: ''},
+    answers: {type: Object, default: []},
+    subscriptionToGroupAlerts:{type:Boolean,default:true}
 })
+
 ```
 
 **Prom**
@@ -739,12 +729,13 @@ const PromSchema = Schema({
 Each of the above datapoints is encapsulated within a section. The different sections or groupings of datapoints that can appear on the platform for each group of patients are saved in this collection.
 ```
 const PromSectionSchema = Schema({
-	name: String,
-	description: String,
-	enabled: {type: Boolean, default: true},
-	order: {type: Number, default: 0},
-	createdBy: { type: Schema.Types.ObjectId, ref: "Group"}
+    name: String,
+    description: String,
+    enabled: {type: Boolean, default: true},
+    order: {type: Number, default: 0},
+    createdBy: { type: Schema.Types.ObjectId, ref: "Group"}
 })
+
 ```
 
 **Qna**
@@ -756,6 +747,7 @@ const QnaSchema = Schema({
 	lang: { type: String, required: true},
 	categories:{type:Object,default:[]}
 })
+
 ```
 
 **StructureProms**
@@ -826,7 +818,7 @@ const UserSchema = Schema({
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
     },
 	password: { type: String, select: false, required: true, minlength: [8,'Password too short']},
-	role: { type: String, required: true, enum: ['SuperAdmin', 'Admin', 'User', 'Clinical', 'Lab'], default: 'User'},
+	role: { type: String, required: true, enum: ['Researcher', 'Admin', 'User'], default: 'User'},
 	group: { type: String, required: true, default: 'None'},
 	confirmed: {type: Boolean, default: false},
 	confirmationCode: String,
@@ -847,6 +839,7 @@ const UserSchema = Schema({
 	authyId:{type:String,default:null},
 	authyDeviceId:{type:Object,default:[]},
 	phone: String,
+	subgroup: Number,
 })
 ```
 
@@ -865,23 +858,6 @@ const ClinicalTrialSchema = Schema({
 	date: Date,
 	createdBy: { type: Schema.Types.ObjectId, ref: "Patient"}
 })
-```
-
-Diagnosis
-```
-const DiagnosisSchema = Schema({
-	hasDiagnosis: {type: Boolean, default: false},
-	previousDiagnosis: {type: String, default: null},
-	identifiedGene: {type: String, default: null},
-	evaluation: String,
-	notes: {type: String, default: ''},
-	infoGenesAndConditionsExomizer: {type: Object, default: []},
-	infoGenesAndConditionsPhenolyzer: {type: Object, default: []},
-	relatedConditions: {type: Object, default: []},
-	hasVcf: {type: Boolean, default: false},
-	createdBy: { type: Schema.Types.ObjectId, ref: "Patient"}
-})
-
 ```
 
 Genotype
@@ -930,32 +906,40 @@ const MedicalCareSchema = Schema({
 Medication
 ```
 const MedicationSchema = Schema({
-	drug: Object,
-	dose: String,
-	startDate: {type: Date, default: Date.now},
-	endDate: {type: Date, default: null},
-	sideEffects: {type: Object, default: null},
-	adverseEffects: Object,
-	compassionateUse: {type: String, default: ''},
-	vaccinations: String,
-	vaccinationDate: {type: Date, default: Date.now},
-	notes: {type: String, default: ''},
-	freesideEffects: {type: String, default: ''},
-	createdBy: { type: Schema.Types.ObjectId, ref: "Patient"}
+    drug: Object,
+    dose: String,
+    startDate: {type: Date, default: Date.now},
+    endDate: {type: Date, default: null},
+    sideEffects: {type: Object, default: null},
+    schedule: String,
+    otherSchedule: String,
+    adverseEffects: Object,
+    compassionateUse: {type: String, default: ''},
+    vaccinations: String,
+    vaccinationDate: {type: Date, default: Date.now},
+    notes: {type: String, default: ''},
+    freesideEffects: {type: String, default: ''},
+    createdBy: { type: Schema.Types.ObjectId, ref: "Patient"}
 })
+
 ```
 
 Othermedications
 ```
 const OtherMedicationSchema = Schema({
-	name: String,
-	dose: String,
-	startDate: {type: Date, default: Date.now},
-	endDate: {type: Date, default: null},
-	type: String,
-	notes: String,
-	createdBy: { type: Schema.Types.ObjectId, ref: "Patient"}
+    name: String,
+    dose: String,
+    startDate: {type: Date, default: Date.now},
+    endDate: {type: Date, default: null},
+    type: String,
+    compassionateUse: {type: String, default: ''},
+    freesideEffects: {type: String, default: ''},
+    schedule: String,
+    otherSchedule: String,
+    notes: String,
+    createdBy: { type: Schema.Types.ObjectId, ref: "Patient"}
 })
+
 ```
 
 Patient-proms

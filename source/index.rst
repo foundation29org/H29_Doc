@@ -14,6 +14,9 @@
 .. image:: images/Environments/Azure_App_Services/applicationPhases.jpg
    :width: 0px
 
+.. image:: images/Environments/Code_repositories/gitflow.jpg
+   :width: 0px
+
 .. image:: images/Environments/Code_repositories/Repositories.jpg
    :width: 0px
 

@@ -88,14 +88,24 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">1.3. Build and deploy environments</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#execution">1.3.1. Execution.</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#build-scripts">1.3.2. Build: scripts.</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#deploy">1.3.3. Deploy.</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#kudu-app-service">1.3.3.1. Kudu App Service.</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#semi-automation-of-processes-azure-pipelines">1.3.4. Semi-automation of processes: Azure Pipelines.</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#deploy">1.3.3. Deploy.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#semiutomation-of-processes-azure-pipelines">1.3.4. Semiutomation of processes: Azure Pipelines.</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#setup-azure-pipelines">1.3.4.1. Setup Azure Pipelines.</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#pipeline-for-server-code">1.3.4.1.1. Pipeline for Server code</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pipeline-for-client-code">1.3.4.1.2. Pipeline for Client code</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#keys-and-secrets-for-each-environment">1.3.5. Keys and secrets for each environment.</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#health29-client">1.3.5.1. Health29 client.</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#secret-keys">1.3.5.1.1. Secret keys.</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#environment-deployment-azure-pipelines">1.3.5.1.2. Environment deployment – Azure pipelines.</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#health29-server">1.3.5.2. Health29 server.</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">1.3.5.2.1. Secret keys.</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">1.3.5.2.2. Environment deployment – Azure pipelines.</a></li>
 </ul>
 </li>
 </ul>
@@ -180,12 +190,26 @@
 <li><p>Angular 5 framework for the client.</p></li>
 <li><p>Nodejs for the server.</p></li>
 </ul>
-<p>According to this, different commands will be used to perform the build and deploy tasks of each of the environments.
-The following image shows a scheme with the steps to perform the different tasks ( execution, build and deploy) in a particular environment, “x”.
-All these are analogous in the three Health29 environments: development, production and test.</p>
+<p>According to this, different commands will be used to perform the build and deploy tasks of each of the environments.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;scripts&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;ng&quot;</span><span class="p">:</span> <span class="s2">&quot;ng&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;start&quot;</span><span class="p">:</span> <span class="s2">&quot;ng serve&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;startLocal&quot;</span><span class="p">:</span> <span class="s2">&quot;ng serve --env=local&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;build&quot;</span><span class="p">:</span> <span class="s2">&quot;ng build --env=local&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;buildDev&quot;</span><span class="p">:</span> <span class="s2">&quot;ng build --env=dev&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;buildStaging&quot;</span><span class="p">:</span> <span class="s2">&quot;ng build --env=test&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;buildProd&quot;</span><span class="p">:</span> <span class="s2">&quot;ng build --env=prod&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;test&quot;</span><span class="p">:</span> <span class="s2">&quot;ng test&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;lint&quot;</span><span class="p">:</span> <span class="s2">&quot;ng lint&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;e2e&quot;</span><span class="p">:</span> <span class="s2">&quot;ng e2e&quot;</span>
+  <span class="p">}</span>
+</pre></div>
+</div>
+<p>The following image shows a scheme with the steps to perform the different tasks ( execution, build and deploy) in a particular environment, “x”.</p>
 <p style="text-align: center;">
 	<img width="300px" src="../../_images/Build_deploy.jpg">
-</p><p>In this section we will explain the procedure to follow to perform each of these tasks. Therefore, the following section has been divided into sections to detail the specific steps for each of them.</p>
+</p><p>As we are working with gitflow each branch of the repository corresponds to a specific environment and therefore a different script will be added to perform these tasks on each of the environments.</p>
+<p>In this section we will explain the procedure to follow to perform each of these tasks. Therefore, the following section has been divided into sections to detail the specific steps for each of them.</p>
 <div class="section" id="execution">
 <h2>1.3.1. Execution.<a class="headerlink" href="#execution" title="Permalink to this headline">¶</a></h2>
 <p>To run one of the application environments on our machine and be able to perform the implementation and testing tasks, based on the technologies chosen in our client-server model, we have to perform the following steps:</p>
@@ -195,60 +219,42 @@ All these are analogous in the three Health29 environments: development, product
 </ul>
 <p>So, the first thing to do is to launch the server with “npm run serve”.</p>
 <p>Then, we will see how to launch the client. To do this, first it is necessary to understand the <a class="reference external" href="https://angular.io/guide/workspace-config">configuration and architecture of the workspace of Angular’s projects</a>. In the file package.json we will find the different scripts that have been designed to perform different tasks on the project, such as: the execution, the testing or the build of it.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;scripts&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s2">&quot;ng&quot;</span><span class="p">:</span> <span class="s2">&quot;ng&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;start&quot;</span><span class="p">:</span> <span class="s2">&quot;ng serve&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;build&quot;</span><span class="p">:</span> <span class="s2">&quot;ng build --prod&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;test&quot;</span><span class="p">:</span> <span class="s2">&quot;ng test&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;lint&quot;</span><span class="p">:</span> <span class="s2">&quot;ng lint&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;e2e&quot;</span><span class="p">:</span> <span class="s2">&quot;ng e2e&quot;</span>
-  <span class="p">},</span>
-</pre></div>
-</div>
 <p>In this case, to execute the client of our application we use the command: <a class="reference external" href="https://angular.io/cli/serve">ng serve</a>.</p>
 <p>With this, we will have the Health29 application running at http://localhost:4200/.</p>
+<p>To execute the application of each of the available environments, it will be enough to checkout the corresponding branch. This will work on the code of that branch and therefore what will be deployed in the corresponding environment.</p>
 </div>
 <div class="section" id="build-scripts">
 <h2>1.3.2. Build: scripts.<a class="headerlink" href="#build-scripts" title="Permalink to this headline">¶</a></h2>
-<p>The build is done on the Angular client. As seen in the previous section, using the scripts defined in the package.json file, uring development we’ve been using the ng serve command to build, watch, and serve the application from local memory. But when we are ready to <a class="reference external" href="https://angular.io/guide/deployment">deploy</a>, however, we must use the <a class="reference external" href="https://angular.io/cli/build">ng build</a> command to build the app and deploy the build artifacts elsewhere.</p>
+<p>The build is done on the Angular client. As seen in the previous sections, using the scripts defined in the package.json file, we could build and deploy the application from local memory. But when we are ready to <a class="reference external" href="https://angular.io/guide/deployment">deploy</a> in a environment, we must use the <a class="reference external" href="https://angular.io/cli/build">ng build</a> corresponding command to build the app and deploy the build artifacts elsewhere.</p>
+<p>So that, for each environment we must use:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Local environment: <strong>“npm run build”</strong>. For that use the code that you want.</p></li>
+<li><p>Development environment: <strong>“npm run buildDev”</strong>. For that use the code of <strong>develop</strong> branch.</p></li>
+<li><p>Test enviroment: <strong>“npm run buildStaging”</strong>. For that use the code of <strong>release</strong> branch.</p></li>
+<li><p>Production environment: <strong>“npm run buildProd”</strong>. For that use the code of <strong>main</strong> branch.</p></li>
+</ul>
+</div></blockquote>
 <p>Both ng build and ng serve clear the output folder before they build the project, but only the ng build command writes the generated build artifacts to the output folder.</p>
 <p>The output folder is dist/project-name/ by default. To output to a different folder, change the outputPath in angular.json.</p>
-<p>As we saw in the diagram shown at the beginning of this section, by running ng build –prod we minimize and compress the code. This command will create a new folder called dist, and it will have the project optimized. This dist folder will be the one uploaded to the root of the node server that manages the API. It will also be used to create the mobile apps, adding it to the www folder of the cordoba project.</p>
+<p>As we saw in the diagram shown at the beginning of this section, by runningnpm run buildX we minimize and compress the code. This command will create a new folder called dist, and it will have the project optimized. This dist folder will be the one uploaded to the root of the node server that manages the API. It will also be used to create the mobile apps, adding it to the www folder of the cordoba project.</p>
 </div>
 <div class="section" id="deploy">
 <h2>1.3.3. Deploy.<a class="headerlink" href="#deploy" title="Permalink to this headline">¶</a></h2>
-<p>The deploy tasks can be executed according to the interactions in the master branch of each project. That is, you can configure the listening of the push or commits in the master branch of the project server of a specific environment to automate the deploy of this environment.</p>
-<p>As our server is created in node.js we can use Azure’s <a class="reference external" href="https://docs.microsoft.com/en-us/azure/app-service/deploy-continuous-deployment">continuous deployment</a> service for our App Service. In particular, we are going to use the integrated Kudu App Service compilation server for continuous deployments.
-This configuration is explained in the next subsection.</p>
-<p>However, it should be noted that what has been explained so far is not the best option. That is to say, to carry out the tasks of build and deploy of the environments, as it will be explained in the following section, there are better mechanisms that facilitate the work and with which the process is assured avoiding errors.</p>
-<div class="section" id="kudu-app-service">
-<h3>1.3.3.1. Kudu App Service.<a class="headerlink" href="#kudu-app-service" title="Permalink to this headline">¶</a></h3>
-<p>Access Azure/ App Service/app service name/Deployment slots:</p>
-<p style="text-align: center;">
-    <img width="800px" src="../../_images/pipelines_server_1.jpg">
-</p><p>Select the slot you are going to work on. Go to App Service build service (if the slot was already deployed, click on disconnect):</p>
-<p style="text-align: center;">
-    <img width="800px" src="../../_images/pipelines_server_2.jpg">
-</p><p>On the Configure page, select the Azure DevOps Organization, Project, Repository, and Branch you want to deploy continuously.
-After you configure the build provider, review the settings on the Summary page, and then select Finish.
-New commits in the selected repository and branch now deploy continuously into your App Service app. You can track the commits and deployments on the Deployment Center page.</p>
+<p>The deploy tasks can be executed according to gitflow structure of the project. That is, you can configure the listening of the push or commits in each branch of the project according to a specific environment to automate the deploy of this environment.According to the build that has been executed, a different dist folder will be generated and used by the server. In addition to this, the “config.js” file has to be modified to match the secrets or keys of the corresponding environment.</p>
+<p>As our server is created in node.js we can use <a class="reference external" href="https://docs.microsoft.com/en-us/azure/devops/pipelines/?view=azure-devops">Azure Pipelines</a> for deploy our App Service. This configuration is explained in the next section.</p>
 </div>
-</div>
-<div class="section" id="semi-automation-of-processes-azure-pipelines">
-<h2>1.3.4. Semi-automation of processes: Azure Pipelines.<a class="headerlink" href="#semi-automation-of-processes-azure-pipelines" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="semiutomation-of-processes-azure-pipelines">
+<h2>1.3.4. Semiutomation of processes: Azure Pipelines.<a class="headerlink" href="#semiutomation-of-processes-azure-pipelines" title="Permalink to this headline">¶</a></h2>
 <p>To deploy one of the environments, we could use <a class="reference external" href="https://f29.visualstudio.com/Health29/_build">Azure Pipelines</a>.</p>
 <p>The architecture proposed consists of the construction of CI/CD pipelines which helps you automate steps in your software delivery process, such as initiating code builds, running automated tests, and deploying to a staging or production environment. Automated pipelines remove manual errors, provide standardized development feedback loops and enable fast product iterations.</p>
-<p>Thus, the corresponding pipelines for build and deploy the environment with the changes made should be executed manually. That is, we have 4 pipelines available in the project: one for the client and one for the server, of develop and test environments.</p>
-<ul class="simple">
-<li><p>Develop environment pipelines: <a class="reference external" href="https://f29.visualstudio.com/Health29/_apps/hub/ms.vss-ciworkflow.build-ci-hub?_a=edit-build-definition&amp;id=14">Health29-dev-cli-CI</a> and <a class="reference external" href="https://f29.visualstudio.com/Health29/_apps/hub/ms.vss-ciworkflow.build-ci-hub?_a=edit-build-definition&amp;id=16">Health29-dev-server-CI</a></p></li>
-<li><p>Test environment pipelines: <a class="reference external" href="https://f29.visualstudio.com/Health29/_apps/hub/ms.vss-ciworkflow.build-ci-hub?_a=edit-build-definition&amp;id=18">Health29-test-cli-CI</a> and <a class="reference external" href="https://f29.visualstudio.com/Health29/_apps/hub/ms.vss-ciworkflow.build-ci-hub?_a=edit-build-definition&amp;id=17">Health29-test-server-CI</a></p></li>
-</ul>
-<p>The pipelines of the production environment were not implemented but it is recommendable since deploy is a critical task.</p>
+<p>Thus, the corresponding pipelines for build and deploy the environment with the changes made should be executed according to gitflow. That is, we have 6 pipelines available in the project: one for the client and one for the server, of develop, test and production environments.</p>
+<p>The deployment of the development and test environments will be automatic, so that the pipelines will have the Trigger parameters configured to be launched automatically when a push is made on the corresponding branches. While the production environment will be launched manually to prevent possible errors as it is a critical task.</p>
 <p>For convenience, both build and deploy tasks have been added to these pipelines. In this way, when you want to update any of the environments, you only need to execute the client and server pipelines, in that order. It is important to respect the order since when the build tasks are included, as indicated in the previous sections, it will be necessary to update the node server root with the content of the last client compilation.</p>
-<p>It is important to emphasize here that the title of the section indicated that we make a semiautomation of the processes, this is due to the fact that the execution of the pipelines is manual.</p>
+<p>It is important to emphasize here that the title of the section indicated that we make a semiautomation of the processes, this is due to the fact that the execution of the production pipelines is manual.</p>
 <div class="section" id="setup-azure-pipelines">
 <h3>1.3.4.1. Setup Azure Pipelines.<a class="headerlink" href="#setup-azure-pipelines" title="Permalink to this headline">¶</a></h3>
-<p>Starting from an azure app service and an azure devops project created, the pipelines are implemented as explained in this <a class="reference external" href="https://www.c-sharpcorner.com/article/hosting-angular-application-on-azure-with-cicd/">document</a> with some modifications since, as we have said, the execution of the pipelines will be manual.</p>
+<p>Starting from an azure app service and an azure devops project created, the pipelines are implemented as explained in this <a class="reference external" href="https://www.c-sharpcorner.com/article/hosting-angular-application-on-azure-with-cicd/">document</a> with some modifications since, as we have said, the execution of the production pipelines will be manual.</p>
 <div class="section" id="pipeline-for-server-code">
 <h4>1.3.4.1.1. Pipeline for Server code<a class="headerlink" href="#pipeline-for-server-code" title="Permalink to this headline">¶</a></h4>
 <p>Access Azure/ App Service/app service name/Deployment slots:</p>
@@ -272,16 +278,15 @@ Now go to azure devops/pipelines. A new pipeline should be created and we must r
 <p>Go to Azure DevOps. In the left navigation, select ‘Pipelines’. Then click ‘Builds’. Now you can see, ‘+ New’ drop down. Click it and in the list, select ‘New build pipeline’.</p>
 <p style="text-align: center;">
 	<img width="800px" src="../../_images/pipelines_client_1.jpg">
-</p><p>Then it will take you to select the repository, where your project is hosted. Here select ‘Use the Classic Editor’.</p>
+</p><p>Then it will take you to select the repository, where your project is hosted (Github option). Here select ‘Use the Classic Editor’.</p>
 <p style="text-align: center;">
 	<img width="800px" src="../../_images/pipelines_client_2.jpg">
 </p><p>Then after, you will take to select the Project, and the Branch, which the build pipeline works on.</p>
-<p style="text-align: center;">
-	<img width="800px" src="../../_images/pipelines_client_3.jpg">
-</p><p>Next it asks to select template. Select, ‘Empty Job’.
-Now you can see the screen, where you have to say the steps to take, to build the project. And with this we would have the Pipeline created. Now we have to add Task to perform the different functions that we want to execute in the call to this Pipeline.
-In general, the first thing to do is to indicate that we are going to use Node and its version and download all the libraries we need:</p>
-<ul class="simple">
+<p>Next it asks to select template. Select, ‘Empty Job’.</p>
+<p>Now you can see the screen, where you have to say the steps to take, to build the project. And with this we would have the Pipeline created. Now we have to add Task to perform the different functions that we want to execute in the call to this Pipeline.</p>
+<p>In general, the first thing to do is to indicate that we are going to use Node and its version and download all the libraries we need:</p>
+<blockquote>
+<div><ul class="simple">
 <li><p>Install Node: Type: ‘Node.js’ in the Search box. Select Node.js tool installer and configure it with selecting a version (We will use 8.9.3 version of Node.js)</p></li>
 <li><p>When we have installed Node.js we can use the commands. So, type ‘npm’, in the Search box. Add ‘npm’. Then you can see the panel, where you can define the Task.</p></li>
 </ul>
@@ -295,20 +300,47 @@ In general, the first thing to do is to indicate that we are going to use Node a
 <ul class="simple">
 <li><p>The commands we’ll use are Angular CLI 5 installation and the Angular packs (node modules)</p></li>
 </ul>
+</div></blockquote>
 <p>The next steps would be to include the Tasks with the functions we want to perform during the Pipeline execution. In our case: build and deploy tasks.
-The build command is executed by calling the corresponding script that has been programmed in the client code. In this case, since the client is programmed in Angular, this is defined in the package.json file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;scripts&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s2">&quot;ng&quot;</span><span class="p">:</span> <span class="s2">&quot;ng&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;start&quot;</span><span class="p">:</span> <span class="s2">&quot;ng serve&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;build&quot;</span><span class="p">:</span> <span class="s2">&quot;ng build --prod&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;test&quot;</span><span class="p">:</span> <span class="s2">&quot;ng test&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;lint&quot;</span><span class="p">:</span> <span class="s2">&quot;ng lint&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;e2e&quot;</span><span class="p">:</span> <span class="s2">&quot;ng e2e&quot;</span>
-  <span class="p">},</span>
-</pre></div>
-</div>
+The build command is executed by calling the corresponding script that has been programmed in the client code for each environment. In this case, since the client is programmed in Angular, this is defined in the package.json file.</p>
 <p>And this script will execute the “ng build” command configured for the project environment (in environment folder).
 The task of deploy will be to save the contents of the dist folder that has been generated after the client build. This is the one that will be included later in the server to make the environment deploy.</p>
+</div>
+</div>
+</div>
+<div class="section" id="keys-and-secrets-for-each-environment">
+<h2>1.3.5. Keys and secrets for each environment.<a class="headerlink" href="#keys-and-secrets-for-each-environment" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="health29-client">
+<h3>1.3.5.1. Health29 client.<a class="headerlink" href="#health29-client" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="secret-keys">
+<h4>1.3.5.1.1. Secret keys.<a class="headerlink" href="#secret-keys" title="Permalink to this headline">¶</a></h4>
+<p>This project uses external services. For each of the environments it will be necessary to configure the value of the secret keys to connect with the different APIs.</p>
+<p>As it is an Angular application, for the project to be compiled and executed it is necessary for the environments files to exist (at least environment.ts).</p>
+<p>To be able to compile and execute this project you have to modify the extension of the src/environments files, removing “.sample” (for example, you have to modify environments.ts.sample by environments.ts) and here complete the information of the secret keys of the services.</p>
+<p>As a minimum, it is mandatory to perform these actions on the environment.ts file (to work locally) in order to compile and run the platform. If you want to use any of the other environments, it is also essential that this file has been modified in addition to the one corresponding to the environment on which you want to work.</p>
+</div>
+<div class="section" id="environment-deployment-azure-pipelines">
+<h4>1.3.5.1.2. Environment deployment – Azure pipelines.<a class="headerlink" href="#environment-deployment-azure-pipelines" title="Permalink to this headline">¶</a></h4>
+<p>For the continuous deployment we use the Azure Devops Pipelines, which must be configured to do this task automatically and to be able to execute the complication and the deploy of the application correctly.
+For this purpose, we have uploaded the environment files with the values for Foundation29 to Azure Devops: Pipelines/Library, as secure files.</p>
+<p>In the pipelines, prior to the server’s build, the following tasks have been added: <a class="reference external" href="https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/download-secure-file?view=azure-devops">Download secure file</a> and <a class="reference external" href="https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/copy-files?view=azure-devops&amp;tabs=yaml">Copy files</a>, in each case downloading and copying to the destination folder (src/environments) the files: environment.ts and the one corresponding to the environment that manages the pipeline (dev, staging or prod).</p>
+<p>In the same way, the tasks to modify the README.md file to include the information about the pipeline execution state (badges) have been implemented in the pipelines (according to the environment they are stored as secure files). For this purpose, the “Download secure file” task has been used again. However, in this case the <a class="reference external" href="https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/powershell?view=azure-devops">Powershell</a> <a class="reference external" href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/move-item?view=powershell-7">“Move-Item”</a> command has been used because besides copying the file you also want to rename it (in each branch or environment there has to be a file with the name README.md). Finally, the git actions are executed on the <a class="reference external" href="https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/command-line?view=azure-devops&amp;tabs=yaml">command line</a> to update the repository with these changes.</p>
+<p>NOTE: This is done in the pipeline, otherwise every time you change the environment (from dev to test or from test to prod) you would have to manually update the README.md file because it would be crushed with the previous environment.</p>
+</div>
+</div>
+<div class="section" id="health29-server">
+<h3>1.3.5.2. Health29 server.<a class="headerlink" href="#health29-server" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id1">
+<h4>1.3.5.2.1. Secret keys.<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<p>This project uses external services. In this case it is a project in node.js, where the file containing the information of the secret keys to connect to the different APIs is config.js. As with the client, we have chosen to create a config.js.sample file with the indications to complete the necessary information to compile and execute the project.</p>
+<p>As a minimun, for local develop it is mandatory to configure the file config.js.sample. So, to be able to compile and execute this project you have to modify the extension of the config.js.sample file, removing “.sample” (you have to modify config.js.sample by config.js) and here complete the information of the secret keys of the services. If you want to deploy on each environment you must configure in the Azure App Service slot in Configuration/Aplication settings the variables defined in config.js file.</p>
+</div>
+<div class="section" id="id2">
+<h4>1.3.5.2.2. Environment deployment – Azure pipelines.<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<p>For the continuous deployment we use the Azure Devops Pipelines, which must be configured to do this task automatically and to be able to execute the complication and the deploy of the application correctly.
+For this purpose, we have uploaded the config.js file with the values for Foundation29 to Azure Devops: Pipelines/Library, as secure file.</p>
+<p>In the pipelines, prior to the server’s build, the following tasks have been added: <a class="reference external" href="https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/download-secure-file?view=azure-devops">Download secure file</a> and <a class="reference external" href="https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/copy-files?view=azure-devops&amp;tabs=yaml">Copy files</a>.</p>
+<p>In the same way, the tasks to modify the README.md file to include the information about the pipeline execution state (badges) have been implemented in the pipelines (according to the environment they are stored as secure files). For this purpose, the “Download secure file” task has been used again. However, in this case the <a class="reference external" href="https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/powershell?view=azure-devops">Powershell</a> <a class="reference external" href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/move-item?view=powershell-7">“Move-Item”</a> command has been used because besides copying the file you also want to rename it (in each branch or environment there has to be a file with the name README.md). Finally, the git actions are executed on the <a class="reference external" href="https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/command-line?view=azure-devops&amp;tabs=yaml">command line</a> to update the repository with these changes.</p>
 </div>
 </div>
 </div>

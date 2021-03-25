@@ -5,63 +5,63 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  
   <title>2.4. Level 4: Code &mdash; H29 1.0 documentation</title>
+  
 
+  
+  
+  
+  
 
-
-
-
-
-
-
+  
   <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
-
-
+  
+    
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/language_data.js"></script>
-
+    
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
+    
 
-
-
+  
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="3. Superadmin profile" href="../Superadmin profile.html" />
-    <link rel="prev" title="2.3. Level 3: Component" href="Components.html" />
+    <link rel="prev" title="2.3. Level 3: Component" href="Components.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
 
-
+   
   <div class="wy-grid-for-nav">
-
+    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
+          
 
-
-
+          
             <a href="../../index.html" class="icon icon-home"> H29
+          
 
-
-
+          
           </a>
 
+          
+            
+            
+          
 
-
-
-
-
-
+          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -70,16 +70,16 @@
   </form>
 </div>
 
-
+          
         </div>
 
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-
-
-
-
-
-
+          
+            
+            
+              
+            
+            
               <p class="caption"><span class="caption-text">H29</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../Environments.html">1. Environments</a></li>
@@ -101,55 +101,53 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#external-apis">2.4.2. External APIs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#azure-cognitive-services">2.4.3. Azure cognitive services</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#computer-vision">2.4.3.1. Computer Vision</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#qna-maker">2.4.3.2. Qna maker</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#translator">2.4.3.3. Translator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qna-maker">2.4.3.1. Qna maker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#translator">2.4.3.2. Translator</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#azure-healthbot">2.4.4. Azure Healthbot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#azure-blobs">2.4.5. Azure blobs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#other-services">2.4.6. Other services</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#databases">2.4.7. Databases</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#databases-and-health29-communication">2.4.7.1. Databases and health29 communication</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#ddbb-accounts">2.4.7.2. DDBB: Accounts</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#ddbb-data">2.4.7.3. DDBB: Data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#collections-relationship">2.4.7.4. Collections relationship</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#databases">2.4.6. Databases</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#databases-and-health29-communication">2.4.6.1. Databases and health29 communication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ddbb-accounts">2.4.6.2. DDBB: Accounts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ddbb-data">2.4.6.3. DDBB: Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#collections-relationship">2.4.6.4. Collections relationship</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#multilanguage">2.4.8. Multilanguage</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#multilanguage-in-client">2.4.8.1. Multilanguage in client</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#multilanguage-in-server">2.4.8.2. Multilanguage in server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#multilanguage">2.4.7. Multilanguage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#multilanguage-in-client">2.4.7.1. Multilanguage in client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multilanguage-in-server">2.4.7.2. Multilanguage in server</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#second-factor-autenthication">2.4.9. Second factor autenthication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#second-factor-autenthication">2.4.8. Second factor autenthication</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../Superadmin profile.html">3. Superadmin profile</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Technical debt.html">4. Technical debt</a></li>
 </ul>
 
-
-
+            
+          
         </div>
       </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
-
+      
       <nav class="wy-nav-top" aria-label="top navigation">
-
+        
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">H29</a>
-
+        
       </nav>
 
 
       <div class="wy-nav-content">
-
+        
         <div class="rst-content">
-
-
+        
+          
 
 
 
@@ -168,28 +166,28 @@
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
-
+    
       <li><a href="../../index.html">Docs</a> &raquo;</li>
-
+        
       <li>2.4. Level 4: Code</li>
-
-
+    
+    
       <li class="wy-breadcrumbs-aside">
-
-
+        
+            
             <a href="../../_sources/pages/SW/Code.md.txt" rel="nofollow"> View page source</a>
-
-
+          
+        
       </li>
-
+    
   </ul>
 
-
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-
+            
   <img align="right" width="100px" src="../../_images/Foundation29.png"><div class="section" id="level-4-code">
 <h1>2.4. Level 4: Code<a class="headerlink" href="#level-4-code" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="webapp">
@@ -238,6 +236,7 @@ For this purpose, crypto libraries (aes-256-ecb) are used for data encryption an
 <ul class="simple">
 <li><p>Encryption: When a user tries to create an account, the pw is sha512 before it is sent to the server. On the server a jump is created using the bcrypt library and a hash is applied to it before it is stored. This password will never be returned as described in the database model (password: { type: String, select: false,…). On the other hand, in the login process, it is the data model itself that checks that the pw is valid (bcrypt.compare). If it exceeds a maximum of 5 attempts, the account is blocked for 2 hours.</p></li>
 <li><p>Authentication token. All Methods APIs that have the authorization field in the header use Bearer authentication to restrict access to protected resources, , and always be sent next to a token. The bearer token is a cryptic string, generated by the server in response to a login request. Example of the header: Authorization: Bearer (token).<br />These requests can return some errors, such as the token is invalid, or has expired: { status: 401, message: “Token expired”} or { status: 401, message: “Invalid Token”}</p></li>
+<li><p>Authorization: All Methods APIs that have the authorization, it is verified that it has the expected role.</p></li>
 </ul>
 <p>Health29 provides a Web API for accessing data. Anyone can develop an application to access and modify a Health29 user’s data. OAuth 2.0 (Implicit Grant) is used as an authorization protocol to give an API client limited access to user data.</p>
 </div>
@@ -258,7 +257,20 @@ For this purpose, crypto libraries (aes-256-ecb) are used for data encryption an
 </div></blockquote>
 </li>
 <li><p>The <strong>assets folder</strong>: It contains all the information that will be accessible from any url. Css files, js, images, language files, jsons listing countries, types of subscriptions, frequently asked questions for each group of patients, etc. It will be the only visible folder when a build is made for production.</p></li>
-<li><p>The <strong>environments folder</strong>. This folder contains one file for each of your destination environments, each exporting simple configuration variables to use in your application. The files are replaced on-the-fly when you build your app. You might use a different API endpoint for development than you do for production or maybe different analytics tokens. You might even use some mock services. Either way, the CLI has you covered. At the moment url of the api, and fitbit credentials</p></li>
+<li><p>The <strong>environments folder</strong>. This folder contains one file for each of your destination environments, each exporting simple configuration variables to use in your application. The files are replaced on-the-fly when you build your app. You might use a different API endpoint for development than you do for production or maybe different analytics tokens. You might even use some mock services. Either way, the CLI has you covered.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">const</span> <span class="n">environment</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">production</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+  <span class="n">api</span><span class="p">:</span> <span class="n">undefined</span><span class="p">,</span> <span class="o">//</span><span class="n">Server</span> <span class="n">URL</span><span class="p">:</span> <span class="s1">&#39;http://&lt;direction&gt;:&lt;port&gt;&#39;</span>
+  <span class="n">blobAccessToken</span><span class="p">:</span><span class="n">undefined</span><span class="p">,</span> <span class="o">//</span> <span class="n">Blob</span> <span class="n">access</span> <span class="n">information</span><span class="p">:</span> <span class="p">{</span><span class="n">sasToken</span><span class="p">:</span><span class="n">null</span><span class="p">,</span><span class="n">blobAccountUrl</span><span class="p">:</span> <span class="s1">&#39;https://&lt;blob_name&gt;.blob.core.windows.net&#39;</span><span class="p">}</span>
+  <span class="n">keyCognitiveMicrosoft</span><span class="p">:</span><span class="n">undefined</span><span class="p">,</span> <span class="o">//</span> <span class="n">key</span> <span class="n">Microsoft</span> <span class="n">Cognitive</span> <span class="n">Services</span>
+  <span class="n">keyF29api</span><span class="p">:</span><span class="n">undefined</span><span class="p">,</span> <span class="o">//</span> <span class="n">f29Bio</span> <span class="n">sevice</span> <span class="n">URL</span>
+  <span class="n">f29api</span><span class="p">:</span> <span class="s1">&#39;undefined&#39;</span><span class="p">,</span> <span class="o">//</span> <span class="n">f29api</span> <span class="n">service</span> <span class="n">URL</span>
+  <span class="n">healthbot</span><span class="p">:</span> <span class="s1">&#39;undefined&#39;</span> <span class="o">//</span> <span class="n">Azure</span> <span class="n">healthbot</span> <span class="n">service</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<ul class="simple">
 <li><p><strong>Some files</strong>:</p></li>
 </ul>
 <blockquote>
@@ -286,7 +298,6 @@ Add cordova:  “script src=”cordova.js”</p></li>
 <div><ul class="simple">
 <li><p><em>admin</em>: contains all pages for the admin role</p></li>
 <li><p><em>superadmin</em>: contains all pages for the superadmin role</p></li>
-<li><p><em>clinical</em>: contains all pages for the clinical role</p></li>
 <li><p><em>user</em>: contains all the pages for the user role.
 Each folder of these roles has a module file (it loads the needed modules), and a route file to manage the routes and control the authentication and authorization (auth-guard and role-guard)</p></li>
 </ul>
@@ -320,8 +331,8 @@ The rest of the subroutes that come from full-layout, are controlled if they are
 <li><p>The <strong>dist folder</strong> contains the compilation of the client code.</p></li>
 <li><p>In the <strong>models folder</strong>, the different templates for working with the platform’s database collections are defined.</p></li>
 <li><p>The <strong>controllers folder</strong> contains the functionality to work with the previous collections. It is organized according to the actions that each role of the health29 platform can perform.</p></li>
-<li><p>In the <strong>routes folder</strong>, all the routes of the api appear. It contains the file index.js that links the models with the controllers, defining the requests that will be available to the Health29 client. Those that have auth means that they need authorization to be used.</p></li>
-<li><p><strong>Middlewares</strong> has the file auth.js which is in charge of checking if the token is valid, so that you know if you have permission to make the request to the API call.</p></li>
+<li><p>In the <strong>routes folder</strong>, all the routes of the api appear. It contains the file index.js that links the models with the controllers, defining the requests that will be available to the Health29 client. Those that have auth means that they need authentication to be used, and authorization.</p></li>
+<li><p><strong>Middlewares</strong> has the file auth.js which is in charge of checking if the token is valid, so that you know if you have permission to make the request to the API call. It also has the roles.js file, where the different role groups are defined.</p></li>
 <li><p>In <strong>views</strong> we have the views generated by the server and the templates for the emails.</p></li>
 <li><p>Analogous to the client structure we have the <strong>services folder</strong>. Here, we have the following services: Auth.js creates and decodes token, crypt.js encrypts and decrypts data and email.js is the emailing service. There are also other services for exomizer and phenolizer functions.</p></li>
 <li><p><strong>Some files</strong>:</p></li>
@@ -347,8 +358,8 @@ The rest of the subroutes that come from full-layout, are controlled if they are
 </ul>
 <blockquote>
 <div><ul class="simple">
-<li><p>v10.16.3 of node.</p></li>
-<li><p>0.11.4 of botframework-webchat</p></li>
+<li><p>v10.16.3 of <a class="reference external" href="https://www.npmjs.com/package/node">node</a>. License: <a class="reference external" href="https://opensource.org/licenses/ISC">ISC</a></p></li>
+<li><p>0.11.4 of <a class="reference external" href="https://www.npmjs.com/package/botframework-webchat">botframework-webchat</a>. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a></p></li>
 </ul>
 </div></blockquote>
 <ul class="simple">
@@ -356,10 +367,29 @@ The rest of the subroutes that come from full-layout, are controlled if they are
 </ul>
 <blockquote>
 <div><ul class="simple">
-<li><p>1.7.0 of Angular CLI and 5.2.5 of the node modules Angular libraries (Angular 5).</p></li>
-<li><p>2.6.2 of TypeScript.</p></li>
-<li><p>1.0.0 of ng-bootstrap</p></li>
-<li><p>Jquery 3.2.1</p></li>
+<li><p>1.7.0 of Angular CLI and 5.2.5 of the node modules Angular libraries (Angular 5). <a class="reference external" href="https://www.npmjs.com/package/&#64;angular/cli">Angular</a>. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a></p></li>
+<li><p>2.6.2 of <a class="reference external" href="https://www.npmjs.com/package/typescript">TypeScript</a>. License: <a class="reference external" href="https://opensource.org/licenses/Apache-2.0">Apache-2.0</a>.</p></li>
+<li><p>1.0.0 of <a class="reference external" href="https://www.npmjs.com/package/&#64;ng-bootstrap/ng-bootstrap">ng-bootstrap</a>. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a></p></li>
+<li><p>4.0.0 of <a class="reference external" href="https://www.npmjs.com/package/bootstrap">bootstrap</a>. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a></p></li>
+<li><p>3.2.1 of <a class="reference external" href="https://www.npmjs.com/package/jquery">Jquery</a>. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a></p></li>
+<li><p>9.0.2 of <a class="reference external" href="https://www.npmjs.com/package/&#64;ngx-translate/core">ngx-translate/core</a>. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a></p></li>
+<li><p>2.0.1 of <a class="reference external" href="https://www.npmjs.com/package/&#64;ngx-translate/http-loader">ngx-translate/http-loader</a>. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a></p></li>
+<li><p>11.1.7 of <a class="reference external" href="https://www.npmjs.com/package/&#64;swimlane/ngx-datatable">ngx-datatable</a>. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a></p></li>
+<li><p>5.1.0 of <a class="reference external" href="https://www.npmjs.com/package/&#64;ngrx/store">ngrx/store</a>. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a></p></li>
+<li><p>4.3.4 of <a class="reference external" href="https://www.npmjs.com/package/bourbon">bourbon</a>. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a></p></li>
+<li><p>4.6.3 of <a class="reference external" href="https://www.npmjs.com/package/angulartics2">angulartics2</a>. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a></p></li>
+<li><p>2.5.3 of <a class="reference external" href="https://www.npmjs.com/package/core-js">core-js</a>. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a></p></li>
+<li><p>1.5.3 of <a class="reference external" href="https://www.npmjs.com/package/jspdf">jspdf</a>. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a></p></li>
+<li><p>0.8.0 of <a class="reference external" href="https://www.npmjs.com/package/marked">marked</a>. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a></p></li>
+<li><p>5.5.6 of <a class="reference external" href="https://www.npmjs.com/package/rxjs">rxjs</a>. License: <a class="reference external" href="https://opensource.org/licenses/Apache-2.0">Apache-2.0</a></p></li>
+<li><p>3.3.1 of <a class="reference external" href="https://www.npmjs.com/package/screenfull">screenfull</a>. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a></p></li>
+<li><p>0.4.19 of <a class="reference external" href="https://www.npmjs.com/package/xml2js">xml2js</a>. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a></p></li>
+<li><p>1.2.2 of <a class="reference external" href="https://www.npmjs.com/package/ng2-smart-table">ng2-smart-table</a>. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a></p></li>
+<li><p>4.1.2 of <a class="reference external" href="https://www.npmjs.com/package/ng2-toastr">ng2-toastr</a>. License: <a class="reference external" href="https://opensource.org/licenses/ISC">ISC</a></p></li>
+<li><p>1.4.9 of <a class="reference external" href="https://www.npmjs.com/package/ngx-ui-switch">ngx-ui-switch</a>. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a></p></li>
+<li><p>4.2.0 of <a class="reference external" href="https://www.npmjs.com/package/ng2-validation">ng2-validation</a>. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a></p></li>
+<li><p>0.8.18 of <a class="reference external" href="https://www.npmjs.com/package/zone.js?activeTab=readme">zone.js</a>. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a></p></li>
+<li><p>2.2.5 of <a class="reference external" href="https://www.npmjs.com/package/web-animations-js">web-animations-js</a>. License: <a class="reference external" href="https://opensource.org/licenses/Apache-2.0">Apache-2.0</a></p></li>
 </ul>
 </div></blockquote>
 <ul class="simple">
@@ -367,10 +397,16 @@ The rest of the subroutes that come from full-layout, are controlled if they are
 </ul>
 <blockquote>
 <div><ul class="simple">
-<li><p>1.12.1 of nodemon</p></li>
-<li><p>4.16.2 of express and 3.0.0 of express-handlebars</p></li>
-<li><p>4.13.1 moongose</p></li>
-<li><p>2.6.0 of async</p></li>
+<li><p>1.12.1 of <a class="reference external" href="https://www.npmjs.com/package/nodemon">nodemon</a>. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a></p></li>
+<li><p>4.16.2 of <a class="reference external" href="https://www.npmjs.com/package/express">express</a>. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a> and 3.0.0 of <a class="reference external" href="https://www.npmjs.com/package/express-handlebars">express-handlebars</a>. License: <a class="reference external" href="https://opensource.org/licenses/BSD-3-Clause">BSD-3-Clause</a></p></li>
+<li><p>4.13.1 <a class="reference external" href="https://www.npmjs.com/package/mongoose">moongose</a>. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a></p></li>
+<li><p>2.6.0 of <a class="reference external" href="https://www.npmjs.com/package/async">async</a>. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a></p></li>
+<li><p>0.0.3 of <a class="reference external" href="https://www.npmjs.com/package/bcrypt-nodejs">bcrypt-nodejs</a>. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a></p></li>
+<li><p>1.18.2 of <a class="reference external" href="https://www.npmjs.com/package/body-parser">body-parser</a>. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a></p></li>
+<li><p>5.0.0 of <a class="reference external" href="https://www.npmjs.com/package/fs-extra">fs-extra</a>. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a></p></li>
+<li><p>0.5.1 of <a class="reference external" href="https://www.npmjs.com/package/jwt-simple">jwt-simple</a>. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a></p></li>
+<li><p>2.19.1 of <a class="reference external" href="https://www.npmjs.com/package/moment">moment</a>. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a></p></li>
+<li><p>2.87.0 of <a class="reference external" href="https://www.npmjs.com/package/request">request</a>. License: <a class="reference external" href="https://opensource.org/licenses/Apache-2.0">Apache-2.0</a></p></li>
 </ul>
 </div></blockquote>
 <p>On the other hand, specific NPM libraries have been installed for some functionalities:</p>
@@ -379,12 +415,12 @@ The rest of the subroutes that come from full-layout, are controlled if they are
 </ul>
 <blockquote>
 <div><ul class="simple">
-<li><p>For the HTTP requests, the version 1.0.0-beta.2 of the library <a class="reference external" href="https://www.npmjs.com/package/&#64;auth0/angular-jwt">&#64;auth0/angular-jwt</a> is used</p></li>
-<li><p>For graphic representations <a class="reference external" href="https://www.npmjs.com/package/d3">d3</a> has been installed. Version 5.7.1 of &#64;types/d3 and 1.2.2 of &#64;types/d3-shape</p></li>
-<li><p>Fingerprint2 version 2.0.0 (https://www.npmjs.com/package/fingerprintjs2) is used to obtain the information of the device being used to access the platform.</p></li>
-<li><p>Version 0.24.1 of <a class="reference external" href="https://www.npmjs.com/package/angular-calendar">angular-calendar</a> is used to work with the date entries of the platform.</p></li>
-<li><p>For data encryption, version 0.7.1 of <a class="reference external" href="https://www.npmjs.com/package/js-sha512">js-sha512</a> is used and for the reverse process, version 2.2.0 of <a class="reference external" href="https://www.npmjs.com/package/jwt-decode">jwt-decode</a> is used.</p></li>
-<li><p>Version 7.12.9 of <a class="reference external" href="https://www.npmjs.com/package/sweetalert2">sweetalert2</a> is used for platform popups.</p></li>
+<li><p>For the HTTP requests, the version 1.0.0-beta.2 of the library <a class="reference external" href="https://www.npmjs.com/package/&#64;auth0/angular-jwt">&#64;auth0/angular-jwt</a> is used. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a></p></li>
+<li><p>For graphic representations <a class="reference external" href="https://www.npmjs.com/package/d3">d3</a> has been installed. License: <a class="reference external" href="https://opensource.org/licenses/BSD-3-Clause">BSD-3-Clause</a> Version 5.7.1 of &#64;types/d3 and 1.2.2 of &#64;types/d3-shape</p></li>
+<li><p>version 2.0.0 of <a class="reference external" href="https://www.npmjs.com/package/fingerprintjs2">Fingerprint2</a> is used to obtain the information of the device being used to access the platform. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a></p></li>
+<li><p>Version 0.24.1 of <a class="reference external" href="https://www.npmjs.com/package/angular-calendar">angular-calendar</a> is used to work with the date entries of the platform. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a></p></li>
+<li><p>For data encryption, version 0.7.1 of <a class="reference external" href="https://www.npmjs.com/package/js-sha512">js-sha512</a> is used and for the reverse process, version 2.2.0 of <a class="reference external" href="https://www.npmjs.com/package/jwt-decode">jwt-decode</a> is used. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a></p></li>
+<li><p>Version 7.12.9 of <a class="reference external" href="https://www.npmjs.com/package/sweetalert2">sweetalert2</a> is used for platform popups. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a></p></li>
 </ul>
 </div></blockquote>
 <ul class="simple">
@@ -392,10 +428,12 @@ The rest of the subroutes that come from full-layout, are controlled if they are
 </ul>
 <blockquote>
 <div><ul class="simple">
-<li><p>For emailing tasks: 4.4.0 nodemailer and 2.0.0 nodemailer-express-handlebars.</p></li>
-<li><p>For communication with Azure: 0.10.6 of azure-sb</p></li>
-<li><p>To use the Authy application as 2FA: 1.4.0 of authy and 1.1.4 of authy-client</p></li>
-<li><p>For data encryption, version 0.7.0 of <a class="reference external" href="https://www.npmjs.com/package/js-sha512">js-sha512</a> is used</p></li>
+<li><p>For emailing tasks: 4.4.0 <a class="reference external" href="https://www.npmjs.com/package/nodemailer">nodemailer</a>. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a> and 2.0.0 <a class="reference external" href="https://www.npmjs.com/package/nodemailer-express-handlebars">nodemailer-express-handlebars</a>. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a>.</p></li>
+<li><p>For communication with Azure: 0.10.6 of <a class="reference external" href="https://www.npmjs.com/package/azure-sb">azure-sb</a>. License: <a class="reference external" href="https://opensource.org/licenses/Apache-2.0">Apache-2.0</a></p></li>
+<li><p>To use the Authy application as 2FA: 1.4.0 of <a class="reference external" href="https://www.npmjs.com/package/authy">authy</a>. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a> and 1.1.4 of <a class="reference external" href="https://www.npmjs.com/package/authy-client">authy-client</a>. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a></p></li>
+<li><p>For data encryption, version 0.7.0 of <a class="reference external" href="https://www.npmjs.com/package/js-sha512">js-sha512</a> is used. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a></p></li>
+<li><p>For storage, version 12.3.0 of <a class="reference external" href="https://www.npmjs.com/package/&#64;azure/storage-blob">azure/storage-blob</a> is used. License: <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a></p></li>
+<li><p>For storage, version 2.10.3 of <a class="reference external" href="https://www.npmjs.com/package/azure-storage">azure-storage</a> is used. License: <a class="reference external" href="https://opensource.org/licenses/Apache-2.0">Apache-2.0</a></p></li>
 </ul>
 </div></blockquote>
 <p>In addition to this, Javascript scripts and JSON files have been added as libraries to optimize the programming of different functionalities for the client:</p>
@@ -429,66 +467,11 @@ The rest of the subroutes that come from full-layout, are controlled if they are
 The functions that have been implemented to perform actions on the Azure service are analogous to those in the <a class="reference external" href="https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/quickstarts/quickstart-rest-curl">Azure documentation</a>.</p>
 <p>It can be consulted at the following link: <a class="reference external" href="https://f29api.northeurope.cloudapp.azure.com/index.html">API Foundation29</a>.
 And the functionality and methodology of use is described in the qnamaker section of this document (2.4.3.2. Qna maker)</p>
-<p>Some functions to use the monarch API from this have also been included in this API. But this is not being used at the moment in health29 and the calls to the <strong>monarch API</strong> are executed directly, without intermediaries.</p>
-<ul class="simple">
-<li><p>Request for list of related conditions</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>request({
-url: https://api.monarchinitiative.org/api/sim/search?is_feature_set=true&amp;metric=phenodigm&amp;id=HP:0001250&amp;id=HP:0002133&amp;limit=100&amp;taxon=9606’,
-json: true
-}
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>To open a new link for information on a symptom</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">href</span><span class="o">=</span><span class="s2">&quot;https://monarchinitiative.org/phenotype/&#39;+res[j].id+&#39;</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>To obtain information about a disease:</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>href=”https://monarchinitiative.org/disease/{{value.id}}#overview
-</pre></div>
-</div>
-<p>And with this API, the configuration of the headers (auth.interceptor.ts) to establish the connection with Azure’s service are sent are like:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">indexOf</span><span class="p">(</span><span class="s1">&#39;https://api.monarchinitiative.org/api/&#39;</span><span class="p">)</span><span class="o">!==-</span><span class="mi">1</span><span class="p">){</span>
-  <span class="n">isExternalReq</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
 </div>
 <div class="section" id="azure-cognitive-services">
 <h2>2.4.3. Azure cognitive services<a class="headerlink" href="#azure-cognitive-services" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="computer-vision">
-<h3>2.4.3.1. Computer Vision<a class="headerlink" href="#computer-vision" title="Permalink to this headline">¶</a></h3>
-<p>To create it from azure you just have to select the cognitive service in the marketplace: “ComputerVision”.
-The configuration has no complexity, just select the Price tier and the resource group.</p>
-<p>It is used in the webapp client, as it has been indicated until now, establishing a REST communication:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">this</span><span class="o">.</span><span class="n">subscription</span><span class="o">.</span><span class="n">add</span><span class="p">(</span> <span class="n">this</span><span class="o">.</span><span class="n">http</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;https://westeurope.api.cognitive.microsoft.com/vision/v1.0/ocr?language=&#39;</span><span class="o">+</span><span class="n">this</span><span class="o">.</span><span class="n">cognitiveServicesLanguage</span> <span class="o">+</span><span class="s1">&#39;&amp;detectOrientation=true&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">subscribe</span><span class="p">(</span> <span class="p">(</span><span class="n">res</span> <span class="p">:</span> <span class="nb">any</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    	<span class="o">//</span> <span class="n">Do</span> <span class="n">something</span> <span class="n">when</span> <span class="n">result</span> <span class="n">OK</span>
-	<span class="p">},</span> <span class="p">(</span><span class="n">err</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-     <span class="o">//</span> <span class="n">Do</span> <span class="n">something</span> <span class="n">when</span> <span class="n">error</span>
-<span class="p">}));</span>
-</pre></div>
-</div>
-<p>And the configuration of the headers (auth.interceptor.ts) to use this service is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">indexOf</span><span class="p">(</span><span class="s1">&#39;api.cognitive.microsoft.com/vision&#39;</span><span class="p">)</span><span class="o">!==-</span><span class="mi">1</span><span class="p">){</span>
-  <span class="n">isExternalReq</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
-  <span class="n">const</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">new</span> <span class="n">HttpHeaders</span><span class="p">({</span>
-    <span class="s1">&#39;Ocp-Apim-Subscription-Key&#39;</span><span class="p">:</span> <span class="s1">&#39;992ab4c1c5ff4412a052b0d170feeab8&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/octet-stream&#39;</span>
-  <span class="p">});</span>
-  <span class="n">authReq</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">clone</span><span class="p">({</span> <span class="n">headers</span><span class="p">});</span><span class="o">//</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">,</span>  <span class="s1">&#39;application/json&#39;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>As it has been said before this is used for the symptom extraction, so the call is made in phenotypes.component.ts.</p>
-<p>All the commands and settings for establishing this communication are described in the <a class="reference external" href="https://docs.microsoft.com/bs-latn-ba/azure/cognitive-services/computer-vision/vision-api-how-to-topics/howtocallvisionapi">Microsoft documentation</a>.</p>
-</div>
 <div class="section" id="qna-maker">
-<h3>2.4.3.2. Qna maker<a class="headerlink" href="#qna-maker" title="Permalink to this headline">¶</a></h3>
+<h3>2.4.3.1. Qna maker<a class="headerlink" href="#qna-maker" title="Permalink to this headline">¶</a></h3>
 <p>To create it from azure you just have to select the cognitive service in the marketplace: “Qna maker”.
 The configuration has no complexity, just:</p>
 <ul class="simple">
@@ -514,7 +497,7 @@ With this ID it is possible to make requests to F29 API to obtain, modify or del
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">indexOf</span><span class="p">(</span><span class="s1">&#39;https://f29api.northeurope.cloudapp.azure.com&#39;</span><span class="p">)</span><span class="o">!==-</span><span class="mi">1</span><span class="p">){</span>
   <span class="n">isExternalReq</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
   <span class="n">const</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">new</span> <span class="n">HttpHeaders</span><span class="p">({</span>
-    <span class="s1">&#39;Ocp-Apim-Subscription-Key&#39;</span><span class="p">:</span> <span class="s1">&#39;8d7bca89da4e42c1bf79b292207c9635&#39;</span>
+    <span class="s1">&#39;Ocp-Apim-Subscription-Key&#39;</span><span class="p">:</span> <span class="n">environment</span><span class="o">.</span><span class="n">keyF29api</span>
   <span class="p">});</span>
   <span class="n">authReq</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">clone</span><span class="p">({</span> <span class="n">headers</span><span class="p">});</span>
 <span class="p">}</span>
@@ -523,7 +506,7 @@ With this ID it is possible to make requests to F29 API to obtain, modify or del
 <p>All the commands and settings for establishing this communication are described in the <a class="reference external" href="https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/quickstarts/quickstart-rest-curl">Microsoft documentation</a>.</p>
 </div>
 <div class="section" id="translator">
-<h3>2.4.3.3. Translator<a class="headerlink" href="#translator" title="Permalink to this headline">¶</a></h3>
+<h3>2.4.3.2. Translator<a class="headerlink" href="#translator" title="Permalink to this headline">¶</a></h3>
 <p>To create it from azure you just have to select the cognitive service in the marketplace: “Translator text”.
 The configuration has no complexity, just select the Price tier and the resource group.</p>
 <p>It is used in the webapp client, as it has been indicated until now, establishing a REST communication:</p>
@@ -561,7 +544,7 @@ The configuration has no complexity, just select the Price tier and the resource
 <p>And the configuration of the headers (auth.interceptor.ts) to use this service is:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">indexOf</span><span class="p">(</span><span class="s1">&#39;https://api.cognitive.microsoft.com/sts/v1.0/issueToken&#39;</span><span class="p">)</span><span class="o">!==-</span><span class="mi">1</span><span class="p">){</span>
   <span class="n">isExternalReq</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
-  <span class="n">authReq</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">clone</span><span class="p">({</span> <span class="n">headers</span><span class="p">:</span> <span class="n">req</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;Ocp-Apim-Subscription-Key&#39;</span><span class="p">,</span>  <span class="s1">&#39;7174b790ef59409280f77dd94c34a9d2&#39;</span> <span class="p">),</span> <span class="n">responseType</span><span class="p">:</span> <span class="s1">&#39;text&#39;</span><span class="p">});</span>
+  <span class="n">authReq</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">clone</span><span class="p">({</span> <span class="n">headers</span><span class="p">:</span> <span class="n">req</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;Ocp-Apim-Subscription-Key&#39;</span><span class="p">,</span>  <span class="n">environment</span><span class="o">.</span><span class="n">keyCognitiveMicrosoft</span> <span class="p">),</span> <span class="n">responseType</span><span class="p">:</span> <span class="s1">&#39;text&#39;</span><span class="p">});</span>
 <span class="p">}</span>
 
 <span class="k">if</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">indexOf</span><span class="p">(</span><span class="s1">&#39;https://api.microsofttranslator.com&#39;</span><span class="p">)</span><span class="o">!==-</span><span class="mi">1</span><span class="p">){</span>
@@ -570,7 +553,7 @@ The configuration has no complexity, just select the Price tier and the resource
 <span class="p">}</span>
 <span class="k">if</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">indexOf</span><span class="p">(</span><span class="s1">&#39;https://api.cognitive.microsofttranslator.com&#39;</span><span class="p">)</span><span class="o">!==-</span><span class="mi">1</span><span class="p">){</span>
   <span class="n">isExternalReq</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
-  <span class="n">authReq</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">clone</span><span class="p">({</span> <span class="n">headers</span><span class="p">:</span> <span class="n">req</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;Ocp-Apim-Subscription-Key&#39;</span><span class="p">,</span>  <span class="s1">&#39;7174b790ef59409280f77dd94c34a9d2&#39;</span> <span class="p">)</span> <span class="p">});</span>
+  <span class="n">authReq</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">clone</span><span class="p">({</span> <span class="n">headers</span><span class="p">:</span> <span class="n">req</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;Ocp-Apim-Subscription-Key&#39;</span><span class="p">,</span>  <span class="n">environment</span><span class="o">.</span><span class="n">keyCognitiveMicrosoft</span> <span class="p">)</span> <span class="p">});</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -586,7 +569,7 @@ To create and configure it, just follow the steps in the <a class="reference ext
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">WEBCHAT_SECRET</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">WEBCHAT_SECRET</span><span class="p">;</span>
 <span class="n">var</span> <span class="n">APP_SECRET</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">APP_SECRET</span><span class="p">;</span>
 <span class="k">if</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">origin</span> <span class="o">==</span> <span class="s1">&#39;https://health29.org&#39;</span><span class="p">){</span>
-
+    
 <span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">origin</span> <span class="o">==</span> <span class="s1">&#39;https://health29-test.azurewebsites.net&#39;</span><span class="p">){</span>
     <span class="n">WEBCHAT_SECRET</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">WEBCHAT_SECRET_TEST</span><span class="p">;</span>
     <span class="n">APP_SECRET</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">APP_SECRET_TEST</span><span class="p">;</span>
@@ -612,7 +595,7 @@ This way, it is added to the HTML:</p>
 <ol class="simple">
 <li><p>Get the token for the connection with the azure service:</p></li>
 </ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">paramssend</span> <span class="o">=</span> <span class="p">{</span> <span class="n">userName</span><span class="p">:</span> <span class="n">this</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">userName</span><span class="p">,</span> <span class="n">userId</span><span class="p">:</span> <span class="n">this</span><span class="o">.</span><span class="n">authService</span><span class="o">.</span><span class="n">getIdUser</span><span class="p">(),</span> <span class="n">token</span><span class="p">:</span> <span class="n">this</span><span class="o">.</span><span class="n">authService</span><span class="o">.</span><span class="n">getToken</span><span class="p">(),</span> <span class="n">groupId</span><span class="p">:</span> <span class="n">this</span><span class="o">.</span><span class="n">groupId</span><span class="p">,</span> <span class="n">lang</span><span class="p">:</span> <span class="n">this</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">lang</span><span class="p">,</span> <span class="n">knowledgeBaseID</span><span class="p">:</span> <span class="n">this</span><span class="o">.</span><span class="n">knowledgeBaseID</span><span class="p">};</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">paramssend</span> <span class="o">=</span> <span class="p">{</span> <span class="n">userName</span><span class="p">:</span> <span class="n">this</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">userName</span><span class="p">,</span> <span class="n">userId</span><span class="p">:</span> <span class="n">this</span><span class="o">.</span><span class="n">authService</span><span class="o">.</span><span class="n">getIdUser</span><span class="p">(),</span> <span class="n">token</span><span class="p">:</span> <span class="n">this</span><span class="o">.</span><span class="n">authService</span><span class="o">.</span><span class="n">getToken</span><span class="p">(),</span> <span class="n">groupId</span><span class="p">:</span> <span class="n">this</span><span class="o">.</span><span class="n">groupId</span><span class="p">,</span> <span class="n">lang</span><span class="p">:</span> <span class="n">this</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">lang</span><span class="p">,</span> <span class="n">knowledgeBaseID</span><span class="p">:</span> <span class="n">this</span><span class="o">.</span><span class="n">knowledgeBaseID</span><span class="p">};</span> 
 <span class="n">this</span><span class="o">.</span><span class="n">subscription</span><span class="o">.</span><span class="n">add</span><span class="p">(</span> <span class="n">this</span><span class="o">.</span><span class="n">http</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://healthbotcontainersamplef666.azurewebsites.net:443/chatBot&#39;</span><span class="p">,{</span><span class="n">params</span><span class="p">:</span> <span class="n">paramssend</span><span class="p">})</span>
 	<span class="o">.</span><span class="n">subscribe</span><span class="p">(</span> <span class="p">(</span><span class="n">res</span> <span class="p">:</span> <span class="nb">any</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
 		<span class="o">//</span> <span class="n">Get</span> <span class="n">the</span> <span class="n">token</span> <span class="n">OK</span>
@@ -643,12 +626,12 @@ This way, it is added to the HTML:</p>
 </ol>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>const botContainer = document.getElementById(&#39;botContainer&#39;);
 $(&#39;#botContainer&#39;).empty();
-botContainer.classList.add(&quot;wc-display&quot;);
+botContainer.classList.add(&quot;wc-display&quot;);   
 BotChat.App({
     botConnection: botConnection,
     user: user,
     locale: this.user.lang,
-    bot: {id: &#39;&#39;},//id: &#39;h29bot-giochop&#39; //id: &#39;zebrahealthbot&#39;
+    bot: {id: &#39;&#39;},
     resize: &#39;detect&#39;
     // sendTyping: true,    // defaults to false. set to true to send &#39;typing&#39; activities to bot (and other users) when user is typing
 }, botContainer);
@@ -667,7 +650,6 @@ BotChat.App({
 <p>All the commands and settings for using this Healthbot service ara available in <a class="reference external" href="https://docs.microsoft.com/en-us/healthbot/integrations/embed">Microsoft documentation</a>.</p>
 <p>In addition to this, the HTTP headers have to be configured to be able to use this service in the auth.interceptor.ts file:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">indexOf</span><span class="p">(</span><span class="s1">&#39;healthbot&#39;</span><span class="p">)</span><span class="o">!==-</span><span class="mi">1</span><span class="p">){</span>
-  <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;epasa&#39;</span><span class="p">);</span>
   <span class="n">isExternalReq</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
   <span class="n">const</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">new</span> <span class="n">HttpHeaders</span><span class="p">({</span>
     <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span>  <span class="s1">&#39;text/html; charset=utf-8&#39;</span><span class="p">,</span>
@@ -677,12 +659,7 @@ BotChat.App({
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>As already indicated, once the bot is embedded in the webapp you will have to indicate it to initialize the desired scenarios in each case. These scenarios are designed, implemented and configured in:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://us.healthbot.microsoft.com/account/zebrahealthbot/scenarios/manage">Healthbot</a> of the development environment.</p></li>
-<li><p><a class="reference external" href="https://eu.healthbot.microsoft.com/account/healthbot-test-tjo3h51/scenarios/manage">Healthbot</a> of the test environment.</p></li>
-<li><p><a class="reference external" href="https://eu.healthbot.microsoft.com/account/h29bot-giochop/scenarios/manage">Healthbot</a> of the production environment.</p></li>
-</ul>
+<p>As already indicated, once the bot is embedded in the webapp you will have to indicate it to initialize the desired scenarios in each case.</p>
 <p>In the microsoft documentation there are <a class="reference external" href="https://docs.microsoft.com/en-us/healthbot/quickstart-createyourfirstscenario">guides</a> to help you create these scenarios.</p>
 <p>The general workflow of the Healthbot scenarios defined for Health29 is</p>
 <p style="text-align: center;">
@@ -762,80 +739,43 @@ An example of use would be:</p>
 <span class="n">this</span><span class="o">.</span><span class="n">blob</span><span class="o">.</span><span class="n">uploadToBlobStorage</span><span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">accessToken</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">files</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">index1</span><span class="p">,</span> <span class="n">index2</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>In addition to this, the HTTP headers have to be configured to be able to use this service in the auth.interceptor.ts file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="k">if</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">indexOf</span><span class="p">(</span><span class="s1">&#39;https://blobgenomics.blob.core.windows.net/&#39;</span><span class="p">)</span><span class="o">!==-</span><span class="mi">1</span><span class="p">){</span>
-  <span class="n">isExternalReq</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
-  <span class="n">const</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">new</span> <span class="n">HttpHeaders</span><span class="p">({</span>
-    <span class="s1">&#39;Access-Control-Allow-Origin&#39;</span><span class="p">:</span><span class="s1">&#39;*&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;Ocp-Apim-Subscription-Key&#39;</span><span class="p">:</span> <span class="s1">&#39;lXaW8+GnmQuHYVku3GWEjZnRhi9hv5u7v2kGvRiUQR6/PTlJuIZT+hyf+nUgLGTSpIToheyZ7oXyX34+q3s63g==&#39;</span>
-  <span class="p">});</span>
-  <span class="n">authReq</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">clone</span><span class="p">({</span> <span class="n">headers</span><span class="p">});</span><span class="o">//</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">,</span>  <span class="s1">&#39;application/json&#39;</span>
-<span class="p">}</span>
+<p>In addition to this, In order to perform operations with the Blobs, we need the sasToken. src\app\shared\services\api-dx29-server.service.ts file on the client:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">getAzureBlobSasToken</span><span class="p">(</span><span class="n">containerName</span><span class="p">){</span>
+        <span class="k">return</span> <span class="n">this</span><span class="o">.</span><span class="n">http</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">environment</span><span class="o">.</span><span class="n">api</span><span class="o">+</span><span class="s1">&#39;/api/getAzureBlobSasTokenWithContainer/&#39;</span><span class="o">+</span><span class="n">containerName</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">map</span><span class="p">(</span> <span class="p">(</span><span class="n">res</span> <span class="p">:</span> <span class="nb">any</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">res</span><span class="o">.</span><span class="n">containerSAS</span><span class="p">;</span>
+        <span class="p">},</span> <span class="p">(</span><span class="n">err</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">err</span><span class="p">);</span>
+            <span class="k">return</span> <span class="n">err</span><span class="p">;</span>
+        <span class="p">})</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<p>On the server:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="n">getAzureBlobSasTokenWithContainer</span> <span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">res</span><span class="p">){</span>
+  <span class="n">var</span> <span class="n">containerName</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">containerName</span><span class="p">;</span>
 
-<span class="k">if</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">indexOf</span><span class="p">(</span><span class="s1">&#39;https://health29support.blob.core.windows.net/&#39;</span><span class="p">)</span><span class="o">!==-</span><span class="mi">1</span><span class="p">){</span>
-  <span class="n">isExternalReq</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
-  <span class="n">const</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">new</span> <span class="n">HttpHeaders</span><span class="p">({</span>
-    <span class="s1">&#39;Access-Control-Allow-Origin&#39;</span><span class="p">:</span><span class="s1">&#39;*&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;Ocp-Apim-Subscription-Key&#39;</span><span class="p">:</span> <span class="s1">&#39;g/KX0iFgXuPQMHDDLWYDXJDihvPTMv9/Uyp2lsWGu81azji7i0oPh21R3vjnn1oDGIHjsYsRIEEuR5F8PFrbAw==&#39;</span>
-  <span class="p">});</span>
-  <span class="n">authReq</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">clone</span><span class="p">({</span> <span class="n">headers</span><span class="p">});</span><span class="o">//</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">,</span>  <span class="s1">&#39;application/json&#39;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="other-services">
-<h2>2.4.6. Other services<a class="headerlink" href="#other-services" title="Permalink to this headline">¶</a></h2>
-<p>The <strong><a class="reference external" href="https://portal.azure.com/#&#64;foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/phenotypeBot/providers/Microsoft.Web/sites/DiagnosisApi/appServices">DiagnosisApi</a></strong> is an App Service of Azure that is used for consulting the symptons of a diagnose.
-To create it from azure you must create an <a class="reference external" href="https://docs.microsoft.com/en-US/azure/app-service/">App service of Azure</a>.</p>
-<p>It is used in the webapp client establishing a REST communication:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
-<span class="n">let</span> <span class="n">httpParams</span> <span class="o">=</span> <span class="n">new</span> <span class="n">HttpParams</span><span class="p">();</span>
-<span class="n">hposStrins</span><span class="o">.</span><span class="n">forEach</span><span class="p">(</span><span class="nb">id</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="n">httpParams</span> <span class="o">=</span> <span class="n">httpParams</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;symtomCodes&#39;</span><span class="p">,</span> <span class="nb">id</span><span class="p">);</span>
-<span class="p">});</span>
-<span class="p">[</span><span class="o">...</span><span class="p">]</span>
-<span class="n">this</span><span class="o">.</span><span class="n">subscription</span><span class="o">.</span><span class="n">add</span><span class="p">(</span> <span class="n">this</span><span class="o">.</span><span class="n">http</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://diagnosisapi.azurewebsites.net/api/Consulting/GetSymptomsFromCodes&#39;</span><span class="p">,{</span><span class="n">params</span><span class="p">:</span> <span class="n">httpParams</span><span class="p">})</span>
-  <span class="o">.</span><span class="n">subscribe</span><span class="p">(</span> <span class="p">(</span><span class="n">res</span> <span class="p">:</span> <span class="nb">any</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  	 <span class="o">//</span> <span class="n">Get</span> <span class="n">the</span> <span class="n">symptoms</span> <span class="n">codes</span> <span class="n">OK</span>
-  <span class="p">},</span> <span class="p">(</span><span class="n">err</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-	<span class="o">//</span> <span class="n">Do</span> <span class="n">something</span> <span class="n">when</span> <span class="n">error</span>
-<span class="p">}));</span>
-</pre></div>
-</div>
-<p>And the configuration of the headers (auth.interceptor.ts) to use this service is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">indexOf</span><span class="p">(</span><span class="s1">&#39;https://diagnosisapi.azurewebsites.net/api/Consulting&#39;</span><span class="p">)</span><span class="o">!==-</span><span class="mi">1</span><span class="p">){</span>
-  <span class="n">isExternalReq</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
-  <span class="n">const</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">new</span> <span class="n">HttpHeaders</span><span class="p">({</span>
-    <span class="s1">&#39;Access-Control-Allow-Origin&#39;</span><span class="p">:</span><span class="s1">&#39;*&#39;</span>
-  <span class="p">});</span>
-  <span class="n">authReq</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">clone</span><span class="p">({</span> <span class="n">headers</span><span class="p">});</span><span class="o">//</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">,</span>  <span class="s1">&#39;application/json&#39;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>In the same way, we can access and use the <strong>Genomics Functions apps</strong>.
-It is used in the webapp client establishing a REST communication:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">this</span><span class="o">.</span><span class="n">subscription</span><span class="o">.</span><span class="n">add</span><span class="p">(</span> <span class="n">this</span><span class="o">.</span><span class="n">http</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;https://genomicservices.azurewebsites.net/api/exomize?code=p/aGykMRV8KiTfo8AXO8yDjHYdImgRjjasrGu8eaBVn7U75jf1DtmQ==&#39;</span><span class="p">,</span><span class="n">jsonfile</span><span class="p">)</span>
-      <span class="o">.</span><span class="n">subscribe</span><span class="p">(</span> <span class="p">(</span><span class="n">res</span> <span class="p">:</span> <span class="nb">any</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="o">.</span><span class="n">subscribe</span><span class="p">(</span> <span class="p">(</span><span class="n">res</span> <span class="p">:</span> <span class="nb">any</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  	<span class="o">//</span> <span class="n">Result</span> <span class="n">of</span> <span class="n">exomize</span> <span class="n">function</span> <span class="n">OK</span>
-  <span class="p">},</span> <span class="p">(</span><span class="n">err</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-	<span class="o">//</span> <span class="n">Do</span> <span class="n">something</span> <span class="n">when</span> <span class="n">error</span>
-<span class="p">}));</span>
-</pre></div>
-</div>
-<p>And the configuration of the headers (auth.interceptor.ts) to use this functions is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">indexOf</span><span class="p">(</span><span class="s1">&#39;https://genomicservices.azurewebsites.net/api/exomize&#39;</span><span class="p">)</span><span class="o">!==-</span><span class="mi">1</span><span class="p">){</span>
-  <span class="n">isExternalReq</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
-  <span class="n">const</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">new</span> <span class="n">HttpHeaders</span><span class="p">({</span>
-    <span class="s1">&#39;Access-Control-Allow-Origin&#39;</span><span class="p">:</span><span class="s1">&#39;*&#39;</span>
-  <span class="p">});</span>
-  <span class="n">authReq</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">clone</span><span class="p">({</span> <span class="n">headers</span><span class="p">});</span><span class="o">//</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">,</span>  <span class="s1">&#39;application/json&#39;</span>
+  <span class="n">var</span> <span class="n">startDate</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Date</span><span class="p">();</span>
+  <span class="n">var</span> <span class="n">expiryDate</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Date</span><span class="p">();</span>
+  <span class="n">startDate</span><span class="o">.</span><span class="n">setTime</span><span class="p">(</span><span class="n">startDate</span><span class="o">.</span><span class="n">getTime</span><span class="p">()</span> <span class="o">-</span> <span class="mi">5</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">1000</span><span class="p">);</span>
+  <span class="n">expiryDate</span><span class="o">.</span><span class="n">setTime</span><span class="p">(</span><span class="n">expiryDate</span><span class="o">.</span><span class="n">getTime</span><span class="p">()</span> <span class="o">+</span> <span class="mi">24</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">1000</span><span class="p">);</span>
+
+  <span class="n">var</span> <span class="n">containerSAS</span> <span class="o">=</span> <span class="n">storage</span><span class="o">.</span><span class="n">generateBlobSASQueryParameters</span><span class="p">({</span>
+      <span class="n">expiresOn</span> <span class="p">:</span> <span class="n">expiryDate</span><span class="p">,</span>
+      <span class="n">permissions</span><span class="p">:</span> <span class="n">storage</span><span class="o">.</span><span class="n">ContainerSASPermissions</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;rwdlac&quot;</span><span class="p">),</span>
+      <span class="n">protocol</span><span class="p">:</span> <span class="n">storage</span><span class="o">.</span><span class="n">SASProtocol</span><span class="o">.</span><span class="n">Https</span><span class="p">,</span>
+      <span class="n">containerName</span><span class="p">:</span> <span class="n">containerName</span><span class="p">,</span>
+      <span class="n">startsOn</span><span class="p">:</span> <span class="n">startDate</span><span class="p">,</span>
+      <span class="n">version</span><span class="p">:</span><span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span>
+
+    <span class="p">},</span><span class="n">sharedKeyCredentialGenomics</span><span class="p">)</span><span class="o">.</span><span class="n">toString</span><span class="p">();</span>
+  <span class="n">res</span><span class="o">.</span><span class="n">status</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">({</span><span class="n">containerSAS</span><span class="p">:</span> <span class="n">containerSAS</span><span class="p">})</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="databases">
-<h2>2.4.7. Databases<a class="headerlink" href="#databases" title="Permalink to this headline">¶</a></h2>
+<h2>2.4.6. Databases<a class="headerlink" href="#databases" title="Permalink to this headline">¶</a></h2>
 <p>The databases are created in Azure as <a class="reference external" href="https://docs.microsoft.com/en-US/azure/cosmos-db/">Azure Cosmos DB account</a>.To create it you just have to select in the marketplace: “Azure Cosmo db” and configure it.</p>
 <p>As mentioned throughout the development of this document, there will be 4 databases: two for the test and development environments, and two for the production environment.
 The structure of the databases of the two environments will be the same, so we have:</p>
@@ -844,7 +784,7 @@ The structure of the databases of the two environments will be the same, so we h
 </p><p>Each database will be composed of some collections that will be accessed from the Health29 platform server.</p>
 <p>In the following sections we will explain how this connection between Health29 and Azure’s databases is made, and we will go deeper into each of them by explaining the structure and layout of the collections they contain in each case.</p>
 <div class="section" id="databases-and-health29-communication">
-<h3>2.4.7.1. Databases and health29 communication<a class="headerlink" href="#databases-and-health29-communication" title="Permalink to this headline">¶</a></h3>
+<h3>2.4.6.1. Databases and health29 communication<a class="headerlink" href="#databases-and-health29-communication" title="Permalink to this headline">¶</a></h3>
 <p>As indicated above, the communication is established using mongoose, so for each model or scheme in a database collection, we will have</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">mongoose</span> <span class="o">=</span> <span class="n">require</span> <span class="p">(</span><span class="s1">&#39;mongoose&#39;</span><span class="p">);</span>
 <span class="n">const</span> <span class="p">{</span> <span class="n">conndbaccounts</span> <span class="p">}</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;../db_connect&#39;</span><span class="p">)</span>
@@ -856,7 +796,7 @@ The structure of the databases of the two environments will be the same, so we h
 </div>
 </div>
 <div class="section" id="ddbb-accounts">
-<h3>2.4.7.2. DDBB: Accounts<a class="headerlink" href="#ddbb-accounts" title="Permalink to this headline">¶</a></h3>
+<h3>2.4.6.2. DDBB: Accounts<a class="headerlink" href="#ddbb-accounts" title="Permalink to this headline">¶</a></h3>
 <p><strong>Alerts</strong>
 In this collection are saved the notifications or alerts created by the administrator or super administrator profiles, indicating the group of users (receivers) to which they will be sent/displayed. It also includes fields to manage the language of the notification.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">AlertsSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
@@ -867,24 +807,24 @@ In this collection are saved the notifications or alerts created by the administ
     <span class="n">launchDate</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">Date</span><span class="o">.</span><span class="n">now</span><span class="p">},</span>
     <span class="n">endDate</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Date</span><span class="p">},</span>
     <span class="n">url</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span><span class="n">Object</span><span class="p">,</span> <span class="n">default</span><span class="p">:[]},</span>
-	<span class="n">role</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">enum</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;SuperAdmin&#39;</span><span class="p">,</span> <span class="s1">&#39;Admin&#39;</span><span class="p">,</span> <span class="s1">&#39;User&#39;</span><span class="p">,</span> <span class="s1">&#39;Clinical&#39;</span><span class="p">,</span> <span class="s1">&#39;Lab&#39;</span><span class="p">],</span> <span class="n">default</span><span class="p">:</span> <span class="s1">&#39;User&#39;</span><span class="p">},</span>
+    <span class="n">role</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">enum</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;SuperAdmin&#39;</span><span class="p">,</span> <span class="s1">&#39;Admin&#39;</span><span class="p">,</span> <span class="s1">&#39;User&#39;</span><span class="p">],</span> <span class="n">default</span><span class="p">:</span> <span class="s1">&#39;User&#39;</span><span class="p">},</span>
     <span class="n">color</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span><span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">},</span>
     <span class="n">logo</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span><span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">},</span>
     <span class="n">importance</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span><span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">},</span>
     <span class="n">receiver</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span><span class="n">Object</span><span class="p">,</span> <span class="n">default</span><span class="p">:[]},</span>
-	<span class="n">createdBy</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;Group&quot;</span><span class="p">}</span>
+    <span class="n">createdBy</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;Group&quot;</span><span class="p">}</span>
 <span class="p">})</span>
 </pre></div>
 </div>
 <p><strong>Bot</strong>
 This collection stores the information exchanged between the bot and a user when using the Healthbot direct question scenario.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">BotSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
-	<span class="n">lang</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span><span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">},</span>
+    <span class="n">lang</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span><span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">},</span>
     <span class="n">data</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Object</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="p">[]},</span>
-	<span class="n">date</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">Date</span><span class="o">.</span><span class="n">now</span><span class="p">},</span>
-	<span class="n">curatedBy</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span><span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">},</span>
-	<span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
-	<span class="n">createdBy</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;Group&quot;</span><span class="p">}</span>
+    <span class="n">date</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">Date</span><span class="o">.</span><span class="n">now</span><span class="p">},</span>
+    <span class="n">curatedBy</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span><span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">},</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+    <span class="n">createdBy</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;Group&quot;</span><span class="p">}</span>
 <span class="p">})</span>
 </pre></div>
 </div>
@@ -902,24 +842,12 @@ In this collection, the patient groups available at Health29 are stored.</p>
 <span class="p">})</span>
 </pre></div>
 </div>
-<p><strong>Lab</strong>
-Same as the last one but with the labs.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">LabSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
-	<span class="n">name</span><span class="p">:</span> <span class="p">{</span>
-		<span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
-		<span class="n">index</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
-		<span class="n">unique</span><span class="p">:</span> <span class="n">true</span>
-  	<span class="p">}</span>
-<span class="p">})</span>
-</pre></div>
-</div>
 <p><strong>Lang</strong>
 There will be one entry in this collection for each language you want to use on the Health29 platform</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">LangSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
-	<span class="n">name</span><span class="p">:</span> <span class="p">{</span>	<span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>	<span class="n">unique</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>	<span class="n">required</span><span class="p">:</span> <span class="n">true</span> <span class="p">},</span>
-	<span class="n">code</span><span class="p">:</span> <span class="p">{</span>	<span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>	<span class="n">index</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>	<span class="n">unique</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>	<span class="n">required</span><span class="p">:</span> <span class="n">true</span> <span class="p">}</span>
-<span class="p">},</span>
-<span class="p">{</span> <span class="n">versionKey</span><span class="p">:</span> <span class="n">false</span> <span class="o">//</span> <span class="n">You</span> <span class="n">should</span> <span class="n">be</span> <span class="n">aware</span> <span class="n">of</span> <span class="n">the</span> <span class="n">outcome</span> <span class="n">after</span> <span class="nb">set</span> <span class="n">to</span> <span class="n">false</span>
+    <span class="n">name</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">unique</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span> <span class="n">required</span><span class="p">:</span> <span class="n">true</span> <span class="p">},</span>
+    <span class="n">code</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>	<span class="n">index</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span> <span class="n">unique</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span> <span class="n">required</span><span class="p">:</span> <span class="n">true</span> <span class="p">}</span>
+<span class="p">},</span> <span class="p">{</span> <span class="n">versionKey</span><span class="p">:</span> <span class="n">false</span> <span class="o">//</span> <span class="n">You</span> <span class="n">should</span> <span class="n">be</span> <span class="n">aware</span> <span class="n">of</span> <span class="n">the</span> <span class="n">outcome</span> <span class="n">after</span> <span class="nb">set</span> <span class="n">to</span> <span class="n">false</span>
 <span class="p">})</span>
 </pre></div>
 </div>
@@ -938,27 +866,27 @@ In this collection the data of the patients registered in the platform are store
 <span class="p">})</span>
 
 <span class="n">const</span> <span class="n">PatientSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
-	<span class="n">patientName</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
-	<span class="n">surname</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
-	<span class="n">birthDate</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span>
-	<span class="n">citybirth</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
-	<span class="n">provincebirth</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
-	<span class="n">countrybirth</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
-	<span class="n">street</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
-	<span class="n">postalCode</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
-	<span class="n">city</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
-	<span class="n">province</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
-	<span class="n">country</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
-	<span class="n">phone1</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
-	<span class="n">phone2</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
-	<span class="n">gender</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
-	<span class="n">siblings</span><span class="p">:</span> <span class="p">[</span><span class="n">SiblingSchema</span><span class="p">],</span>
-	<span class="n">parents</span><span class="p">:</span> <span class="p">[</span><span class="n">ParentSchema</span><span class="p">],</span>
-	<span class="n">createdBy</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;User&quot;</span><span class="p">},</span>
-	<span class="n">death</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span>
-	<span class="n">notes</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">},</span>
-	<span class="n">answers</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Object</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="p">[]},</span>
-	<span class="n">subscriptionToGroupAlerts</span><span class="p">:{</span><span class="nb">type</span><span class="p">:</span><span class="n">Boolean</span><span class="p">,</span><span class="n">default</span><span class="p">:</span><span class="n">true</span><span class="p">}</span>
+    <span class="n">patientName</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+    <span class="n">surname</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+    <span class="n">birthDate</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span>
+    <span class="n">citybirth</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+    <span class="n">provincebirth</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+    <span class="n">countrybirth</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+    <span class="n">street</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+    <span class="n">postalCode</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+    <span class="n">city</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+    <span class="n">province</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+    <span class="n">country</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+    <span class="n">phone1</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+    <span class="n">phone2</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+    <span class="n">gender</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+    <span class="n">siblings</span><span class="p">:</span> <span class="p">[</span><span class="n">SiblingSchema</span><span class="p">],</span>
+    <span class="n">parents</span><span class="p">:</span> <span class="p">[</span><span class="n">ParentSchema</span><span class="p">],</span>
+    <span class="n">createdBy</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;User&quot;</span><span class="p">},</span>
+    <span class="n">death</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span>
+    <span class="n">notes</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">},</span>
+    <span class="n">answers</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Object</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="p">[]},</span>
+    <span class="n">subscriptionToGroupAlerts</span><span class="p">:{</span><span class="nb">type</span><span class="p">:</span><span class="n">Boolean</span><span class="p">,</span><span class="n">default</span><span class="p">:</span><span class="n">true</span><span class="p">}</span>
 <span class="p">})</span>
 </pre></div>
 </div>
@@ -988,11 +916,11 @@ The datapoints associated with a group of patients are stored here.</p>
 <p><strong>PromSection</strong>
 Each of the above datapoints is encapsulated within a section. The different sections or groupings of datapoints that can appear on the platform for each group of patients are saved in this collection.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">PromSectionSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
-	<span class="n">name</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
-	<span class="n">description</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
-	<span class="n">enabled</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Boolean</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">true</span><span class="p">},</span>
-	<span class="n">order</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Number</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span>
-	<span class="n">createdBy</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;Group&quot;</span><span class="p">}</span>
+    <span class="n">name</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+    <span class="n">description</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+    <span class="n">enabled</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Boolean</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">true</span><span class="p">},</span>
+    <span class="n">order</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Number</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span>
+    <span class="n">createdBy</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;Group&quot;</span><span class="p">}</span>
 <span class="p">})</span>
 </pre></div>
 </div>
@@ -1068,7 +996,7 @@ const UserSchema = Schema({
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, &#39;Please fill a valid email address&#39;]
     },
 	password: { type: String, select: false, required: true, minlength: [8,&#39;Password too short&#39;]},
-	role: { type: String, required: true, enum: [&#39;SuperAdmin&#39;, &#39;Admin&#39;, &#39;User&#39;, &#39;Clinical&#39;, &#39;Lab&#39;], default: &#39;User&#39;},
+	role: { type: String, required: true, enum: [&#39;Researcher&#39;, &#39;Admin&#39;, &#39;User&#39;], default: &#39;User&#39;},
 	group: { type: String, required: true, default: &#39;None&#39;},
 	confirmed: {type: Boolean, default: false},
 	confirmationCode: String,
@@ -1089,12 +1017,13 @@ const UserSchema = Schema({
 	authyId:{type:String,default:null},
 	authyDeviceId:{type:Object,default:[]},
 	phone: String,
+	subgroup: Number,
 })
 </pre></div>
 </div>
 </div>
 <div class="section" id="ddbb-data">
-<h3>2.4.7.3. DDBB: Data<a class="headerlink" href="#ddbb-data" title="Permalink to this headline">¶</a></h3>
+<h3>2.4.6.3. DDBB: Data<a class="headerlink" href="#ddbb-data" title="Permalink to this headline">¶</a></h3>
 <p>In all the collections of this database, the information entered by the patient in the Health29 platform will be saved. Thus, for each of the sections that appear in it, the information relating to it will be saved in the corresponding collection of this database.</p>
 <p>ClinicalTrials</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">ClinicalTrialSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
@@ -1103,21 +1032,6 @@ const UserSchema = Schema({
 	<span class="n">drugName</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
 	<span class="n">center</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
 	<span class="n">date</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span>
-	<span class="n">createdBy</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;Patient&quot;</span><span class="p">}</span>
-<span class="p">})</span>
-</pre></div>
-</div>
-<p>Diagnosis</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">DiagnosisSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
-	<span class="n">hasDiagnosis</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Boolean</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">false</span><span class="p">},</span>
-	<span class="n">previousDiagnosis</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">null</span><span class="p">},</span>
-	<span class="n">identifiedGene</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">null</span><span class="p">},</span>
-	<span class="n">evaluation</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
-	<span class="n">notes</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">},</span>
-	<span class="n">infoGenesAndConditionsExomizer</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Object</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="p">[]},</span>
-	<span class="n">infoGenesAndConditionsPhenolyzer</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Object</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="p">[]},</span>
-	<span class="n">relatedConditions</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Object</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="p">[]},</span>
-	<span class="n">hasVcf</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Boolean</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">false</span><span class="p">},</span>
 	<span class="n">createdBy</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;Patient&quot;</span><span class="p">}</span>
 <span class="p">})</span>
 </pre></div>
@@ -1163,30 +1077,36 @@ const UserSchema = Schema({
 </div>
 <p>Medication</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">MedicationSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
-	<span class="n">drug</span><span class="p">:</span> <span class="n">Object</span><span class="p">,</span>
-	<span class="n">dose</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
-	<span class="n">startDate</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">Date</span><span class="o">.</span><span class="n">now</span><span class="p">},</span>
-	<span class="n">endDate</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">null</span><span class="p">},</span>
-	<span class="n">sideEffects</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Object</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">null</span><span class="p">},</span>
-	<span class="n">adverseEffects</span><span class="p">:</span> <span class="n">Object</span><span class="p">,</span>
-	<span class="n">compassionateUse</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">},</span>
-	<span class="n">vaccinations</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
-	<span class="n">vaccinationDate</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">Date</span><span class="o">.</span><span class="n">now</span><span class="p">},</span>
-	<span class="n">notes</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">},</span>
-	<span class="n">freesideEffects</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">},</span>
-	<span class="n">createdBy</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;Patient&quot;</span><span class="p">}</span>
+    <span class="n">drug</span><span class="p">:</span> <span class="n">Object</span><span class="p">,</span>
+    <span class="n">dose</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+    <span class="n">startDate</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">Date</span><span class="o">.</span><span class="n">now</span><span class="p">},</span>
+    <span class="n">endDate</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">null</span><span class="p">},</span>
+    <span class="n">sideEffects</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Object</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">null</span><span class="p">},</span>
+    <span class="n">schedule</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+    <span class="n">otherSchedule</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+    <span class="n">adverseEffects</span><span class="p">:</span> <span class="n">Object</span><span class="p">,</span>
+    <span class="n">compassionateUse</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">},</span>
+    <span class="n">vaccinations</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+    <span class="n">vaccinationDate</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">Date</span><span class="o">.</span><span class="n">now</span><span class="p">},</span>
+    <span class="n">notes</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">},</span>
+    <span class="n">freesideEffects</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">},</span>
+    <span class="n">createdBy</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;Patient&quot;</span><span class="p">}</span>
 <span class="p">})</span>
 </pre></div>
 </div>
 <p>Othermedications</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">OtherMedicationSchema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">({</span>
-	<span class="n">name</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
-	<span class="n">dose</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
-	<span class="n">startDate</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">Date</span><span class="o">.</span><span class="n">now</span><span class="p">},</span>
-	<span class="n">endDate</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">null</span><span class="p">},</span>
-	<span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
-	<span class="n">notes</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
-	<span class="n">createdBy</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;Patient&quot;</span><span class="p">}</span>
+    <span class="n">name</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+    <span class="n">dose</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+    <span class="n">startDate</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">Date</span><span class="o">.</span><span class="n">now</span><span class="p">},</span>
+    <span class="n">endDate</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">Date</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">null</span><span class="p">},</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+    <span class="n">compassionateUse</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">},</span>
+    <span class="n">freesideEffects</span><span class="p">:</span> <span class="p">{</span><span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">},</span>
+    <span class="n">schedule</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+    <span class="n">otherSchedule</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+    <span class="n">notes</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+    <span class="n">createdBy</span><span class="p">:</span> <span class="p">{</span> <span class="nb">type</span><span class="p">:</span> <span class="n">Schema</span><span class="o">.</span><span class="n">Types</span><span class="o">.</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="s2">&quot;Patient&quot;</span><span class="p">}</span>
 <span class="p">})</span>
 </pre></div>
 </div>
@@ -1296,25 +1216,25 @@ const UserSchema = Schema({
 </div>
 </div>
 <div class="section" id="collections-relationship">
-<h3>2.4.7.4. Collections relationship<a class="headerlink" href="#collections-relationship" title="Permalink to this headline">¶</a></h3>
+<h3>2.4.6.4. Collections relationship<a class="headerlink" href="#collections-relationship" title="Permalink to this headline">¶</a></h3>
 <p>The following diagram shows a summary of the relationships between the different database collections for each environment:</p>
 <p style="text-align: center;">
 	<img width="800px" src="../../_images/ddbb_relationship.jpg">
 </p></div>
 </div>
 <div class="section" id="multilanguage">
-<h2>2.4.8. Multilanguage<a class="headerlink" href="#multilanguage" title="Permalink to this headline">¶</a></h2>
+<h2>2.4.7. Multilanguage<a class="headerlink" href="#multilanguage" title="Permalink to this headline">¶</a></h2>
 <p>The Health29 platform has the option of being displayed in several languages for the user. In particular, it is implemented for English, Spanish and Dutch.</p>
 <p>To achieve this different implementations will be made in the client and the server of the webapp.</p>
 <div class="section" id="multilanguage-in-client">
-<h3>2.4.8.1. Multilanguage in client<a class="headerlink" href="#multilanguage-in-client" title="Permalink to this headline">¶</a></h3>
+<h3>2.4.7.1. Multilanguage in client<a class="headerlink" href="#multilanguage-in-client" title="Permalink to this headline">¶</a></h3>
 <p>On the one hand, the client uses the <strong><a class="reference external" href="https://www.npmjs.com/package/&#64;ngx-translate/core">ngx-translate</a> library</strong>.
 For that, version 9.0.2 of the core has been installed in the project:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">npm</span> <span class="n">install</span> <span class="nd">@ngx</span><span class="o">-</span><span class="n">translate</span><span class="o">/</span><span class="n">core</span><span class="o">@^</span><span class="mf">9.0</span><span class="o">.</span><span class="mi">2</span> <span class="o">--</span><span class="n">save</span>
 </pre></div>
 </div>
 <p>And, in addition, version 2.0.1 of the http-loader is used:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">npm</span> <span class="n">install</span> <span class="nd">@ngx</span><span class="o">-</span><span class="n">translate</span><span class="o">/</span><span class="n">http</span><span class="o">-</span><span class="n">loader</span> <span class="o">--</span><span class="n">save</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">npm</span> <span class="n">install</span> <span class="nd">@ngx</span><span class="o">-</span><span class="n">translate</span><span class="o">/</span><span class="n">http</span><span class="o">-</span><span class="n">loader</span> <span class="o">--</span><span class="n">save</span> 
 </pre></div>
 </div>
 <p>To use it, you should configure app.module.ts:</p>
@@ -1384,13 +1304,13 @@ For that, version 9.0.2 of the core has been installed in the project:</p>
 <p>On the other hand, it has already been commented throughout this document that an Azure translation service is used for certain functions: <strong>the cognitive service Translator text</strong>. This has been explained in section 2.4.3.3. of this document at code level and in section 2.3.3.3. at component level.</p>
 </div>
 <div class="section" id="multilanguage-in-server">
-<h3>2.4.8.2. Multilanguage in server<a class="headerlink" href="#multilanguage-in-server" title="Permalink to this headline">¶</a></h3>
-<p>On the server, on the one hand you use <strong><a class="reference external" href="https://www.npmjs.com/package/&#64;k3rn31p4nic/google-translate-api">google-translate-api</a></strong>. It will be used in the superadmin language controller (controllers/superadmin/langs.js) to manage new languages.</p>
+<h3>2.4.7.2. Multilanguage in server<a class="headerlink" href="#multilanguage-in-server" title="Permalink to this headline">¶</a></h3>
+<p>On the server, in the superadmin language controller (controllers/superadmin/langs.js) you can manage new languages.</p>
 <p>On the other hand, <strong>different views</strong> have been implemented (one for each language in which we want to use the health29 platform) which will be selected according to the language information provided by the customer in their requests.</p>
 </div>
 </div>
 <div class="section" id="second-factor-autenthication">
-<h2>2.4.9. Second factor autenthication<a class="headerlink" href="#second-factor-autenthication" title="Permalink to this headline">¶</a></h2>
+<h2>2.4.8. Second factor autenthication<a class="headerlink" href="#second-factor-autenthication" title="Permalink to this headline">¶</a></h2>
 <p>The 2FA was incorporated in Health29 for the login on the platform of certain groups of patients.</p>
 <p>Initially, an analysis was made of the different options that could be used for implementation, concluding in Authy.
 Authy has the best combination of compatibility, usability, security and reliability. platforms including iOS, Android, Windows, Mac and Chrome, and has PIN and biometric protection for the application. Authy includes a secure cloud backup option, which makes it easy to use on multiple devices and makes your tokens easy to restore if you lose or replace your phone.</p>
@@ -1406,7 +1326,7 @@ Authy has the best combination of compatibility, usability, security and reliabi
 <ul class="simple">
 <li><p>In the user model, the fields were added:</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">authyId</span><span class="p">:{</span><span class="nb">type</span><span class="p">:</span><span class="n">String</span><span class="p">,</span><span class="n">default</span><span class="p">:</span><span class="n">null</span><span class="p">},</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">authyId</span><span class="p">:{</span><span class="nb">type</span><span class="p">:</span><span class="n">String</span><span class="p">,</span><span class="n">default</span><span class="p">:</span><span class="n">null</span><span class="p">},</span>
 	<span class="n">authyDeviceId</span><span class="p">:{</span><span class="nb">type</span><span class="p">:</span><span class="n">Object</span><span class="p">,</span><span class="n">default</span><span class="p">:[]},</span>
 	<span class="n">phone</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
 </pre></div>
@@ -1414,27 +1334,28 @@ Authy has the best combination of compatibility, usability, security and reliabi
 <p>To store the information on each user required for interaction with Authy.</p>
 <ul class="simple">
 <li><p>In the user’s controller, the registration and user login functions were updated, and a new one was created to update those that existed before the addition of the functionality.
-In all the functions the group of patients to which the user belongs is checked in order to apply or not the authentication conditions.
-For these tasks the Authy functions will be used: register_user, send_approval_request and check_approval_status.</p></li>
+In all the functions the group of patients to which the user belongs is checked in order to apply or not the authentication conditions.</p></li>
 </ul>
+<p>For these tasks the Authy functions will be used: register_user and signin2FA.</p>
+<p>In addition to this we offer a method for migrating users prior to the introduction of the second factor for a patient group, i.e. any user already registered and created on the platform who belongs to a patient group that did not have 2FA and then added will be prompted at login to enter their phone number and will be registered in Authy using registerUserInAuthy.</p>
 </div>
 </div>
 
 
            </div>
-
+           
           </div>
           <footer>
-
+  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-
+      
         <a href="../Superadmin profile.html" class="btn btn-neutral float-right" title="3. Superadmin profile" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-
-
+      
+      
         <a href="Components.html" class="btn btn-neutral float-left" title="2.3. Level 3: Component" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-
+      
     </div>
-
+  
 
   <hr/>
 
@@ -1444,7 +1365,7 @@ For these tasks the Authy functions will be used: register_user, send_approval_r
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -1454,7 +1375,7 @@ For these tasks the Authy functions will be used: register_user, send_approval_r
     </section>
 
   </div>
-
+  
 
 
   <script type="text/javascript">
@@ -1463,10 +1384,10 @@ For these tasks the Authy functions will be used: register_user, send_approval_r
       });
   </script>
 
-
-
-
-
+  
+  
+    
+   
 
 </body>
 </html>

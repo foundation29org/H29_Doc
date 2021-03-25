@@ -546,7 +546,7 @@ function getAzureBlobSasTokenWithContainer (req, res){
       protocol: storage.SASProtocol.Https,
       containerName: containerName,
       startsOn: startDate,
-      version:"2017-11-09"
+      version:<version>
 
     },sharedKeyCredentialGenomics).toString();
   res.status(200).send({containerSAS: containerSAS})
@@ -1161,14 +1161,20 @@ For the implementation the version 1.4.0 of [authy](https://www.npmjs.com/packag
 ```
 const authy = require('authy')(APIKEY);
 ```
+
 As mentioned above, the user's model and controller have been modified:
 - In the user model, the fields were added:
 ```
-authyId:{type:String,default:null},
+  authyId:{type:String,default:null},
 	authyDeviceId:{type:Object,default:[]},
 	phone: String,
 ```
+
 To store the information on each user required for interaction with Authy.
 - In the user's controller, the registration and user login functions were updated, and a new one was created to update those that existed before the addition of the functionality.
 In all the functions the group of patients to which the user belongs is checked in order to apply or not the authentication conditions.
-For these tasks the Authy functions will be used: register_user, send_approval_request and check_approval_status.
+
+For these tasks the Authy functions will be used: register_user and signin2FA.
+
+In addition to this we offer a method for migrating users prior to the introduction of the second factor for a patient group, i.e. any user already registered and created on the platform who belongs to a patient group that did not have 2FA and then added will be prompted at login to enter their phone number and will be registered in Authy using registerUserInAuthy.
+

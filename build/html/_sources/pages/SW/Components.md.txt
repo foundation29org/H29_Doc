@@ -29,7 +29,7 @@ The Health29 platform has been developed as a Platform as a Service (PaaS) in Az
 	<img width="400px" src="../../_images/F29API_component.jpg">
 </p>
 
-**The [Monarch](https://api.monarchinitiative.org/) API**, is an external API that is used for the diagnostic functions for the different roles of the Health29 platform. 
+**The [Monarch](https://api.monarchinitiative.org/) API**, is an external API that is used to obtain symptom information. 
 
 <p style="text-align: center;">
 	<img width="300px" src="../../_images/monarchAPI_component.jpg">
@@ -41,21 +41,11 @@ As explained in the previous section of this document (2.2.Containers) several "
 
 In particular, services will be used for the conversion of formats, for the translation of texts and for the creation of databases for the FAQs of each group of patients.
 
-<p style="text-align: center;">
-	<img width="400px" src="../../_images/cognitiveServices_component.jpg">
-</p>
-
 All of them will communicate with webapp.
 
 In the following subsections each of them is introduced.
 
-#### 2.3.3.1. Computer Vision
-It is used in the symptoms section. This service converts images into text in order to obtain the symptoms.
-
-You can configure and use this azure service by following the steps in the [Microsoft guide](https://docs.microsoft.com/bs-latn-ba/azure/cognitive-services/computer-vision/). 
-And access the one that uses the Health29 platform from this [link](https://portal.azure.com/#@foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/health29/providers/Microsoft.CognitiveServices/accounts/recognizetexthealth29/overview).
-
-#### 2.3.3.2. Qna maker
+#### 2.3.3.1. Qna maker
 QnA Maker is a cloud-based Natural Language Processing (NLP) service that easily creates a natural conversation layer with the data. 
 
 In Health29 it is used to manage the FAQs in different ways and from different points of the platform:
@@ -69,20 +59,14 @@ In Health29 it is used to manage the FAQs in different ways and from different p
 In this case the communication of the webapp with this service is requested from the client through an external API that acts as an intermediary. However, there will also be information that will be stored in the databases, therefore, the client will also establish a communication with the server who will manage the storage of this information.
 
 You can configure and use this azure service by following the steps in the [Microsoft guide](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/).
-And access the one that uses the Health29 platform from this [link](https://portal.azure.com/#@foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/health29/providers/Microsoft.CognitiveServices/accounts/qnamakerhealth29/overview)
 
 In particular for Health29 the following databases have been created in qnamaker: [My knowledge bases](https://www.qnamaker.ai/Home/MyServices). One would be created for each group of patients to contain their specific information and this in turn would be replicated in as many languages as the question-answer pairs are translated on the Health29 platform.
 
 
-#### 2.3.3.3. Translator
+#### 2.3.3.2. Translator
 This service is used to be able to make a translation of the different datapoints, to add a new language to the platform (it translates all the tags), and to translate into English the text obtained from the vision service to call the NCR service that extracts the symptoms.
 
 You can configure and use this azure service by following the steps in the [Microsoft guide](https://docs.microsoft.com/bs-cyrl-ba/azure/cognitive-services/translator/).
-
-And access the two that uses the Health29 platform from these links:
-- [health29translateplatform](https://portal.azure.com/#@foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/health29/providers/Microsoft.CognitiveServices/accounts/health29translateplatform/overview)
-- [translatorBotApi](https://portal.azure.com/#@foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/phenotypeBot/providers/Microsoft.CognitiveServices/accounts/translatorBotApi/overview)
-
 
 ### 2.3.4. Azure healthbot
 
@@ -101,51 +85,31 @@ It guides the user through different configured scenarios where he or she can pe
 - **Main** scenario. A series of guided scenarios will appear where the user will be able to make different types of queries.
 
 You can configure and use this azure service by following the steps in the [Microsoft guide](https://docs.microsoft.com/en-us/healthbot/quickstart-createyourhealthcarebot). 
-And access the one that uses the Health29 platform from this [link](https://portal.azure.com/#@foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/testresourcesjavi/providers/Microsoft.Web/sites/HealthBotContainerSamplef666/appServices).
-
-In particular for Health29 the following chatbots have been created (All of them use the previous App Service):
-- [Healthbot](https://us.healthbot.microsoft.com/account/zebrahealthbot/scenarios/manage) of the development environment.
-- [Healthbot](https://eu.healthbot.microsoft.com/account/healthbot-test-tjo3h51/scenarios/manage) of the test environment.
-- [Healthbot](https://eu.healthbot.microsoft.com/account/h29bot-giochop/scenarios/manage) of the production environment.
 
 
 ### 2.3.5. Azure blobs
 Azure Blob storage is Microsoft's object storage solution for the cloud. Blob storage is optimized for storing massive amounts of unstructured data. Unstructured data is data that doesn't adhere to a particular data model or definition, such as text or binary data.
 
-Two "Storage accounts (classic)" container called "blobgenomics" adn "health29support" has been created to store information from various sections of Health29.
-For the first one:
+One "Storage accounts (classic)" container called "blobgenomics" has been created to store information from various sections of Health29:
 - Medical care section. Here, one container per patient is created to store their medical information.
 - Diagnosis section. As in the previous point, one container per patient is created to store the diagnostic information.
-- User profile section. Used to export patient data in PDF or JSON format. A container per patient is also created.
 - Genotype section. One container per patient is created to store the genotype data of the patient.
 - Phenotype section. Same as above but for saving the phenotype data.
-
-The second has been created to manage the data of support section. Unlike the previous ones, only a container named "filessupport" is created for this data to store the data related to the Health29 platform support.
+- Support section. To manage the data of this section.
 
 You can configure and use this azure service by following the steps in the [Microsoft guide](https://docs.microsoft.com/es-es/azure/storage/blobs/storage-blobs-introduction). 
-And access the two that uses the Health29 platform from these links:
 
-- [blobgenomics](https://portal.azure.com/#@foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/health29/providers/Microsoft.Storage/storageAccounts/blobgenomics/containersList).
-- [health29support](https://portal.azure.com/#@foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/health29/providers/Microsoft.Storage/storageAccounts/health29support/overview)
-
-<p style="text-align: center;">
-	<img width="400px" src="../../_images/blobs_component.jpg">
-</p>
-
-### 2.3.6. Other services
-- The [Genomics Functions apps](https://portal.azure.com/#blade/WebsitesExtension/FunctionsIFrameBlade/id/%2Fsubscriptions%2F53348303-e009-4241-9ac7-a8e4465ece27%2FresourceGroups%2Fhealth29%2Fproviders%2FMicrosoft.Web%2Fsites%2FGenomicServices) for phenolyze and exomize tasks. It is an Azure service.
-- The [DiagnosisApi](https://portal.azure.com/#@foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/phenotypeBot/providers/Microsoft.Web/sites/DiagnosisApi/appServices) is an App Service of Azure that is used for consulting the symptons of a diagnose. It is an Azure service.
 
 ### 2.3.7. Databases
 We have several separate collections in two databases, one for accounts and general things, and one for patient data. 
  
 The development and test environments share the same databases, while the production ones do not. So, in total we have 4 databases:
 - Two for accounts
->- Development and testing: [health29-accounts-test](https://portal.azure.com/#@foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/health29/providers/Microsoft.DocumentDb/databaseAccounts/health29-accounts-test/overview)
->- Production: [health29-accounts-final](https://portal.azure.com/#@foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/health29/providers/Microsoft.DocumentDb/databaseAccounts/health29-accounts-final/overview)
+>- Development and testing
+>- Production
 - Two for patient data
->- Development and testing: [health29-data-test](https://portal.azure.com/#@foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/health29/providers/Microsoft.DocumentDb/databaseAccounts/health29-data-test/overview)
->- Production: [health29-data-final](https://portal.azure.com/#@foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/health29/providers/Microsoft.DocumentDb/databaseAccounts/health29-data-final/overview)
+>- Development and testing
+>- Production
 
 
 <p style="text-align: center;">

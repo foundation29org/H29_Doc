@@ -59,7 +59,6 @@ As already explained in the architecture section of this document, each group of
 <img width="800px" src="../_images/manageFAQ_section2.jpg">
 
 There are several actions that can be performed on each available FAQ collection:
-- Download logs
 - Publish changes. For each update or modification made on the FAQs of a collection it will be necessary to publish the changes so that this is visible to the users of the patient group.
 - Delete. To delete a complete collection.
 

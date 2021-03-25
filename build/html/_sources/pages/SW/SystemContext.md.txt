@@ -21,7 +21,7 @@ Using the navigation through the menu of this role, the administrator will be ab
 - **Super Administrator**. This is a more technical profile. He or she can add languages to the platform, manage translations, and manage the different groups of patients (Add symptoms, FAQs, datapoints, medicines). 
 
 
-Furthermore, we also have the profile of the **clinicians**. They will be able to create patients, and work on the phenotype and genotype.
+Furthermore, we also have the profile of the **researcher**. They will be able to consuming data through the API.
 
 In general, this platform will be able to store patient data and have it managed by the administrators of the group to which it belongs. The latter will be able, on the one hand, to obtain statistical information about the interaction of the users with the platform, and on the other hand, to interact with the patients through notifications or alerts.
 

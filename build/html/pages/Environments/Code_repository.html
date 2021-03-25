@@ -159,11 +159,9 @@
             
   <img align="right" width="100px" src="../../_images/Foundation29.png"><div class="section" id="code-repositories">
 <h1>1.2. Code repositories<a class="headerlink" href="#code-repositories" title="Permalink to this headline">¶</a></h1>
-<p>Each environment has been created as an independent project,</p>
+<p>The code is open source, and is public on GitHub.</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://f29.visualstudio.com/Health29/_git/dev-client">Develop client</a> and <a class="reference external" href="https://f29.visualstudio.com/Health29/_git/dev-server">develop server</a></p></li>
-<li><p><a class="reference external" href="https://f29.visualstudio.com/Health29/_git/test-client">Test client</a> and <a class="reference external" href="https://f29.visualstudio.com/Health29/_git/test-server">test server</a></p></li>
-<li><p><a class="reference external" href="https://f29.visualstudio.com/Health29/_git/pro-client">Production client</a> and <a class="reference external" href="https://f29.visualstudio.com/Health29/_git/pro-server">production server</a></p></li>
+<li><p><a class="reference external" href="https://github.com/foundation29org/H29_Client">Client</a> and <a class="reference external" href="https://github.com/foundation29org/H29_Server">Server</a></p></li>
 </ul>
 <p>Each environment will be composed of two projects: client and server, using a REST architecture.
 Therefore, it will have the characteristics of this type of implementation. Among them, we can mainly highlight:</p>
@@ -188,10 +186,28 @@ Therefore, it will have the characteristics of this type of implementation. Amon
 </ul>
 <p>For all this, it is advisable to follow <a class="reference external" href="https://stackoverflow.blog/2020/03/02/best-practices-for-rest-api-design/">good practices in programming REST applications</a> for the maintenance and scaling of the platform.</p>
 <p>The architecture of the client-server code will be explained in more detail in section 2 of this document, but here it is important to note that the client is implemented in <a class="reference external" href="https://angular.io/">Angular 5</a> and the server in <a class="reference external" href="https://nodejs.org/en/">node.js</a>.</p>
+<p>For the development and versioning of the code we will follow the GitFlow defined in this <a class="reference external" href="https://blog.axosoft.com/gitflow/">guide</a>.</p>
 <p style="text-align: center;">
-	<img width="500px" src="../../_images/Repositories.jpg">
-</p><p>In order to move from one environment to another you will have to copy the code of one over the new one. Due to the architecture of the Angular projects, in this process it must be taken into account that the environment.prod file in the environments folder of the client has been previously configured for each environment, and therefore it is different in each one of them. Before making any changes you must ensure that it is kept in the environment to be updated and that during the process of copying code from one environment to another the information in this file is not modified.</p>
-<p>But in addition to this, you will have to follow the steps indicated in the following section.</p>
+	<img width="500px" src="../../_images/gitflow.jpg">
+</p><p>It consists of a division by branches according to the task to be performed. Like this:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The master branch will contain the latest version of the code uploaded to production.</p></li>
+<li><p>The develop branch will be used to prepare the next versions. It will be the main branch on which the developers will work.</p></li>
+<li><p>Feature branches will be created to implement the functionality of the tasks defined in each sprint.</p></li>
+<li><p>Hotfixes branches will be created to implement the bugs defined in each Sprint.</p></li>
+<li><p>The releases branch will serve as a link between the development and master branches. It will be the one on which the following versions will be built and added to the production.</p></li>
+</ul>
+</div></blockquote>
+<p>Thus, there will be a relationship between each of the branches:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The Develop branch is generated from the Master branch. This is part of the latest production version when starting a Sprint.</p></li>
+<li><p>Features branches are created from the Develop branch. A branch will be created for each Sprint Task.</p></li>
+<li><p>From the Master branch the Hotfixes branches are created where the Sprint bugs will be resolved.</p></li>
+<li><p>The releases branch will be the union between Develop and Master, so that to move to Master (new version) you will first have to move from Develop to the releases branch, and then perform a validation phase. When this validation phase is finished, you can move to the Master branch.</p></li>
+</ul>
+</div></blockquote>
 </div>
 
 

@@ -83,7 +83,7 @@
               <p class="caption"><span class="caption-text">H29</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../Environments.html">1. Environments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Environments/Azure_App_Services.html">1.1. Azure App service: health29</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Environments/Azure_App_Services.html">1.1. Azure App service: Health29</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Environments/Code_repository.html">1.2. Code repositories</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Environments/Build_deploy.html">1.3. Build and deploy environments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Software architecture.html">2. Software architecture</a></li>
@@ -93,14 +93,12 @@
 <li class="toctree-l2"><a class="reference internal" href="#webapp">2.3.1. Webapp</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#external-apis">2.3.2. External APIs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#azure-cognitive-services">2.3.3. Azure cognitive services</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#computer-vision">2.3.3.1. Computer Vision</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#qna-maker">2.3.3.2. Qna maker</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#translator">2.3.3.3. Translator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qna-maker">2.3.3.1. Qna maker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#translator">2.3.3.2. Translator</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#azure-healthbot">2.3.4. Azure healthbot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#azure-blobs">2.3.5. Azure blobs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#other-services">2.3.6. Other services</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#databases">2.3.7. Databases</a></li>
 </ul>
 </li>
@@ -188,7 +186,7 @@ For this purpose, an HTTP service will be used to allow, through requests from t
 <p><strong><a class="reference external" href="https://f29api.northeurope.cloudapp.azure.com/index.html">Foundation29 API</a></strong>, implemented by Foundation29 to use it as an intermediary between the webapp and the azure qnamaker service. It is used for QNA functions for the different roles of Health29 platform.</p>
 <p style="text-align: center;">
 	<img width="400px" src="../../_images/F29API_component.jpg">
-</p><p><strong>The <a class="reference external" href="https://api.monarchinitiative.org/">Monarch</a> API</strong>, is an external API that is used for the diagnostic functions for the different roles of the Health29 platform.</p>
+</p><p><strong>The <a class="reference external" href="https://api.monarchinitiative.org/">Monarch</a> API</strong>, is an external API that is used to obtain symptom information.</p>
 <p style="text-align: center;">
 	<img width="300px" src="../../_images/monarchAPI_component.jpg">
 </p></div>
@@ -196,18 +194,10 @@ For this purpose, an HTTP service will be used to allow, through requests from t
 <h2>2.3.3. Azure cognitive services<a class="headerlink" href="#azure-cognitive-services" title="Permalink to this headline">¶</a></h2>
 <p>As explained in the previous section of this document (2.2.Containers) several “Azure cognitive services” will be used.</p>
 <p>In particular, services will be used for the conversion of formats, for the translation of texts and for the creation of databases for the FAQs of each group of patients.</p>
-<p style="text-align: center;">
-	<img width="400px" src="../../_images/cognitiveServices_component.jpg">
-</p><p>All of them will communicate with webapp.</p>
+<p>All of them will communicate with webapp.</p>
 <p>In the following subsections each of them is introduced.</p>
-<div class="section" id="computer-vision">
-<h3>2.3.3.1. Computer Vision<a class="headerlink" href="#computer-vision" title="Permalink to this headline">¶</a></h3>
-<p>It is used in the symptoms section. This service converts images into text in order to obtain the symptoms.</p>
-<p>You can configure and use this azure service by following the steps in the <a class="reference external" href="https://docs.microsoft.com/bs-latn-ba/azure/cognitive-services/computer-vision/">Microsoft guide</a>.
-And access the one that uses the Health29 platform from this <a class="reference external" href="https://portal.azure.com/#&#64;foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/health29/providers/Microsoft.CognitiveServices/accounts/recognizetexthealth29/overview">link</a>.</p>
-</div>
 <div class="section" id="qna-maker">
-<h3>2.3.3.2. Qna maker<a class="headerlink" href="#qna-maker" title="Permalink to this headline">¶</a></h3>
+<h3>2.3.3.1. Qna maker<a class="headerlink" href="#qna-maker" title="Permalink to this headline">¶</a></h3>
 <p>QnA Maker is a cloud-based Natural Language Processing (NLP) service that easily creates a natural conversation layer with the data.</p>
 <p>In Health29 it is used to manage the FAQs in different ways and from different points of the platform:</p>
 <ul class="simple">
@@ -216,19 +206,13 @@ And access the one that uses the Health29 platform from this <a class="reference
 <li><p>It is integrated into the <strong>healthbot</strong> to allow users to ask questions or doubts in a more guided and personal way.</p></li>
 </ul>
 <p>In this case the communication of the webapp with this service is requested from the client through an external API that acts as an intermediary. However, there will also be information that will be stored in the databases, therefore, the client will also establish a communication with the server who will manage the storage of this information.</p>
-<p>You can configure and use this azure service by following the steps in the <a class="reference external" href="https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/">Microsoft guide</a>.
-And access the one that uses the Health29 platform from this <a class="reference external" href="https://portal.azure.com/#&#64;foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/health29/providers/Microsoft.CognitiveServices/accounts/qnamakerhealth29/overview">link</a></p>
+<p>You can configure and use this azure service by following the steps in the <a class="reference external" href="https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/">Microsoft guide</a>.</p>
 <p>In particular for Health29 the following databases have been created in qnamaker: <a class="reference external" href="https://www.qnamaker.ai/Home/MyServices">My knowledge bases</a>. One would be created for each group of patients to contain their specific information and this in turn would be replicated in as many languages as the question-answer pairs are translated on the Health29 platform.</p>
 </div>
 <div class="section" id="translator">
-<h3>2.3.3.3. Translator<a class="headerlink" href="#translator" title="Permalink to this headline">¶</a></h3>
+<h3>2.3.3.2. Translator<a class="headerlink" href="#translator" title="Permalink to this headline">¶</a></h3>
 <p>This service is used to be able to make a translation of the different datapoints, to add a new language to the platform (it translates all the tags), and to translate into English the text obtained from the vision service to call the NCR service that extracts the symptoms.</p>
 <p>You can configure and use this azure service by following the steps in the <a class="reference external" href="https://docs.microsoft.com/bs-cyrl-ba/azure/cognitive-services/translator/">Microsoft guide</a>.</p>
-<p>And access the two that uses the Health29 platform from these links:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://portal.azure.com/#&#64;foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/health29/providers/Microsoft.CognitiveServices/accounts/health29translateplatform/overview">health29translateplatform</a></p></li>
-<li><p><a class="reference external" href="https://portal.azure.com/#&#64;foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/phenotypeBot/providers/Microsoft.CognitiveServices/accounts/translatorBotApi/overview">translatorBotApi</a></p></li>
-</ul>
 </div>
 </div>
 <div class="section" id="azure-healthbot">
@@ -243,43 +227,20 @@ And access the one that uses the Health29 platform from this <a class="reference
 <li><p>Scenario of <strong>pending notifications</strong>. In case the user has any pending notifications, he or she will be informed during the first run of the assistant.</p></li>
 <li><p><strong>Main</strong> scenario. A series of guided scenarios will appear where the user will be able to make different types of queries.</p></li>
 </ul>
-<p>You can configure and use this azure service by following the steps in the <a class="reference external" href="https://docs.microsoft.com/en-us/healthbot/quickstart-createyourhealthcarebot">Microsoft guide</a>.
-And access the one that uses the Health29 platform from this <a class="reference external" href="https://portal.azure.com/#&#64;foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/testresourcesjavi/providers/Microsoft.Web/sites/HealthBotContainerSamplef666/appServices">link</a>.</p>
-<p>In particular for Health29 the following chatbots have been created (All of them use the previous App Service):</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://us.healthbot.microsoft.com/account/zebrahealthbot/scenarios/manage">Healthbot</a> of the development environment.</p></li>
-<li><p><a class="reference external" href="https://eu.healthbot.microsoft.com/account/healthbot-test-tjo3h51/scenarios/manage">Healthbot</a> of the test environment.</p></li>
-<li><p><a class="reference external" href="https://eu.healthbot.microsoft.com/account/h29bot-giochop/scenarios/manage">Healthbot</a> of the production environment.</p></li>
-</ul>
+<p>You can configure and use this azure service by following the steps in the <a class="reference external" href="https://docs.microsoft.com/en-us/healthbot/quickstart-createyourhealthcarebot">Microsoft guide</a>.</p>
 </div>
 <div class="section" id="azure-blobs">
 <h2>2.3.5. Azure blobs<a class="headerlink" href="#azure-blobs" title="Permalink to this headline">¶</a></h2>
 <p>Azure Blob storage is Microsoft’s object storage solution for the cloud. Blob storage is optimized for storing massive amounts of unstructured data. Unstructured data is data that doesn’t adhere to a particular data model or definition, such as text or binary data.</p>
-<p>Two “Storage accounts (classic)” container called “blobgenomics” adn “health29support” has been created to store information from various sections of Health29.
-For the first one:</p>
+<p>One “Storage accounts (classic)” container called “blobgenomics” has been created to store information from various sections of Health29:</p>
 <ul class="simple">
 <li><p>Medical care section. Here, one container per patient is created to store their medical information.</p></li>
 <li><p>Diagnosis section. As in the previous point, one container per patient is created to store the diagnostic information.</p></li>
-<li><p>User profile section. Used to export patient data in PDF or JSON format. A container per patient is also created.</p></li>
 <li><p>Genotype section. One container per patient is created to store the genotype data of the patient.</p></li>
 <li><p>Phenotype section. Same as above but for saving the phenotype data.</p></li>
+<li><p>Support section. To manage the data of this section.</p></li>
 </ul>
-<p>The second has been created to manage the data of support section. Unlike the previous ones, only a container named “filessupport” is created for this data to store the data related to the Health29 platform support.</p>
-<p>You can configure and use this azure service by following the steps in the <a class="reference external" href="https://docs.microsoft.com/es-es/azure/storage/blobs/storage-blobs-introduction">Microsoft guide</a>.
-And access the two that uses the Health29 platform from these links:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://portal.azure.com/#&#64;foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/health29/providers/Microsoft.Storage/storageAccounts/blobgenomics/containersList">blobgenomics</a>.</p></li>
-<li><p><a class="reference external" href="https://portal.azure.com/#&#64;foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/health29/providers/Microsoft.Storage/storageAccounts/health29support/overview">health29support</a></p></li>
-</ul>
-<p style="text-align: center;">
-	<img width="400px" src="../../_images/blobs_component.jpg">
-</p></div>
-<div class="section" id="other-services">
-<h2>2.3.6. Other services<a class="headerlink" href="#other-services" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>The <a class="reference external" href="https://portal.azure.com/#blade/WebsitesExtension/FunctionsIFrameBlade/id/%2Fsubscriptions%2F53348303-e009-4241-9ac7-a8e4465ece27%2FresourceGroups%2Fhealth29%2Fproviders%2FMicrosoft.Web%2Fsites%2FGenomicServices">Genomics Functions apps</a> for phenolyze and exomize tasks. It is an Azure service.</p></li>
-<li><p>The <a class="reference external" href="https://portal.azure.com/#&#64;foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/phenotypeBot/providers/Microsoft.Web/sites/DiagnosisApi/appServices">DiagnosisApi</a> is an App Service of Azure that is used for consulting the symptons of a diagnose. It is an Azure service.</p></li>
-</ul>
+<p>You can configure and use this azure service by following the steps in the <a class="reference external" href="https://docs.microsoft.com/es-es/azure/storage/blobs/storage-blobs-introduction">Microsoft guide</a>.</p>
 </div>
 <div class="section" id="databases">
 <h2>2.3.7. Databases<a class="headerlink" href="#databases" title="Permalink to this headline">¶</a></h2>
@@ -290,8 +251,8 @@ And access the two that uses the Health29 platform from these links:</p>
 </ul>
 <blockquote>
 <div><ul class="simple">
-<li><p>Development and testing: <a class="reference external" href="https://portal.azure.com/#&#64;foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/health29/providers/Microsoft.DocumentDb/databaseAccounts/health29-accounts-test/overview">health29-accounts-test</a></p></li>
-<li><p>Production: <a class="reference external" href="https://portal.azure.com/#&#64;foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/health29/providers/Microsoft.DocumentDb/databaseAccounts/health29-accounts-final/overview">health29-accounts-final</a></p></li>
+<li><p>Development and testing</p></li>
+<li><p>Production</p></li>
 </ul>
 </div></blockquote>
 <ul class="simple">
@@ -299,8 +260,8 @@ And access the two that uses the Health29 platform from these links:</p>
 </ul>
 <blockquote>
 <div><ul class="simple">
-<li><p>Development and testing: <a class="reference external" href="https://portal.azure.com/#&#64;foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/health29/providers/Microsoft.DocumentDb/databaseAccounts/health29-data-test/overview">health29-data-test</a></p></li>
-<li><p>Production: <a class="reference external" href="https://portal.azure.com/#&#64;foundation29outlook.onmicrosoft.com/resource/subscriptions/53348303-e009-4241-9ac7-a8e4465ece27/resourceGroups/health29/providers/Microsoft.DocumentDb/databaseAccounts/health29-data-final/overview">health29-data-final</a></p></li>
+<li><p>Development and testing</p></li>
+<li><p>Production</p></li>
 </ul>
 </div></blockquote>
 <p style="text-align: center;">
